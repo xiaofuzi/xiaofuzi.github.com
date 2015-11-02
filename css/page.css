@@ -67,6 +67,16 @@
 	color: #444;
 }
 
+.post h1 a:hover,.post h2 a:hover{
+	color: #222;
+	text-decoration: none;
+}
+
+.post a:hover{
+	color: #999;
+	text-decoration: underline;
+}
+
 .post-info a{
 	font-size: 12px;
 	color: #9c9c9c;

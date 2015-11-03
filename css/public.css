@@ -16,9 +16,17 @@ time, mark, audio, video {
     border:0;
     outline:0;
     font-size:100%;
-    vertical-align:baseline;
     background:transparent;
-    font-family: font-family: Verdana,"Lantinghei SC","Hiragino Sans GB","Microsoft Yahei",Helvetica,arial,\5b8b\4f53,sans-serif;
+    font-family: Verdana,"Lantinghei SC","Hiragino Sans GB","Microsoft Yahei",Helvetica,arial,\5b8b\4f53,sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, li, span{
+    line-height: 1.5;
 }
 
 :focus {
@@ -49,7 +57,6 @@ a {
     padding:0;
     border:0;
     font-size:100%;
-    vertical-align:baseline;
     background:transparent;
 }
 
@@ -118,4 +125,9 @@ body{
 	font-weight: 400;
 	color: #444;
 	background: #ffffff;
+}
+
+figure{
+    margin: 10px 0;
+    padding: 0 0 0 20px;
 }

@@ -76,12 +76,19 @@
 <p style="text-align:center;border:1px solid #444;">text-align实现水平居中,我已经居中了</p>
 
 
-<h2 id="绝对定位实现垂直居中">绝对定位实现垂直居中</h2><div style="position:relative;background:#444;height:200px;"><br>    <div style="position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-50px;width:100px;height:100px;background:#ffffff;"></div><br></div>
+<h2 id="绝对定位实现垂直居中">绝对定位实现垂直居中</h2><div style="position:relative;background:#444;height:200px;"><br>    <div style="position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-50px;width:100px;height:100px;background:#ffffff;text-align:center;line-height:100px;">居中一</div><br></div>
 
 <p>实现代码：</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">position</span><span class="pseudo">:absolute</span>;</span><br><span class="line"><span class="tag">top</span><span class="pseudo">:50</span>%;</span><br><span class="line"><span class="tag">left</span><span class="pseudo">:50</span>%;</span><br><span class="line"><span class="tag">margin-top</span><span class="pseudo">:-50px</span>;</span><br><span class="line"><span class="tag">margin-left</span><span class="pseudo">:-50px</span>;</span><br><span class="line"><span class="tag">width</span><span class="pseudo">:100px</span>;</span><br><span class="line"><span class="tag">height</span><span class="pseudo">:100px</span>;</span><br></pre></td></tr></table></figure>
 <p>采用绝对定位加负外边距的方式，首先上，左偏移父容器的50%;然后再自身偏移自己宽高的50%，从而实现垂直水平居中。该方式需要居中元素的宽高确定。</p>
-<h2 id="绝对定位且居中元素不知宽高的情况">绝对定位且居中元素不知宽高的情况</h2>
+<h2 id="绝对定位且居中元素不知宽高的情况">绝对定位且居中元素不知宽高的情况</h2><div style="position:relative;background:#444;height:200px;"><br>    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;background:#ffffff;text-align:center;line-height:100px;">居中二</div><br></div>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">position</span><span class="pseudo">:absolute</span>;</span><br><span class="line"><span class="tag">top</span><span class="pseudo">:50</span>%;</span><br><span class="line"><span class="tag">left</span><span class="pseudo">:50</span>%;</span><br><span class="line"><span class="tag">transform</span><span class="pseudo">:translate(-50</span>%,<span class="tag">-50</span>%);</span><br><span class="line"><span class="tag">width</span><span class="pseudo">:100px</span>;</span><br><span class="line"><span class="tag">height</span><span class="pseudo">:100px</span>;</span><br></pre></td></tr></table></figure>
+<p>在这里使用css3的transform:translate(-50%,-50%);属性来实现元素自身的一个偏移</p>
+<h2 id="绝对定位+margin:auto;实现水平垂直居中">绝对定位+margin:auto;实现水平垂直居中</h2><div style="position:relative;background:#444;height:200px;"><br>    <div style="position:absolute;top:0;left:0;bottom:0;right:0;width:100px;height:100px;margin:auto;background:#ffffff; text-align:center;line-height:100px;">居中三</div><br></div>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">position</span><span class="pseudo">:absolute</span>;</span><br><span class="line"><span class="tag">top</span><span class="pseudo">:0</span>;</span><br><span class="line"><span class="tag">left</span><span class="pseudo">:0</span>;</span><br><span class="line"><span class="tag">bottom</span><span class="pseudo">:0</span>;</span><br><span class="line"><span class="tag">right</span><span class="pseudo">:0</span>;</span><br><span class="line"><span class="tag">width</span><span class="pseudo">:100px</span>;</span><br><span class="line"><span class="tag">height</span><span class="pseudo">:100px</span>;</span><br><span class="line"><span class="tag">margin</span><span class="pseudo">:auto</span>;</span><br></pre></td></tr></table></figure>
+
 				</div>
 			</article>
 		</div>

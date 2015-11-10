@@ -131,3 +131,9 @@ figure{
     margin: 10px 0;
     padding: 20px;
 }
+
+.margin-auto{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}

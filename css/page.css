@@ -101,7 +101,18 @@
 
 #mainContent ul li{
 	list-style: disc;
+	line-height: 150%;
 }
+
+
+#mainContent ul a{
+	color: #666;
+}
+
+#mainContent ul a:hover{
+	color: #222;
+}
+
 
 .post a{
 	color: #444;
@@ -127,7 +138,9 @@
 }
 
 .post-body{
+	position: relative;
 	margin-top: 10px;
+	margin-bottom: 50px;
 	font-size: 14px;
 }
 
@@ -172,4 +185,15 @@
 
 #footer a:hover{
 	color: #444;
+}
+
+
+
+/*post摘要显示*/
+.post-body .postMore{
+	color: rgb(156, 14, 14);
+}
+
+.post-body .postMore:hover{
+	color: red;
 }

@@ -1,0 +1,12 @@
+/* css3简易魔方绘制页面样式*/
+/*1. rotateX演示动画*/
+@keyframes 3d-rotateX{
+	0% {transform: rotateX(0);}
+	45% {transform: rotateX(45deg);}
+	70% {transform: rotateX(90deg);}
+	100% {transform: rotateX(135deg);}
+}
+
+.3d-rotateX .box{
+	animation: 3d-rotateX 3s infinite;
+}

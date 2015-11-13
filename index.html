@@ -54,8 +54,45 @@
 						</header>
 						<div class="post-body">
 							
-								<p>## </p>
-
+								<div class="post-excerpt">
+									<h2 id="为什么需要css_Hack?">为什么需要css Hack?</h2><p>由于不同的浏览器和浏览器各版本对CSS的支持及解析结果不一样，由此带来的的结果是同样的页面在不同的浏览器中显示效果不一样，甚至会出现布局错乱的情况，为了保证各浏览器呈现的效果一致，有时会需要对各个浏览器做单独的处理。（Hack只是进行修补工作，不要当做一个主要的功能。个人觉得参照优雅降级的方式做兼容会比较好，先兼容主流的、版本高的浏览器。然后针对低版本不能兼容的点做相应的处理。)</p>
+<p>[“优雅降级”, “渐进增强”]</p>
+<p>PS: 个人觉得给css3属性增加前缀也是hack的一种</p>
+<p>常用的hack方式</p>
+<ul>
+<li>条件注释方式</li>
+<li>属性前缀方式</li>
+</ul>
+								</div>
+								<div class="post-more">
+									<h2 id="ie_Hack解决方案">ie Hack解决方案</h2><h3 id="1-条件注释法">1.条件注释法</h3><p>类型于编程语言里的条件语句</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(条件满足)&#123;</span><br><span class="line">	显示相应的内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>只在IE下生效
+</code></pre><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if IE]&gt;</span><br><span class="line">这段文字只在IE浏览器显示</span><br><span class="line">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code>只在IE6下生效
+</code></pre><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if IE 6]&gt;</span><br><span class="line">这段文字只在IE6浏览器显示</span><br><span class="line">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code>只在IE6以上版本生效
+</code></pre><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if gte IE 6]&gt;</span><br><span class="line">这段文字只在IE6以上(包括)版本IE浏览器显示</span><br><span class="line">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code>只在IE8上不生效
+</code></pre><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if ! IE 8]&gt;</span><br><span class="line">这段文字在非IE8浏览器显示</span><br><span class="line">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code>非IE浏览器生效
+</code></pre><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if !IE]&gt;</span><br><span class="line">这段文字只在非IE浏览器显示</span><br><span class="line">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-属性前缀法(以下hack在标准模式下使用)">2.属性前缀法(以下hack在标准模式下使用)</h3><p>ie6-hack</p>
+<p>“_”: 只有ie6能够识别的前缀</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">height</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>;</span><br><span class="line">_<span class="tag">height</span>: 150<span class="tag">px</span>;<span class="comment">/*在ie6下得到的宽高为150px，其余浏览器为100px*/</span></span><br><span class="line">_<span class="tag">width</span>: 150<span class="tag">px</span>;</span><br></pre></td></tr></table></figure>
+<p>ie7-hack</p>
+<p>“+”: 只有ie7能够识别的前缀</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">height</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>;</span><br><span class="line">+<span class="tag">height</span>: 150<span class="tag">px</span>;<span class="comment">/*在ie7下得到的宽高为150px，其余浏览器为100px*/</span></span><br><span class="line">+<span class="tag">width</span>: 150<span class="tag">px</span>;</span><br></pre></td></tr></table></figure>
+<p>ie6、7-hack</p>
+<p>“*”: 只有ie6、7能够识别的前缀</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">height</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>;</span><br><span class="line">*<span class="tag">height</span>: 150<span class="tag">px</span>;<span class="comment">/*在ie6/7下得到的宽高为150px，其余浏览器为100px*/</span></span><br><span class="line">*<span class="tag">width</span>: 150<span class="tag">px</span>;</span><br></pre></td></tr></table></figure>
+<p>###属性后加数字声明的方式</p>
+<p>“\9″     IE6/IE7/IE8/IE9/IE10都生效<br>“\0″     IE8/IE9/IE10都生效，是IE8/9/10的hack<br>“\9\0″     只对IE9/IE10生效，是IE9/10的hack</p>
+<p>在处理ie的hack时，一般会需要对ie6/7/8做单独的处理，6/7有单独的前缀，8并没有。下面说明如何对8做单独的处理</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">height</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">height</span>: 150<span class="tag">px</span>\0;	<span class="comment">/*在ie8/9/10可以识别*/</span></span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>\9\0;	<span class="comment">/*在ie9/10可以识别*/</span></span><br></pre></td></tr></table></figure>
+<p>按如上的设置方式，就对ie8做了单独的处理。</p>
+								</div>
+								<a class="postMore" href="javascrpt:;" data-show="false">......查看全文</a>
 							
 						</div>
 				 	

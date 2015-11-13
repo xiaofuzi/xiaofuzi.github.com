@@ -2,11 +2,13 @@
 #headerWrapper{
 	position: relative;
 	z-index: 999;
+	background-color: #f9f9f9;
 }
 
 #header{
 	position: relative;
 	max-width: 900px;
+	min-width: 380px;
 	margin: 0 auto;
 	padding: 20px 10px;
 }
@@ -42,12 +44,13 @@
 #main-nav li a{
 	display: inline-block;
 	line-height: 20px;
-	font-size: 14px;
-	color: #9c9c9c;
+	font-size: 16px;
+	color: #444;
+	font-family: cartonFont;
 }
 
 #main-nav li a:hover{
-	color: #444;
+	color: #111;
 }
 
 #main-nav li+li{
@@ -144,6 +147,16 @@
 	font-size: 14px;
 }
 
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4,
+.post-body h5,
+.post-body h6,
+.post-body p{
+    margin-top: 30px;
+}
+
 /*文章索引页*/
 .posts-index li{
 	padding: 5px 0;
@@ -175,7 +188,10 @@
 /*底部*/
 #footer{
 	max-width: 900px;
-	margin: 20px auto;
+	margin: 10px auto;
+	padding-top: 10px;
+	font-size: 12px;
+	text-align: right;
 	border-top: 1px solid #e9eaec;
 }
 
@@ -196,4 +212,25 @@
 
 .post-body .postMore:hover{
 	color: red;
+}
+
+
+/*外部字体引入*/
+@font-face {
+    font-family: "cartonFont";
+    src: url("../fonts/carton.ttf");
+    src: local("☺"), url("../fonts/carton.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+#aboutMe *{
+	font-family: cartonFont;
+}
+
+#aboutMe .missing{
+	font-size: 16px;
+	text-align: center;
+	margin-top: 100px;
 }

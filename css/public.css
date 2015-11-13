@@ -125,6 +125,7 @@ body{
 	font-weight: 400;
 	color: #444;
 	background: #ffffff;
+    min-width: 320px;
 }
 
 figure{
@@ -137,3 +138,4 @@ figure{
     width: 100%;
     margin: 0 auto;
 }
+

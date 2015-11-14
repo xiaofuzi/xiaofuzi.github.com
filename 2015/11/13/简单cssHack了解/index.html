@@ -86,8 +86,7 @@
 <p>ie6、7-hack</p>
 <p>“*”: 只有ie6、7能够识别的前缀</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">height</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>;</span><br><span class="line">*<span class="tag">height</span>: 150<span class="tag">px</span>;<span class="comment">/*在ie6/7下得到的宽高为150px，其余浏览器为100px*/</span></span><br><span class="line">*<span class="tag">width</span>: 150<span class="tag">px</span>;</span><br></pre></td></tr></table></figure>
-<p>###属性后加数字声明的方式</p>
-<p>“\9″     IE6/IE7/IE8/IE9/IE10都生效<br>“\0″     IE8/IE9/IE10都生效，是IE8/9/10的hack<br>“\9\0″     只对IE9/IE10生效，是IE9/10的hack</p>
+<h3 id="属性后加数字声明的方式">属性后加数字声明的方式</h3><p>“\9″     IE6/IE7/IE8/IE9/IE10都生效<br>“\0″     IE8/IE9/IE10都生效，是IE8/9/10的hack<br>“\9\0″     只对IE9/IE10生效，是IE9/10的hack</p>
 <p>在处理ie的hack时，一般会需要对ie6/7/8做单独的处理，6/7有单独的前缀，8并没有。下面说明如何对8做单独的处理</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">height</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">height</span>: 150<span class="tag">px</span>\0;	<span class="comment">/*在ie8/9/10可以识别*/</span></span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>\9\0;	<span class="comment">/*在ie9/10可以识别*/</span></span><br></pre></td></tr></table></figure>
 <p>按如上的设置方式，就对ie8做了单独的处理。</p>
@@ -115,7 +114,7 @@
 
 	<footer id="footer">
 		<p>
-			联系方式 <span>|</span> <a href="javascrpt:void(0);">yangxiaofuPL@163.com</a>
+			联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
 		</p>
 	</footer>
 	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>

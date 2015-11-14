@@ -8,13 +8,21 @@
 #header{
 	position: relative;
 	max-width: 900px;
-	min-width: 380px;
 	margin: 0 auto;
 	padding: 20px 10px;
 }
 
 #logo{
 	float: left;
+}
+
+@media screen and (max-width: 376px){
+	#logo{
+		margin-bottom: 30px;
+	}
+	#main-nav{
+		bottom: 40px;
+	}
 }
 
 #logo a{
@@ -233,4 +241,20 @@
 	font-size: 16px;
 	text-align: center;
 	margin-top: 100px;
+}
+
+
+/*websites-page css*/
+#websitesNav~ul{
+	padding-left: 20px;
+}
+
+#websitesNav~ul li{
+	list-style: none;
+}
+
+#websitesNav~ul li img{
+	width: 20px;
+	margin-right: 10px;
+	vertical-align: -5px;
 }

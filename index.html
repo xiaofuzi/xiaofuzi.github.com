@@ -46,113 +46,6 @@
 				 		
 						<header>
 							<h1>
-								<a href="/2015/11/15/javascript如何与Web页面进行交互-2/" target="_blank">javascript如何与Web页面进行交互-实战篇</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-15</a>
-								</span>
-								<span class="post-tag">
-									<a class="tag" href=""></a>
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<script>
-    document.ready = function(){
-        alert("ysf");
-    }
-</script>
-							
-						</div>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/14/javascript如何与Web页面进行交互(1)/" target="_blank">javascript如何与Web页面进行交互-理论篇</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-14</a>
-								</span>
-								<span class="post-tag">
-									<a class="tag" href=""></a>
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<p>Web页面基本上由 HTML + CSS + Javascript 组成，即我们所说的“结构”+“表现”+“行为”。</p>
-<p>那么Javascript是如何发挥作用的呢？在此之前我们首先需要了解HTML DOM(HTML文档对象模型),HTML DOM 提供了对网页的结构化描述并定义了脚本对该结构进行访问和操作的方式。他会将网页解析为一个由节点和对象组成的结构合集，这样就可以使用程序语言对网页进行操作了。</p>
-<p>HTML DOM将 HTML 文档视作树结构(<a href="http://baike.baidu.com/link?url=2hutD0oMwNoy-8IuIZ1UD7OpI7Bb3LeC_slKF1STQ4uGcP4M-jK0b_3QPOa-9wI01OQjVq6_1A0XEpAefEA3epPFoS6TUKBp5nCGKFE4sB7" target="_blank" rel="external">若对树的概念不理解可参考百度百科介绍</a>)</p>
-<p>HTML DOM 对象：</p>
-<ul>
-<li>Document对象</li>
-<li>Element对象</li>
-<li>Attribute对象</li>
-<li>Event对象</li>
-</ul>
-<p>在使用javascript来操作页面时将会围绕上面的四个对象来展开，下面我们来详细介绍一下每个对象。</p>
-<h3 id="Document对象">Document对象</h3><p>Document对象即代表HTML文档，通过它可以访问页面中的所有元素。(Document对象是挂在Window对象下的，所以它是一个全局对象，我们可以直接使用)</p>
-<p>Document对象集合</p>
-<ul>
-<li>all[]——文档中所有 HTML 元素</li>
-<li>anchors[]——文档中所有 Anchor 对象的引用</li>
-<li>applets——文档中所有 Applet 对象的引用</li>
-<li>forms[]——文档中所有 Form 对象引用</li>
-<li>images[]——文档中所有 Image 对象引用</li>
-<li>links[]——文档中所有 Area 和 Link 对象引用</li>
-</ul>
-<p>Document对象属性</p>
-<ul>
-<li>body——body元素（对于定义了框架集的文档，该属性引用最外层的 <frameset>）</frameset></li>
-<li>cookie——设置或返回与当前文档有关的cookie</li>
-<li>domain——当前文档的域名</li>
-<li>lastModified——文档最后修改的日期和时间</li>
-<li>referrer——载入当前文档的文档的URL</li>
-<li>title——当前文档的标题。</li>
-<li>URL——当前文档的 URL</li>
-</ul>
-<p>Document对象方法</p>
-<ul>
-<li>close()——关闭用 document.open() 方法打开的输出流，并显示选定的数据</li>
-<li>getElementById()——返回对拥有指定 id 的对象的引用</li>
-<li>getElementsByName()——返回带有指定名称的对象集合</li>
-<li>getElementsByTagName()——返回带有指定标签名的对象集合</li>
-<li>open()——打开一个流，以收集来自任何 document.write() 或 document.writeln()——方法的输出。</li>
-<li>write()——向文档写 HTML 表达式 或 JavaScript 代码。</li>
-<li>writeln()——等同于 write() 方法，不同的是在每个表达式之后写一个换行符。</li>
-</ul>
-<p class="text-important">刚开始接触javascript编程时，我们只需要了解常用的几个对象方法即可。</p>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">Document</span><span class="class">.getElementById</span>()</span><br><span class="line"><span class="tag">Document</span><span class="class">.getElementsByName</span>()</span><br><span class="line"><span class="tag">Document</span><span class="class">.getElementsByTagName</span>()</span><br></pre></td></tr></table></figure>
-<h2 id="Element_对象(一个对象代表一个节点)">Element 对象(一个对象代表一个节点)</h2><p>Element对象可以拥有类型为元素节点、文本节点、注释节点的子节点。<br>NodeList对象表示节点列表，比如 HTML 元素的子节点集合。</p>
-<ul>
-<li>文档节点(整个文档)</li>
-<li>元素节点(HTML标签元素)</li>
-<li>文本节点(HTML标签内的文本)</li>
-<li>属性节点(标签属性)</li>
-<li>注释节点(注释)</li>
-</ul>
-<p><img src="http://www.w3school.com.cn/i/dom_navigate.gif" alt="各节点之间的关系"><br>图片来源：<a href="http://www.w3school.com.cn/" target="_blank" rel="external">http://www.w3school.com.cn/</a></p>
-<p>HTML对象常用属性和方法</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">element</span><span class="class">.appendChild</span>() 	向元素添加新的子节点，作为最后一个子节点</span><br><span class="line"><span class="tag">element</span><span class="class">.attributes</span>		返回元素属性的集合</span><br><span class="line"><span class="tag">element</span><span class="class">.childNodes</span>		返回元素子节点的集合</span><br><span class="line"><span class="tag">element</span><span class="class">.className</span>		设置或返回元素的<span class="tag">class</span>名称</span><br><span class="line"><span class="tag">element</span><span class="class">.clientHeight</span>	返回元素的可见高度</span><br><span class="line"><span class="tag">element</span><span class="class">.clientWidth</span>		返回元素的可见宽度</span><br><span class="line"><span class="tag">element</span><span class="class">.cloneNode</span>()		克隆元素</span><br><span class="line"><span class="tag">element</span><span class="class">.firstChild</span>		返回元素的首个子元素</span><br><span class="line"><span class="tag">element</span><span class="class">.getAttribute</span>()	返回元素节点的指定属性的值</span><br><span class="line"><span class="tag">element</span><span class="class">.getAttributeNode</span>()	返回指定的属性节点</span><br><span class="line"><span class="tag">element</span><span class="class">.getElementsByTagName</span>()	返回拥有指定标签名的所有子元素的集合</span><br><span class="line"><span class="tag">element</span><span class="class">.hasAttribute</span>()	如果元素拥有指定属性，则返回<span class="tag">true</span>，否则返回 <span class="tag">false</span></span><br><span class="line"><span class="tag">element</span><span class="class">.hasAttributes</span>()	如果元素拥有属性，则返回 <span class="tag">true</span>，否则返回 <span class="tag">false</span></span><br><span class="line"><span class="tag">element</span><span class="class">.hasChildNodes</span>()	如果元素拥有子节点，则返回 <span class="tag">true</span>，否则 <span class="tag">false</span></span><br><span class="line"><span class="tag">element</span><span class="class">.id</span>				设置或返回元素的 <span class="tag">id</span></span><br><span class="line"><span class="tag">element</span><span class="class">.innerHTML</span>		设置或返回元素的内容</span><br><span class="line"><span class="tag">element</span><span class="class">.insertBefore</span>()	在指定的已有的子节点之前插入新节点</span><br><span class="line"><span class="tag">element</span><span class="class">.isEqualNode</span>()	检查两个元素是否相等</span><br><span class="line"><span class="tag">element</span><span class="class">.isSameNode</span>()	检查两个元素是否是相同的节点</span><br><span class="line"><span class="tag">element</span><span class="class">.isSupported</span>()	如果元素支持指定特性，则返回 <span class="tag">true</span></span><br><span class="line"><span class="tag">element</span><span class="class">.lastChild</span>		返回元素的最后一个子元素</span><br><span class="line"><span class="tag">element</span><span class="class">.nextSibling</span>		返回位于相同节点树层级的下一个节点</span><br><span class="line"><span class="tag">element</span><span class="class">.nodeName</span>		返回元素的名称。</span><br><span class="line"><span class="tag">element</span><span class="class">.nodeType</span>		返回元素的节点类型。</span><br><span class="line"><span class="tag">element</span><span class="class">.nodeValue</span>		设置或返回元素值。</span><br><span class="line"><span class="tag">element</span><span class="class">.offsetHeight</span>	返回元素的高度。</span><br><span class="line"><span class="tag">element</span><span class="class">.offsetWidth</span>		返回元素的宽度。</span><br><span class="line"><span class="tag">element</span><span class="class">.offsetLeft</span>		返回元素的水平偏移位置。</span><br><span class="line"><span class="tag">element</span><span class="class">.offsetParent</span>	返回元素的偏移容器。</span><br><span class="line"><span class="tag">element</span><span class="class">.offsetTop</span>		返回元素的垂直偏移位置。</span><br><span class="line"><span class="tag">element</span><span class="class">.ownerDocument</span>	返回元素的根元素（文档对象）。</span><br><span class="line"><span class="tag">element</span><span class="class">.parentNode</span>		返回元素的父节点。</span><br><span class="line"><span class="tag">element</span><span class="class">.previousSibling</span>	返回位于相同节点树层级的前一个元素。</span><br><span class="line"><span class="tag">element</span><span class="class">.removeAttribute</span>()	从元素中移除指定属性。</span><br><span class="line"><span class="tag">element</span><span class="class">.removeAttributeNode</span>()	移除指定的属性节点，并返回被移除的节点。</span><br><span class="line"><span class="tag">element</span><span class="class">.removeChild</span>()	从元素中移除子节点。</span><br><span class="line"><span class="tag">element</span><span class="class">.replaceChild</span>()	替换元素中的子节点。</span><br><span class="line"><span class="tag">element</span><span class="class">.scrollHeight</span>	返回元素的整体高度。</span><br><span class="line"><span class="tag">element</span><span class="class">.scrollLeft</span>		返回元素左边缘与视图之间的距离。</span><br><span class="line"><span class="tag">element</span><span class="class">.scrollTop</span>		返回元素上边缘与视图之间的距离。</span><br><span class="line"><span class="tag">element</span><span class="class">.scrollWidth</span>		返回元素的整体宽度。</span><br><span class="line"><span class="tag">element</span><span class="class">.setAttribute</span>()	把指定属性设置或更改为指定值。</span><br><span class="line"><span class="tag">element</span><span class="class">.setAttributeNode</span>()	设置或更改指定属性节点。</span><br><span class="line"><span class="tag">element</span><span class="class">.setIdAttribute</span>()	</span><br><span class="line"><span class="tag">element</span><span class="class">.setIdAttributeNode</span>()	</span><br><span class="line"><span class="tag">element</span><span class="class">.setUserData</span>()	把对象关联到元素上的键。</span><br><span class="line"><span class="tag">element</span><span class="class">.style</span>			设置或返回元素的 <span class="tag">style</span> 属性。</span><br><span class="line"><span class="tag">element</span><span class="class">.tabIndex</span>		设置或返回元素的 <span class="tag">tab</span> 键控制次序。</span><br><span class="line"><span class="tag">element</span><span class="class">.tagName</span>			返回元素的标签名。</span><br><span class="line"><span class="tag">element</span><span class="class">.textContent</span>		设置或返回节点及其后代的文本内容。</span><br><span class="line"><span class="tag">element</span><span class="class">.title</span>			设置或返回元素的 <span class="tag">title</span> 属性。</span><br><span class="line"><span class="tag">element</span><span class="class">.toString</span>()		把元素转换为字符串。</span><br><span class="line"><span class="tag">nodelist</span><span class="class">.item</span>()			返回 <span class="tag">NodeList</span> 中位于指定下标的节点。</span><br><span class="line"><span class="tag">nodelist</span><span class="class">.length</span>			返回 <span class="tag">NodeList</span> 中的节点数。</span><br></pre></td></tr></table></figure>
-<h2 id="属性对象">属性对象</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">attr</span><span class="class">.isId</span>						如果属性是 <span class="tag">id</span> 类型，则返回 <span class="tag">true</span>，否则返回 <span class="tag">false</span>。</span><br><span class="line"><span class="tag">attr</span><span class="class">.name</span>						返回属性的名称。</span><br><span class="line"><span class="tag">attr</span><span class="class">.value</span>						设置或返回属性的值。</span><br><span class="line"><span class="tag">attr</span><span class="class">.specified</span>					如果已指定属性，则返回 <span class="tag">true</span>，否则返回 <span class="tag">false</span>。</span><br><span class="line"><span class="tag">nodemap</span><span class="class">.getNamedItem</span>()			从 <span class="tag">NamedNodeMap</span> 返回指定的属性节点。</span><br><span class="line"><span class="tag">nodemap</span><span class="class">.item</span>()					返回 <span class="tag">NamedNodeMap</span> 中位于指定下标的节点。</span><br><span class="line"><span class="tag">nodemap</span><span class="class">.length</span>					返回 <span class="tag">NamedNodeMap</span> 中的节点数。</span><br><span class="line"><span class="tag">nodemap</span><span class="class">.removeNamedItem</span>()		移除指定的属性节点。</span><br><span class="line"><span class="tag">nodemap</span><span class="class">.setNamedItem</span>()			设置指定的属性节点（通过名称）。</span><br></pre></td></tr></table></figure>
-<h2 id="事件对象">事件对象</h2><p>可参考:<a href="http://www.w3school.com.cn/jsref/dom_obj_event.asp" target="_blank" rel="external">http://www.w3school.com.cn/jsref/dom_obj_event.asp</a></p>
-<p>事件对象代表事件的一种状态，以鼠标事件为例：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">onclick</span>:鼠标点击状态</span><br><span class="line"><span class="tag">ondblclick</span>:鼠标双击</span><br><span class="line"><span class="tag">onmousedown</span>:鼠标按钮按下</span><br><span class="line"><span class="tag">onmousemove</span>:鼠标被移动</span><br><span class="line"><span class="tag">onmouseout</span>:鼠标移开</span><br><span class="line"><span class="tag">onmouseover</span>:鼠标移到某元素上</span><br><span class="line"><span class="tag">onmouseup</span>:鼠标按键松开</span><br></pre></td></tr></table></figure>
-<p>通过给不同的状态绑定不同的函数，可以在不同的状态下做相应的处理(即执行我们的函数)</p>
-<p>Js脚本是通过这四个对象来与页面进行交互的，通过Document对象、Element对象、Attribute对象我们可以获取文档元素、更改结构属性。Event对象则确定什么样的状态下执行什么操作。</p>
-
-							
-						</div>
-				 	
-				
-				 		
-						<header>
-							<h1>
 								<a href="/2015/11/13/简单cssHack了解/" target="_blank">简单cssHack了解</a>
 							</h1>
 							<div class="post-info">
@@ -264,8 +157,140 @@
 						</div>
 				 	
 				
+				 		
+						<header>
+							<h1>
+								<a href="/2015/11/06/使用inline-block与浮动前需要了解这些/" target="_blank">使用inline-block与浮动前需要了解这些</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-06</a>
+								</span>
+								<span class="post-tag">
+									<a class="tag" href=""></a>
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<p>HTML标签分为块级元素和行内元素，块级元素会独占一行。</p>
+<p>常见的块级元素：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">h1</span>,<span class="tag">h2</span>,<span class="tag">h3</span>,<span class="tag">h4</span>,<span class="tag">h5</span>,</span><br><span class="line"><span class="tag">div</span>,<span class="tag">p</span>,<span class="tag">form</span>,<span class="tag">hr</span>,<span class="tag">menu</span>,<span class="tag">ul</span>,<span class="tag">dl</span>,<span class="tag">ol</span>,<span class="tag">pre</span>,<span class="tag">table</span>,<span class="tag">address</span>,<span class="tag">blockquote</span></span><br></pre></td></tr></table></figure>
+<p>常见的内联元素<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">a</span>,<span class="tag">abbr</span>,<span class="tag">acronym</span>,<span class="tag">br</span>,<span class="tag">cite</span>,<span class="tag">code</span>,<span class="tag">em</span>,<span class="tag">i</span>,</span><br><span class="line"><span class="tag">img</span>,<span class="tag">input</span>,<span class="tag">label</span>,<span class="tag">select</span>,<span class="tag">small</span>,<span class="tag">span</span>,<span class="tag">sub</span>,<span class="tag">sup</span>,<span class="tag">textarea</span></span><br></pre></td></tr></table></figure></p>
+<p>块级元素：块级元素独占一行，可以设定元素的宽（width）、高（height）和内外边距，块级元素一般是其他元素的容器，可容纳块级元素和行内元素。常见的块级元素有div, p ,h1~h6等。</p>
+								</div>
+								<div class="post-more">
+									<p>行内元素：行内元素不可以设置宽（width）和高（height），但可以与其他行内元素位于同一行，行内元素内一般不可以包含块级元素。行内元素的高度一般由元素内部的字体大小决定，宽度由内容的长度控制。常见的行内元素有a, em ,strong等。（img标签虽然是行内元素，但自带宽高属性，即可以设置宽高)</p>
+<p>给行内元素和块级元素加上display:inline-block;后会将元素转换为行内块元素，即不独占一行而且可以按盒子模型进行布局。</p>
+<h2 id="行内元素（inline)">行内元素（inline)</h2><div class="margin-auto"><br>    <span style="background:red;">行内元素</span>  <span style="background:green;">行内元素</span>  <span style="background:blue;">行内元素</span><br>    <hr><br></div>
+
+<h2 id="行内块元素（inline-block)">行内块元素（inline-block)</h2><div class="margin-auto"><br>    <span style="background:red;display:inline-block;">行内元素</span>  <span style="background:green;display:inline-block;">行内元素</span>  <span style="background:blue;display:inline-block;">行内元素</span><br>    <hr><br></div>
+
+<p>从上面可以看到内联元素之间都会产生空格，该空格的大小受设置字体大小的影响(注：当html标签间有空格或换行的情况,如果没有则不会产生空格的)</p>
+<h2 id="行内块元素（inline-block)并排空格解决方式">行内块元素（inline-block)并排空格解决方式</h2><ul>
+<li>margin负值</li>
+<li>font-size: 0;</li>
+<li>浮动替代方式</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">margin-left</span>: <span class="tag">-5px</span>;</span><br></pre></td></tr></table></figure>
+<div class="margin-auto"><br>    <span style="background:red;display:inline-block;">行内元素</span>  <span style="background:green;display:inline-block;margin-left:-5px;">行内元素</span>  <span style="background:blue;display:inline-block;margin-left:-5px;">行内元素</span><br>    <hr><br></div>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*这里给父容器设置字体大小为0，有的浏览器不兼容,此时可以给子元素单独设字体大小*/</span></span><br><span class="line"><span class="tag">font-size</span>: 0;</span><br></pre></td></tr></table></figure>
+<div class="margin-auto" style="font-size: 0;"><br>    <span style="background:red;display:inline-block;font-size:14px;">行内元素</span>  <span style="background:green;display:inline-block;font-size:14px;">行内元素</span>  <span style="background:blue;display:inline-block;font-size:14px;">行内元素</span><br>    <hr style="font-size: 14px;"><br></div>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">float</span>: <span class="tag">left</span>;</span><br></pre></td></tr></table></figure>
+<div class="margin-auto" style="float: left;"><div><span style="background:red;display:inline-block;font-size:14px;float: left;">行内元素</span>  <span style="background:green;display:inline-block;font-size:14px;float: left;">行内元素</span>  <span style="background:blue;display:inline-block;font-size:14px;float: left;">行内元素</span></div><br>    <hr><br></div>
+
+
+<h2 id="清除浮动">清除浮动</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">float</span>: <span class="tag">left</span>;<span class="comment">/*设置浮动*/</span></span><br><span class="line"><span class="tag">clear</span>: <span class="tag">both</span>;<span class="comment">/*清除浮动*/</span></span><br></pre></td></tr></table></figure>
+<p>浮动会导致父层塌陷，所以需要清除浮动来将父层撑开。</p>
+<ul>
+<li>父级设置浮动</li>
+<li>带clear属性的空元素</li>
+<li>父级设置overflow: hidden;或overflow: auto;在IE6中还需要触发hasLayout ，例如为父元素设置容器宽高或设置 zoom:1。</li>
+<li>使用css的:after伪元素。给浮动元素的容器添加一个clearfix的class，然后给这个class添加一个:after伪元素实现元素末尾添加一个看不见的块元素（Block element）清理浮动。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">""</span></span></span>; </span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>; </span><br><span class="line">  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>; </span><br><span class="line">  <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>; </span><br><span class="line">  <span class="rule"><span class="attribute">visibility</span>:<span class="value"> hidden</span></span>;  </span><br><span class="line">  &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span> <span class="rules">&#123;</span><br><span class="line">  <span class="comment">/* 触发 hasLayout ie6/7*/</span> </span><br><span class="line">  <span class="rule"><span class="attribute">zoom</span>:<span class="value"> <span class="number">1</span></span></span>; </span><br><span class="line">  &#125;</span></span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>清除方式一：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>该种方式父容器自身会浮动，所以需要注意父容器浮动所带来的影响</p>
+<p>清除方式二：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"clear:both"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>清除方式三：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span> <span class="attribute">style</span>=<span class="value">"overflow:hidden;zoom:1;"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>清除方式四：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content clearfix"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
 				 	
 				
+				 		
+						<header>
+							<h1>
+								<a href="/2015/11/03/css居中那些事/" target="_blank">css居中那些事</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-03</a>
+								</span>
+								<span class="post-tag">
+									<a class="tag" href=""></a>
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<h2 id="目录">目录</h2><ul>
+<li><a href="#CSS_margin_属性">margin: 0 auto</a></li>
+<li><a href="#text-align实现水平居中">text-algin: center;</a></li>
+<li><a href="#绝对定位实现垂直居中">position:absolute + margin负值</a></li>
+<li><a href="#绝对定位且居中元素不知宽高的情况">position:absolute + translate偏移</a></li>
+<li><a href="#绝对定位+margin:auto;实现水平垂直居中">position:absolute + margin:auto</a></li>
+</ul>
+<h2 id="CSS_margin_属性">CSS margin 属性</h2><div style="border: 1px solid #444;"><br>    <p style="background:green;margin:5px 4px 3px 5px;">设置 p 元素的 4 个外边距：margin:5px 4px 3px 5px;</p><br></div>
+								</div>
+								<div class="post-more">
+									<h3 id="定义和用法">定义和用法</h3><p>margin 简写属性在一个声明中设置所有外边距属性。该属性可以有 1 到 4 个值。</p>
+<h3 id="说明">说明</h3><p>这个简写属性设置一个元素所有外边距的宽度，或者设置各边上外边距的宽度。<br>块级元素的垂直相邻外边距会合并，而行内元素实际上不占上下外边距。行内元素的的左右外边距不会合并。同样地，浮动元素的外边距也不会合并。允许指定负的外边距值，不过使用时要小心。</p>
+<p>注释：允许使用负值。</p>
+<p>垂直外边距之所以设计为可以在垂直方向合并主要是方便文本的排版，即一段文本分行的时候上下两行直接的间距不会叠加。</p>
+<p>简写的情况：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*四个方向的外边距都是10px*/</span></span><br><span class="line"><span class="tag">margin</span>: 10<span class="tag">px</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*上下的外边距都是10px，左右的外边距20px*/</span></span><br><span class="line"><span class="tag">margin</span>: 10<span class="tag">px</span> 20<span class="tag">px</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*上的外边距都是10px，左右的外边距是5px，下外边距15px*/</span></span><br><span class="line"><span class="tag">margin</span>: 10<span class="tag">px</span> 5<span class="tag">px</span> 15<span class="tag">px</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*四个值依次是上、右、下、左*/</span></span><br><span class="line"><span class="tag">margin</span>: 10<span class="tag">px</span> 5<span class="tag">px</span> 15<span class="tag">px</span> 20<span class="tag">px</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*设为auto的计算方式*/</span></span><br><span class="line"><span class="tag">margin</span>: 0 <span class="tag">auto</span>;	<span class="comment">/*常用的水平居中对齐方式*/</span></span><br><span class="line"><span class="tag">margin</span>: <span class="tag">auto</span>;</span><br></pre></td></tr></table></figure>
+<p>上述的auto的计算方式是父容器-子元素剩余部分浏览器自动计算，以上述的水平居中方式为例，左右的外边距等于父容器减去子容器剩余部分的宽度均匀分配给左右，从而实现居中对齐的效果。</p>
+<p>上诉的第二种声明并不能实现垂直居中的效果，具体可以看w3c标准声明或看下<a href="http://www.zhihu.com/question/21644198">知乎的这篇文章</a>。</p>
+<h3 id="margin使用百分比单位计算的情况">margin使用百分比单位计算的情况</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*百分比是按照父容器的宽度来计算的，务必注意*/</span></span><br><span class="line"><span class="tag">margin</span>: 20%;</span><br></pre></td></tr></table></figure>
+<p>从上我们可以知道通过margin如何实现水平居中。</p>
+<h2 id="text-align实现水平居中">text-align实现水平居中</h2><p>text-align 属性规定元素中的文本的水平对齐方式。通过它我们可以设置行内元素的对齐方式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">text-align</span><span class="pseudo">:center</span></span><br></pre></td></tr></table></figure>
+<p style="text-align:center;border:1px solid #444;">text-align实现水平居中,我已经居中了</p>
+
+
+<h2 id="绝对定位实现垂直居中">绝对定位实现垂直居中</h2><div style="position:relative;background:#444;height:200px;"><br>    <div style="position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-50px;width:100px;height:100px;background:#ffffff;text-align:center;line-height:100px;">居中一</div><br></div>
+
+<p>实现代码：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">position</span><span class="pseudo">:absolute</span>;</span><br><span class="line"><span class="tag">top</span><span class="pseudo">:50</span>%;</span><br><span class="line"><span class="tag">left</span><span class="pseudo">:50</span>%;</span><br><span class="line"><span class="tag">margin-top</span><span class="pseudo">:-50px</span>;</span><br><span class="line"><span class="tag">margin-left</span><span class="pseudo">:-50px</span>;</span><br><span class="line"><span class="tag">width</span><span class="pseudo">:100px</span>;</span><br><span class="line"><span class="tag">height</span><span class="pseudo">:100px</span>;</span><br></pre></td></tr></table></figure>
+<p>采用绝对定位加负外边距的方式，首先上，左偏移父容器的50%;然后再自身偏移自己宽高的50%，从而实现垂直水平居中。该方式需要居中元素的宽高确定。</p>
+<h2 id="绝对定位且居中元素不知宽高的情况">绝对定位且居中元素不知宽高的情况</h2><div style="position:relative;background:#444;height:200px;"><br>    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;background:#ffffff;text-align:center;line-height:100px;">居中二</div><br></div>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">position</span><span class="pseudo">:absolute</span>;</span><br><span class="line"><span class="tag">top</span><span class="pseudo">:50</span>%;</span><br><span class="line"><span class="tag">left</span><span class="pseudo">:50</span>%;</span><br><span class="line"><span class="tag">transform</span><span class="pseudo">:translate(-50</span>%,<span class="tag">-50</span>%);</span><br><span class="line"><span class="tag">width</span><span class="pseudo">:100px</span>;</span><br><span class="line"><span class="tag">height</span><span class="pseudo">:100px</span>;</span><br></pre></td></tr></table></figure>
+<p>在这里使用css3的transform:translate(-50%,-50%);属性来实现元素自身的一个偏移</p>
+<h2 id="绝对定位+margin:auto;实现水平垂直居中">绝对定位+margin:auto;实现水平垂直居中</h2><div style="position:relative;background:#444;height:200px;"><br>    <div style="position:absolute;top:0;left:0;bottom:0;right:0;width:100px;height:100px;margin:auto;background:#ffffff; text-align:center;line-height:100px;">居中三</div><br></div>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">position</span><span class="pseudo">:absolute</span>;</span><br><span class="line"><span class="tag">top</span><span class="pseudo">:0</span>;</span><br><span class="line"><span class="tag">left</span><span class="pseudo">:0</span>;</span><br><span class="line"><span class="tag">bottom</span><span class="pseudo">:0</span>;</span><br><span class="line"><span class="tag">right</span><span class="pseudo">:0</span>;</span><br><span class="line"><span class="tag">width</span><span class="pseudo">:100px</span>;</span><br><span class="line"><span class="tag">height</span><span class="pseudo">:100px</span>;</span><br><span class="line"><span class="tag">margin</span><span class="pseudo">:auto</span>;</span><br></pre></td></tr></table></figure>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
 				 	
 				
 				 	

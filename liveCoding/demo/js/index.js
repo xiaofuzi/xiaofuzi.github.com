@@ -1,15 +1,18 @@
-stuff('http://localhost:8888/index.html', function (context) {
+stuff('./result/index.html', function (context) {
   var html = CodeMirror.fromTextArea($('#html'), {
     onChange: reload
-  , mode: 'text/html'
+  , mode: 'text/html',
+    theme: "monokai"
   });
   var js = CodeMirror.fromTextArea($('#js'), {
     onChange: reload
-  , mode: 'javascript'
+  , mode: 'javascript',
+    theme: "monokai"
   });
   var css = CodeMirror.fromTextArea($('#css'), {
     onChange: reload
-  , mode: 'css'
+  , mode: 'css',
+    theme: "monokai"
   });
 
   var t = null;

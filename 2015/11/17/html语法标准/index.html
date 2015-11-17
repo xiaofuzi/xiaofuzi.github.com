@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="keywords" content="
+	html不能这么写，你知道吗？
+">
+	<meta name="description" content="杨小福的博客，记点笔记">
+	<title>
+		
+	html不能这么写，你知道吗？
+
+	</title>
+	<link rel="stylesheet" href="/css/public.css">
+	<link rel="stylesheet" href="/css/page.css">
+	<link rel="stylesheet" href="/css/monokai.min.css">
+	<link rel="stylesheet" href="/css/post_add.css">
+</head>
+<body>
+	<div id="headerWrapper" class="cf">
+		<header id="header" class="cf">
+			<div id="logo">
+				<h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+				<div class="logo-subtitle">
+					programmer
+				</div>
+			</div>
+			<nav id="main-nav">
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/archives">博文</a></li>
+					<li><a href="/websites/index.html">网址导航</a></li>
+					<li><a href="/about">关于</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/17/html语法标准/">html不能这么写，你知道吗？</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-17</a>
+						</span>
+						<span class="post-tag">
+							<a class="tag" href=""></a>
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<ul>
+<li>a标签不可以嵌套交互式元素</li>
+<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
+<li>p标签不能包含块级元素</li>
+<li>如下的标签不可包含块级元素</li>
+<li>li标签可以包含div以及ul</li>
+<li>元素并排（块级和块级并列，内联和内联并列)</li>
+</ul>
+<a id="more"></a>
+<h2 id="标签错误嵌套">标签错误嵌套</h2><h3 id="语法错误">语法错误</h3><ul>
+<li>a标签不可以嵌套交互式元素[a， audio（如果设置了controls属性）， button， details， embed， iframe， img（如果设置了usemap属性）， input（如果type属性不为hidden状态）， keygen， label， menu（如果type属性为toolbar状态），object（如果设置了usemap属性）， select， textarea， video（如果设置了controls属性）]</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*下面这些写法浏览器是不能够正常解析的*/</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;a href=""&gt;click&lt;/a&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;button&gt;click&lt;/button&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;input type="text"&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;textarea name="" id="" cols="10" rows="5"&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p><a href=""><a href="">click</a></a><a href=""><button>click</button></a><a href=""><input type="text"></a><a href=""><textarea name="" id="" cols="30" rows="10"></textarea></a></p>
+<p>有的虽然解析正常，但却达不到预想的目的</p>
+<h3 id="语义错误">语义错误</h3><p>页面可能正常解析，但不符合语义。这是因为浏览器自带容错机制，对于不规范的写法也能够正确的解析，各浏览器的容错机制不同，所以尽量按规范来写。</p>
+<ul>
+<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;jikexueyuan&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;IT education&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">/*错误*/</span><br><span class="line">&lt;span&gt;</span><br><span class="line">	&lt;div&gt;wrong&lt;/div&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>p标签不能包含块级元素</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*错误的写法*/</span><br><span class="line">&lt;p&gt;</span><br><span class="line">	&lt;h1&gt;&lt;/h1&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如下的标签不可包含块级元素</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">h1、h2、h3、h4、h5、h6、p</span><br><span class="line"></span><br><span class="line">/*错误*/</span><br><span class="line">&lt;h1&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">&lt;/h1&gt;</span><br><span class="line">&lt;h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>li标签可以包含div以及ul(这个是不是很牛，可以包含父级元素)</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;li&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>元素并排（块级和块级并列，内联和内联并列)</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;img src="" alt=""&gt;</span><br><span class="line">	&lt;a href=""&gt;&lt;/a&gt;</span><br><span class="line">	&lt;span&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">/*错误*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;span&gt;我是内联元素&lt;/span&gt;</span><br><span class="line">	&lt;p&gt;我是块级元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>如有错误，请指出，欢迎补充其它一些错误情况。</p>
+
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="html不能这么写，你知道吗？" data-title="html不能这么写，你知道吗？" data-url="/2015/11/17/html语法标准/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<p>
+			联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+		</p>
+	</footer>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script src="/js/post.js"></script>
+	<script>
+		$(document).ready(function() {
+  			$('.highlight').each(function(i, block) {
+               hljs.highlightBlock(block);
+  			});
+		});
+	</script>
+</body>
+</html>

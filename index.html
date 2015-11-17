@@ -46,6 +46,67 @@
 				 		
 						<header>
 							<h1>
+								<a href="/2015/11/17/html语法标准/" target="_blank">html不能这么写，你知道吗？</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-17</a>
+								</span>
+								<span class="post-tag">
+									<a class="tag" href=""></a>
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<ul>
+<li>a标签不可以嵌套交互式元素</li>
+<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
+<li>p标签不能包含块级元素</li>
+<li>如下的标签不可包含块级元素</li>
+<li>li标签可以包含div以及ul</li>
+<li>元素并排（块级和块级并列，内联和内联并列)</li>
+</ul>
+								</div>
+								<div class="post-more">
+									<h2 id="标签错误嵌套">标签错误嵌套</h2><h3 id="语法错误">语法错误</h3><ul>
+<li>a标签不可以嵌套交互式元素[a， audio（如果设置了controls属性）， button， details， embed， iframe， img（如果设置了usemap属性）， input（如果type属性不为hidden状态）， keygen， label， menu（如果type属性为toolbar状态），object（如果设置了usemap属性）， select， textarea， video（如果设置了controls属性）]</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*下面这些写法浏览器是不能够正常解析的*/</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;a href=""&gt;click&lt;/a&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;button&gt;click&lt;/button&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;input type="text"&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;textarea name="" id="" cols="10" rows="5"&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p><a href=""><a href="">click</a></a><a href=""><button>click</button></a><a href=""><input type="text"></a><a href=""><textarea name="" id="" cols="30" rows="10"></textarea></a></p>
+<p>有的虽然解析正常，但却达不到预想的目的</p>
+<h3 id="语义错误">语义错误</h3><p>页面可能正常解析，但不符合语义。这是因为浏览器自带容错机制，对于不规范的写法也能够正确的解析，各浏览器的容错机制不同，所以尽量按规范来写。</p>
+<ul>
+<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;jikexueyuan&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;IT education&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">/*错误*/</span><br><span class="line">&lt;span&gt;</span><br><span class="line">	&lt;div&gt;wrong&lt;/div&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>p标签不能包含块级元素</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*错误的写法*/</span><br><span class="line">&lt;p&gt;</span><br><span class="line">	&lt;h1&gt;&lt;/h1&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如下的标签不可包含块级元素</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">h1、h2、h3、h4、h5、h6、p</span><br><span class="line"></span><br><span class="line">/*错误*/</span><br><span class="line">&lt;h1&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">&lt;/h1&gt;</span><br><span class="line">&lt;h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>li标签可以包含div以及ul(这个是不是很牛，可以包含父级元素)</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;li&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>元素并排（块级和块级并列，内联和内联并列)</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;img src="" alt=""&gt;</span><br><span class="line">	&lt;a href=""&gt;&lt;/a&gt;</span><br><span class="line">	&lt;span&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">/*错误*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;span&gt;我是内联元素&lt;/span&gt;</span><br><span class="line">	&lt;p&gt;我是块级元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>如有错误，请指出，欢迎补充其它一些错误情况。</p>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
+				 	
+				
+				 		
+						<header>
+							<h1>
 								<a href="/2015/11/17/用xampp搭建一个静态服务器/" target="_blank">静态服务器搭建</a>
 							</h1>
 							<div class="post-info">
@@ -221,76 +282,6 @@
 						</div>
 				 	
 				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/06/使用inline-block与浮动前需要了解这些/" target="_blank">使用inline-block与浮动前需要了解这些</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-06</a>
-								</span>
-								<span class="post-tag">
-									<a class="tag" href=""></a>
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<p>HTML标签分为块级元素和行内元素，块级元素会独占一行。</p>
-<p>常见的块级元素：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">h1</span>,<span class="tag">h2</span>,<span class="tag">h3</span>,<span class="tag">h4</span>,<span class="tag">h5</span>,</span><br><span class="line"><span class="tag">div</span>,<span class="tag">p</span>,<span class="tag">form</span>,<span class="tag">hr</span>,<span class="tag">menu</span>,<span class="tag">ul</span>,<span class="tag">dl</span>,<span class="tag">ol</span>,<span class="tag">pre</span>,<span class="tag">table</span>,<span class="tag">address</span>,<span class="tag">blockquote</span></span><br></pre></td></tr></table></figure>
-<p>常见的内联元素<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">a</span>,<span class="tag">abbr</span>,<span class="tag">acronym</span>,<span class="tag">br</span>,<span class="tag">cite</span>,<span class="tag">code</span>,<span class="tag">em</span>,<span class="tag">i</span>,</span><br><span class="line"><span class="tag">img</span>,<span class="tag">input</span>,<span class="tag">label</span>,<span class="tag">select</span>,<span class="tag">small</span>,<span class="tag">span</span>,<span class="tag">sub</span>,<span class="tag">sup</span>,<span class="tag">textarea</span></span><br></pre></td></tr></table></figure></p>
-<p>块级元素：块级元素独占一行，可以设定元素的宽（width）、高（height）和内外边距，块级元素一般是其他元素的容器，可容纳块级元素和行内元素。常见的块级元素有div, p ,h1~h6等。</p>
-								</div>
-								<div class="post-more">
-									<p>行内元素：行内元素不可以设置宽（width）和高（height），但可以与其他行内元素位于同一行，行内元素内一般不可以包含块级元素。行内元素的高度一般由元素内部的字体大小决定，宽度由内容的长度控制。常见的行内元素有a, em ,strong等。（img标签虽然是行内元素，但自带宽高属性，即可以设置宽高)</p>
-<p>给行内元素和块级元素加上display:inline-block;后会将元素转换为行内块元素，即不独占一行而且可以按盒子模型进行布局。</p>
-<h2 id="行内元素（inline)">行内元素（inline)</h2><div class="margin-auto"><br>    <span style="background:red;">行内元素</span>  <span style="background:green;">行内元素</span>  <span style="background:blue;">行内元素</span><br>    <hr><br></div>
-
-<h2 id="行内块元素（inline-block)">行内块元素（inline-block)</h2><div class="margin-auto"><br>    <span style="background:red;display:inline-block;">行内元素</span>  <span style="background:green;display:inline-block;">行内元素</span>  <span style="background:blue;display:inline-block;">行内元素</span><br>    <hr><br></div>
-
-<p>从上面可以看到内联元素之间都会产生空格，该空格的大小受设置字体大小的影响(注：当html标签间有空格或换行的情况,如果没有则不会产生空格的)</p>
-<h2 id="行内块元素（inline-block)并排空格解决方式">行内块元素（inline-block)并排空格解决方式</h2><ul>
-<li>margin负值</li>
-<li>font-size: 0;</li>
-<li>浮动替代方式</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">margin-left</span>: <span class="tag">-5px</span>;</span><br></pre></td></tr></table></figure>
-<div class="margin-auto"><br>    <span style="background:red;display:inline-block;">行内元素</span>  <span style="background:green;display:inline-block;margin-left:-5px;">行内元素</span>  <span style="background:blue;display:inline-block;margin-left:-5px;">行内元素</span><br>    <hr><br></div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*这里给父容器设置字体大小为0，有的浏览器不兼容,此时可以给子元素单独设字体大小*/</span></span><br><span class="line"><span class="tag">font-size</span>: 0;</span><br></pre></td></tr></table></figure>
-<div class="margin-auto" style="font-size: 0;"><br>    <span style="background:red;display:inline-block;font-size:14px;">行内元素</span>  <span style="background:green;display:inline-block;font-size:14px;">行内元素</span>  <span style="background:blue;display:inline-block;font-size:14px;">行内元素</span><br>    <hr style="font-size: 14px;"><br></div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">float</span>: <span class="tag">left</span>;</span><br></pre></td></tr></table></figure>
-<div class="margin-auto" style="float: left;"><div><span style="background:red;display:inline-block;font-size:14px;float: left;">行内元素</span>  <span style="background:green;display:inline-block;font-size:14px;float: left;">行内元素</span>  <span style="background:blue;display:inline-block;font-size:14px;float: left;">行内元素</span></div><br>    <hr><br></div>
-
-
-<h2 id="清除浮动">清除浮动</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">float</span>: <span class="tag">left</span>;<span class="comment">/*设置浮动*/</span></span><br><span class="line"><span class="tag">clear</span>: <span class="tag">both</span>;<span class="comment">/*清除浮动*/</span></span><br></pre></td></tr></table></figure>
-<p>浮动会导致父层塌陷，所以需要清除浮动来将父层撑开。</p>
-<ul>
-<li>父级设置浮动</li>
-<li>带clear属性的空元素</li>
-<li>父级设置overflow: hidden;或overflow: auto;在IE6中还需要触发hasLayout ，例如为父元素设置容器宽高或设置 zoom:1。</li>
-<li>使用css的:after伪元素。给浮动元素的容器添加一个clearfix的class，然后给这个class添加一个:after伪元素实现元素末尾添加一个看不见的块元素（Block element）清理浮动。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">""</span></span></span>; </span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>; </span><br><span class="line">  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>; </span><br><span class="line">  <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>; </span><br><span class="line">  <span class="rule"><span class="attribute">visibility</span>:<span class="value"> hidden</span></span>;  </span><br><span class="line">  &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span> <span class="rules">&#123;</span><br><span class="line">  <span class="comment">/* 触发 hasLayout ie6/7*/</span> </span><br><span class="line">  <span class="rule"><span class="attribute">zoom</span>:<span class="value"> <span class="number">1</span></span></span>; </span><br><span class="line">  &#125;</span></span><br></pre></td></tr></table></figure>
-<p>示例：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>清除方式一：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>该种方式父容器自身会浮动，所以需要注意父容器浮动所带来的影响</p>
-<p>清除方式二：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"clear:both"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>清除方式三：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span> <span class="attribute">style</span>=<span class="value">"overflow:hidden;zoom:1;"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>清除方式四：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content clearfix"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-cont"</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
 				 	
 				
 				 	

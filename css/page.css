@@ -257,3 +257,23 @@
 	margin-right: 10px;
 	vertical-align: -5px;
 }
+
+/*up to top*/
+#upToTop{
+	position: fixed;
+	display: block;
+	height: 28px;
+	width: 28px;
+	right: 50px;
+	bottom: 80px;
+	background: url(../img/icon/arrow_up_circle.png) no-repeat;
+	background-size: 28px 28px;
+	cursor: pointer;
+	opacity: 0.5;
+	display: none;
+	z-index: 9999;
+}
+
+#upToTop:hover{
+	opacity: 1;
+}

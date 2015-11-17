@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="keywords" content="
+	静态服务器搭建
+">
+	<meta name="description" content="杨小福的博客，记点笔记">
+	<title>
+		
+	静态服务器搭建
+
+	</title>
+	<link rel="stylesheet" href="/css/public.css">
+	<link rel="stylesheet" href="/css/page.css">
+	<link rel="stylesheet" href="/css/monokai.min.css">
+	<link rel="stylesheet" href="/css/post_add.css">
+</head>
+<body>
+	<div id="headerWrapper" class="cf">
+		<header id="header" class="cf">
+			<div id="logo">
+				<h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+				<div class="logo-subtitle">
+					programmer
+				</div>
+			</div>
+			<nav id="main-nav">
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/archives">博文</a></li>
+					<li><a href="/websites/index.html">网址导航</a></li>
+					<li><a href="/about">关于</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/17/用xampp搭建一个静态服务器/">静态服务器搭建</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-17</a>
+						</span>
+						<span class="post-tag">
+							<a class="tag" href=""></a>
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<style>
+    img{
+        width: 50%;
+    }
+</style>
+
+<ol>
+<li><a href="#1-xampp搭建静态服务器">1.xampp搭建静态服务器</a></li>
+<li><a href="#2-SublimeServer">2.sublime插件-SublimeServer</a></li>
+</ol>
+<h2 id="1-xampp搭建静态服务器">1.xampp搭建静态服务器</h2><p>XAMPP是完全免费且易于安装的Apache发行版，其中包含MariaDB、PHP和Perl。我们可以使用它来作为一个简单的静态服务器。</p>
+<p>官网地址：<a href="https://www.apachefriends.org/zh_cn/index.html" target="_blank" rel="external">https://www.apachefriends.org/zh_cn/index.html</a></p>
+<p>到官网下载对应的版本安装即可</p>
+<p>使用方式：</p>
+<p>1.启动界面</p>
+<p><img src="/img/xampp/xampp01.png" alt="启动界面"></p>
+<a id="more"></a>
+<p>2.启动服务器</p>
+<p><img src="/img/xampp/xampp02.png" alt="启动服务器"></p>
+<p>3.启动状态</p>
+<p><img src="/img/xampp/xampp03.png" alt="已启动服务器"></p>
+<p>4.静态文件目录</p>
+<p><img src="/img/xampp/xampp04.png" alt="静态文件目录"></p>
+<p><img src="/img/xampp/xampp05.png" alt="静态文件目录"></p>
+<p>将我们写好的静态页面放到htdocs文件夹下就可以通过如下的方式打开我们的页面</p>
+<p>格式：</p>
+<p><a href="http://localhost/" target="_blank" rel="external">http://localhost/</a> + 静态文件路径<br><a href="http://localhost/applications.html" target="_blank" rel="external">http://localhost/applications.html</a></p>
+<h2 id="2-SublimeServer">2.SublimeServer</h2><p>—-<a href="http://learningcn.com/SublimeServer/" target="_blank" rel="external">官网地址</a></p>
+<ul>
+<li>package control安装</li>
+<li>手动安装，将SublimeServer文件下到sublime package文件夹即可</li>
+</ul>
+<p>如何使用：</p>
+<ul>
+<li>安装插件</li>
+<li>Tools-&gt;SublimeServer-&gt;Start SublimeServer</li>
+<li><a href="http://localhost:8080/+文件路径(在sublime" target="_blank" rel="external">http://localhost:8080/+文件路径(在sublime</a> folder中打开的项目，8080为默认端口，如有改动则更改为相应的端口)</li>
+</ul>
+<p>补充说明：</p>
+<p>Hbuilder、webstorm自带有服务器设置</p>
+
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="静态服务器搭建" data-title="静态服务器搭建" data-url="/2015/11/17/用xampp搭建一个静态服务器/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<p>
+			联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+		</p>
+	</footer>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script src="/js/post.js"></script>
+	<script>
+		$(document).ready(function() {
+  			$('.highlight').each(function(i, block) {
+               hljs.highlightBlock(block);
+  			});
+		});
+	</script>
+</body>
+</html>

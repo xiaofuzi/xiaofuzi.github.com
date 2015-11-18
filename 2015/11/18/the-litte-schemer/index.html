@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="keywords" content="
+	the little schemer——read again
+">
+	<meta name="description" content="杨小福的博客，记点笔记">
+	<title>
+		
+	the little schemer——read again
+
+	</title>
+	<link rel="stylesheet" href="/css/public.css">
+	<link rel="stylesheet" href="/css/page.css">
+	<link rel="stylesheet" href="/css/monokai.min.css">
+	<link rel="stylesheet" href="/css/post_add.css">
+	<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+</head>
+<body>
+	<div id="headerWrapper" class="cf">
+		<header id="header" class="cf">
+			<div id="logo">
+				<h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+				<div class="logo-subtitle">
+					programmer
+				</div>
+			</div>
+			<nav id="main-nav">
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/archives">博文</a></li>
+					<li><a href="/websites/index.html">网址导航</a></li>
+					<li><a href="/about">关于</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/18/the-litte-schemer/">the little schemer——read again</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-18</a>
+						</span>
+						<span class="post-tag">
+							<a class="tag" href=""></a>
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<p><style>img{max-width:100%;}</style><br><img src="/img/learn-programm.png" alt="oh,man.I just want to learn programm video game!"><br>本来想翻译成中文，无奈水平太差，总翻译得不好。。。</p>
+<h2 id="The_Law_of_Car">The Law of Car</h2><blockquote>
+<p>The primitive car is defined only for non-empty lists.</p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the car of l</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs))(and)(pickle) relish)</span><br><span class="line"></span><br><span class="line">A:</span><br><span class="line">((hotdogs)),</span><br><span class="line">	read as:</span><br><span class="line">	"The list of the list of hotdogs."</span><br><span class="line">	((hotdogs)) is the first S-expression of l.</span><br></pre></td></tr></table></figure>
+<p>[“S表达式”, “列表”]</p>
+<p><hr><br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (car l)</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs)) (and) (pickle) relish)</span><br><span class="line"></span><br><span class="line">A:</span><br><span class="line">((hotdogs)),</span><br><span class="line">because (car l) is another way to ask for "the car of the </span><br><span class="line">list l."</span><br></pre></td></tr></table></figure></p>
+<hr>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (car (car l))</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs)) (and))</span><br><span class="line">A:</span><br><span class="line">(hotdogs).</span><br></pre></td></tr></table></figure>
+<hr>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is (a b c)</span><br><span class="line">A:</span><br><span class="line">(b c)</span><br><span class="line">	because (b c) is the list l without (car l).</span><br></pre></td></tr></table></figure>
+<hr>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is ((a b c) x y z)</span><br><span class="line">A:</span><br><span class="line">(x y z)</span><br></pre></td></tr></table></figure>
+<hr>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is (hamburger)</span><br><span class="line">A:</span><br><span class="line">()</span><br></pre></td></tr></table></figure>
+<hr>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cdr a)</span><br><span class="line">where </span><br><span class="line">a is hotdogs</span><br><span class="line">A:</span><br><span class="line">No answer</span><br><span class="line">	You cannot ask for the cdr of an atom.</span><br></pre></td></tr></table></figure>
+<h2 id="The_Law_of_Cdr">The Law of Cdr</h2><blockquote>
+<p>The primitive cdr is defined only for non-empty lists.<br>The cdr of any non-empty list is always another list.</p>
+<hr>
+
+</blockquote>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">what is (car (cdr l))</span><br><span class="line">where</span><br><span class="line">l is ((b)(x y)((c)))</span><br><span class="line">A:</span><br><span class="line">(x y),</span><br><span class="line">because((x y)((c))) is (cdr l), and (x y) is the car of</span><br><span class="line">(cdr l).</span><br></pre></td></tr></table></figure>
+<hr>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cdr (cdr l))</span><br><span class="line">where</span><br><span class="line">	l is ((b)(x y)((c)))</span><br><span class="line">A:</span><br><span class="line">(((c))),</span><br><span class="line">because(x y)((c)) is (cdr l), and (((c))) is the cdr of (cdr l).</span><br></pre></td></tr></table></figure>
+<hr>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">what does car take as an argument?</span><br><span class="line">A:</span><br><span class="line">it takes any non-empty list.</span><br></pre></td></tr></table></figure>
+<hr>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What does cdr take as an argument?</span><br><span class="line">A:</span><br><span class="line">It takes any non-empty list.</span><br></pre></td></tr></table></figure>
+<hr>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cons of the atom a and the list l</span><br><span class="line">Where a is peanut</span><br><span class="line">and</span><br><span class="line">	l is (butter and jelly)</span><br><span class="line">This can also be written "(cons a l)".</span><br><span class="line">	Read: "cons the atom a onto the list l."</span><br><span class="line">A:</span><br><span class="line">(peanut butter and jelly),</span><br><span class="line">	because cons adds an atom to the front of a list.</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cons s l)</span><br><span class="line">where</span><br><span class="line">	s is ((help) this)</span><br><span class="line">and</span><br><span class="line">	l is (is very ((hard) to learn))</span><br><span class="line">A:</span><br><span class="line">(((help) this) is very ((hard) to learn)).</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What does cons take as its arguments?</span><br><span class="line">A:</span><br><span class="line">cons takes two arguments:</span><br><span class="line">	the first one is any S-expression;</span><br><span class="line">	the second one is any list.</span><br></pre></td></tr></table></figure>
+<h2 id="The_Law_of_Cons">The Law of Cons</h2><blockquote>
+<p>The primitive cons takes two arguments.<br>The second argument to cons must be a list.<br>The result is a list.</p>
+</blockquote>
+
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="the little schemer——read again" data-title="the little schemer——read again" data-url="/2015/11/18/the-litte-schemer/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<i id="upToTop"></i>
+		<p>
+			联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+		</p>
+	</footer>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script src="/js/post.js"></script>
+	<script>
+		$(document).ready(function() {
+  			$('.highlight').each(function(i, block) {
+               hljs.highlightBlock(block);
+  			});
+		});
+	</script>
+</body>
+</html>

@@ -24,7 +24,6 @@ var Post = {
 	upToTop: function(){
 		var $upTop = $("#upToTop");
 		$(window).scroll(function(){
-			console.log($(window).scrollTop());
 			if($(window).scrollTop() > 1200){
 				$upTop.css("display", "block");
 			}else{

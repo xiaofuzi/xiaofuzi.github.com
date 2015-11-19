@@ -4,12 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="keywords" content="
-	简单cssHack了解
+	简单cssHack了解，让ie支持H5、css3
 ">
 	<meta name="description" content="杨小福的博客，记点笔记">
 	<title>
 		
-	简单cssHack了解
+	简单cssHack了解，让ie支持H5、css3
 
 	</title>
 	<link rel="stylesheet" href="/css/public.css">
@@ -45,7 +45,7 @@
 			<article class="post">
 				<header>
 					<h1>
-						<a href="/2015/11/13/简单cssHack了解/">简单cssHack了解</a>
+						<a href="/2015/11/13/简单cssHack了解/">简单cssHack了解，让ie支持H5、css3</a>
 					</h1>
 					<div class="post-info">
 						<span class="post-time">
@@ -91,10 +91,16 @@
 <p>在处理ie的hack时，一般会需要对ie6/7/8做单独的处理，6/7有单独的前缀，8并没有。下面说明如何对8做单独的处理</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">height</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>;</span><br><span class="line"><span class="tag">height</span>: 150<span class="tag">px</span>\0;	<span class="comment">/*在ie8/9/10可以识别*/</span></span><br><span class="line"><span class="tag">width</span>: 100<span class="tag">px</span>\9\0;	<span class="comment">/*在ie9/10可以识别*/</span></span><br></pre></td></tr></table></figure>
 <p>按如上的设置方式，就对ie8做了单独的处理。</p>
+<h2 id="如何让ie支持H5(包括ie6)">如何让ie支持H5(包括ie6)</h2><p>下载地址1：<a href="https://github.com/afarkas/html5shiv" target="_blank" rel="external">https://github.com/afarkas/html5shiv</a><br>下载地址2：<a href="/js/html5shiv.min.js">html5shiv.min.js</a><br>使用方式，在页面头部添加如下代码：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">!–[if</span> <span class="attribute">IE</span>]&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">”[html5.js]”</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">![endif]–</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里的src引入的是我们下载的htmlshiv.js文件。</p>
+<h2 id="如何让ie支持CSS3属性">如何让ie支持CSS3属性</h2><p>借助于ie-css3.htc,<a href="/css/ie-css3.htc">点我下载</a></p>
+<p>语法：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*给body添加后，body下的子元素都可以使用*/</span></span><br><span class="line"><span class="tag">body</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">behavior</span>:<span class="value"> <span class="function">url</span>(ie-css3.htc)</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 
 				</div>
 				<!-- 多说评论框 start -->
-					<div class="ds-thread" data-thread-key="简单cssHack了解" data-title="简单cssHack了解" data-url="/2015/11/13/简单cssHack了解/"></div>
+					<div class="ds-thread" data-thread-key="简单cssHack了解，让ie支持H5、css3" data-title="简单cssHack了解，让ie支持H5、css3" data-url="/2015/11/13/简单cssHack了解/"></div>
 				<!-- 多说评论框 end -->
 				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 				<script type="text/javascript">

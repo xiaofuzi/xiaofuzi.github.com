@@ -47,7 +47,62 @@
 				 		
 						<header>
 							<h1>
-								<a href="/2015/11/18/the-litte-schemer/" target="_blank">the little schemer——read again</a>
+								<a href="/2015/11/19/那些被忽视的字体细节/" target="_blank">那些被忽视的字体细节</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-19</a>
+								</span>
+								<span class="post-tag">
+									<a class="tag" href=""></a>
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<h2 id="font属性">font属性</h2><p>简写形式</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">font: font-style font-variant font-weight font-size/line-height font-family|caption|icon|menu|message-box|small-caption|status-bar|initial|inherit;</span><br></pre></td></tr></table></figure>
+<p>我们并不需要设置全部的参数，没有设置的浏览器会使用默认的样式(默认样式与浏览器相关)</p>
+								</div>
+								<div class="post-more">
+									<ul>
+<li>font-style</li>
+<li>font-variant</li>
+<li>font-weight</li>
+<li>font-size/line-height</li>
+<li>font-family</li>
+</ul>
+<h3 id="font-style:_设置或检索对象中的字体样式">font-style: 设置或检索对象中的字体样式</h3><p>normal：<br>指定文本字体样式为正常的字体<br>italic：<br>指定文本字体样式为斜体。对于没有斜体变量的特殊字体，将应用oblique<br>oblique：<br>指定文本字体样式为倾斜的字体</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">font-style：normal | italic | oblique</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">b</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-style:italic;"</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-style:oblique;"</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><b>Hello Xiaofu</b> <b style="font-style:italic;">Hello Xiaofu</b> <b style="font-style:oblique;">Hello Xiaofu</b></p>
+<hr>
+
+<h3 id="font-variant:_设置或检索对象中的文本是否为小型的大写字母">font-variant: 设置或检索对象中的文本是否为小型的大写字母</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">font-variant：normal | small-caps</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-variant:normal;"</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-variant:small-caps;"</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-variant:small-caps;"</span>&gt;</span>hello xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><b style="font-variant:normal;">Hello Xiaofu</b> <b style="font-variant:small-caps;">Hello Xiaofu</b> <b style="font-variant:small-caps;">hello xiaofu</b></p>
+<p>从上面可以看到small-caps属性会将小写字符转换为小型的大写字符，即大写形式，但大小和小写的大小一样.</p>
+<hr>
+
+<h3 id="font-weight:_设置文本的粗细">font-weight: 设置文本的粗细</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">font-weight：normal | bold | bolder | lighter | &lt;integer&gt;</span><br><span class="line">/*integer的取值范围：100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900*/</span><br></pre></td></tr></table></figure>
+<p><span style="font-weight:normal;">hello xiaofu[400]</span><br><span style="font-weight:bold;">hello xiaofu[700]</span><br><span style="font-weight:bolder;">hello xiaofu</span><br><span style="font-weight:lighter;">hello xiaofu</span></p>
+<hr>
+
+<h3 id="font-size/line-height:_设置文本字体大小">font-size/line-height: 设置文本字体大小</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">font-size：&lt;absolute-size&gt; | &lt;relative-size&gt; | &lt;length&gt; | &lt;percentage&gt;</span><br></pre></td></tr></table></figure>
+<p>absolute-size：<br>根据对象字体进行调节。可选参数值：xx-small | x-small | small | medium | large | x-large | xx-large<br>relative-size：<br>相对于父对像中字体尺寸进行相对调节。使用成比例的em单位计算。可选参数值：smaller | larger<br>length：<br>用长度值指定文字大小。不允许负值。<br>percentage：<br>用百分比指定文字大小。其百分比取值是基于父对象中字体的尺寸。不允许负值。</p>
+<p>line-height: 行高，设置行间距离，不可设置负值</p>
+<p>当给块级元素设置行高时，它定义的是元素中基线之间的最小距离而不是最大距离。</p>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
+				 	
+				
+				 		
+						<header>
+							<h1>
+								<a href="/2015/11/18/the-litte-schemer/" target="_blank">The Little Schemer——read again</a>
 							</h1>
 							<div class="post-info">
 								<span class="post-time">
@@ -61,7 +116,7 @@
 						<div class="post-body">
 							
 								<div class="post-excerpt">
-									<p><style>img{max-width:100%;}</style><br><img src="/img/learn-programm.png" alt="oh,man.I just want to learn programm video game!"><br>本来想翻译成中文，无奈水平太差，总翻译得不好。。。</p>
+									<p><style>img{max-width:100%;}</style><br><img src="/img/learn-programm.png" alt="oh,man.I just want to learn programm video game!"><br>oh,man.I just want to learn programm video game!</p>
 <h2 id="The_Law_of_Car">The Law of Car</h2><blockquote>
 <p>The primitive car is defined only for non-empty lists.</p>
 </blockquote>
@@ -226,74 +281,6 @@
 </ul>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;img src="" alt=""&gt;</span><br><span class="line">	&lt;a href=""&gt;&lt;/a&gt;</span><br><span class="line">	&lt;span&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">/*错误*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;span&gt;我是内联元素&lt;/span&gt;</span><br><span class="line">	&lt;p&gt;我是块级元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p>如有错误，请指出，欢迎补充其它一些错误情况。</p>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/17/用xampp搭建一个静态服务器/" target="_blank">静态服务器搭建</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-17</a>
-								</span>
-								<span class="post-tag">
-									<a class="tag" href=""></a>
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<style>
-    img{
-        width: 50%;
-    }
-</style>
-
-<ol>
-<li><a href="#1-xampp搭建静态服务器">1.xampp搭建静态服务器</a></li>
-<li><a href="#2-SublimeServer">2.sublime插件-SublimeServer</a></li>
-</ol>
-<h2 id="1-xampp搭建静态服务器">1.xampp搭建静态服务器</h2><p>XAMPP是完全免费且易于安装的Apache发行版，其中包含MariaDB、PHP和Perl。我们可以使用它来作为一个简单的静态服务器。</p>
-<p>官网地址：<a href="https://www.apachefriends.org/zh_cn/index.html">https://www.apachefriends.org/zh_cn/index.html</a></p>
-<p>到官网下载对应的版本安装即可</p>
-<p>使用方式：</p>
-<p>1.启动界面</p>
-<p><img src="/img/xampp/xampp01.png" alt="启动界面"></p>
-								</div>
-								<div class="post-more">
-									<p>2.启动服务器</p>
-<p><img src="/img/xampp/xampp02.png" alt="启动服务器"></p>
-<p>3.启动状态</p>
-<p><img src="/img/xampp/xampp03.png" alt="已启动服务器"></p>
-<p>4.静态文件目录</p>
-<p><img src="/img/xampp/xampp04.png" alt="静态文件目录"></p>
-<p><img src="/img/xampp/xampp05.png" alt="静态文件目录"></p>
-<p>将我们写好的静态页面放到htdocs文件夹下就可以通过如下的方式打开我们的页面</p>
-<p>格式：</p>
-<p><a href="http://localhost/">http://localhost/</a> + 静态文件路径(路径以htdocs为根目录，如htdocs下有一个jikexueyuan.html文件，那么可以通过<a href="http://localhost/jikexueyuan.html访问">http://localhost/jikexueyuan.html访问</a>)<br><a href="http://localhost/applications.html">http://localhost/applications.html</a></p>
-<p>如果上述方式无法打开，可通过ip访问</p>
-<p>mac: 在命令行输入 ifconfig<br>window: 在命令行输入 ipconfig</p>
-<p><img src="/img/xampp/xampp06.png" alt="ip"></p>
-<p><a href="http://你的ip地址/">http://你的ip地址/</a> + 静态文件路径<br>http:192.168.1.103/jike/jikexueyuan.html</p>
-<h2 id="2-SublimeServer">2.SublimeServer</h2><p>—-<a href="http://learningcn.com/SublimeServer/">官网地址</a></p>
-<ul>
-<li>package control安装</li>
-<li>手动安装，将SublimeServer文件下到sublime package文件夹即可</li>
-</ul>
-<p>如何使用：</p>
-<ul>
-<li>安装插件</li>
-<li>Tools-&gt;SublimeServer-&gt;Start SublimeServer</li>
-<li><a href="http://localhost:8080/+文件路径(在sublime">http://localhost:8080/+文件路径(在sublime</a> folder中打开的项目，8080为默认端口，如有改动则更改为相应的端口)</li>
-</ul>
-<p>补充说明：</p>
-<p>Hbuilder、webstorm自带有服务器设置</p>
 								</div>
 								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
 							

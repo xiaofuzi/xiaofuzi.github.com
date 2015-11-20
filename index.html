@@ -47,6 +47,45 @@
 				 		
 						<header>
 							<h1>
+								<a href="/2015/11/20/图片延迟加载简单实现/" target="_blank">图片延迟加载简单实现</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-20</a>
+								</span>
+								<span class="post-tag">
+									<a class="tag" href=""></a>
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<style>img {opacity: 1;transition: opacity 0.2s;}img[data-src] {opacity: 0;}</style>
+
+<p>图片往往是造成网页加载缓慢的原因，通过延迟图片的加载可以提高用户体验，优先加载重要的内容。</p>
+<p><img data-src="/img/tree.png" alt="tree"><br><img data-src="/img/christina.jpg" alt="christina"></p>
+<h2 id="1-使用data-src属性代替img的src属性">1.使用data-src属性代替img的src属性</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"wrapper"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">img</span> <span class="attribute">data-src</span>=<span class="value">"./img/lazy.jpg"</span> <span class="attribute">alt</span>=<span class="value">"lazy.jpg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*先将待加载图片隐藏，加载完成后显示*/</span></span><br><span class="line"><span class="tag">img</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">transition</span>:<span class="value"> opacity <span class="number">0.2s</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">img</span><span class="attr_selector">[data-src]</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    &#125;</span></span><br></pre></td></tr></table></figure>
+<p>说明：img标签并不会将图片嵌入到网页中，而是提供一个占位符即给图片提供一个显示的空间。图片的显示需要浏览器根据src属性来加载。所以上述方式并不会加载图片。</p>
+<h2 id="2-当html文档加载完成后通过js将img的data-src属性转换为src,从而加载图片">2.当html文档加载完成后通过js将img的data-src属性转换为src,从而加载图片</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*原生js实现*/</span></span><br><span class="line">[].forEach.call(<span class="built_in">document</span>.querySelectorAll(<span class="string">'img[data-src]'</span>), <span class="function"><span class="keyword">function</span>(<span class="params">img</span>) </span>&#123;</span><br><span class="line">        img.setAttribute(<span class="string">'src'</span>, img.getAttribute(<span class="string">'data-src'</span>));</span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        	<span class="comment">/*图片加载完成后data-src属性就可以去掉了*/</span></span><br><span class="line">            img.removeAttribute(<span class="string">'data-src'</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>说明：遍历所有包含data-src属性的img元素然后将data-src属性转换为src属性</p>
+<script>
+    [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
+        img.setAttribute('src', img.getAttribute('data-src'));
+        img.onload = function() {
+            /*图片加载完成后data-src属性就可以去掉了*/
+            img.removeAttribute('data-src');
+        };
+    });
+</script>
+
+							
+						</div>
+				 	
+				
+				 		
+						<header>
+							<h1>
 								<a href="/2015/11/19/那些被忽视的字体细节/" target="_blank">那些被忽视的字体细节</a>
 							</h1>
 							<div class="post-info">
@@ -93,6 +132,20 @@
 <p>absolute-size：<br>根据对象字体进行调节。可选参数值：xx-small | x-small | small | medium | large | x-large | xx-large<br>relative-size：<br>相对于父对像中字体尺寸进行相对调节。使用成比例的em单位计算。可选参数值：smaller | larger<br>length：<br>用长度值指定文字大小。不允许负值。<br>percentage：<br>用百分比指定文字大小。其百分比取值是基于父对象中字体的尺寸。不允许负值。</p>
 <p>line-height: 行高，设置行间距离，不可设置负值</p>
 <p>当给块级元素设置行高时，它定义的是元素中基线之间的最小距离而不是最大距离。</p>
+<h3 id="font-family">font-family</h3><p>font-family 规定元素的字体系列<br>font-family 可以指定一系列的字体，如果浏览器不支持第一个字体，则会尝试下一个。也就是说，font-family 属性的值是用于某个元素的字体族名称或一个字体优先级表，浏览器会使用它可识别的第一个值。</p>
+<p>有两种类型的字体系列名称：</p>
+<ul>
+<li>指定的系列名称：具体字体的名称，比如：”times”、”courier”、”arial”。</li>
+<li>通常字体系列名称：比如：”serif”、”sans-serif”、”cursive”、”fantasy”、”monospace”</li>
+</ul>
+<p>这里为什么需要通用字体系列名称，这里是css帮助我们解决字体命名混乱的问题而增加的，因为相似的字体命名可能会不一样，所以我们可以设置通用字体系列，如当我们设置 “serif”字体系列时，浏览器找到Times、Georgia 和 New Century Schoolbook时就会使用其中的一种字体来渲染，因为他们都属于”serif”字体。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">font-family</span>: <span class="tag">Georgia</span>, "<span class="tag">Times</span> <span class="tag">New</span> <span class="tag">Roman</span>", </span><br><span class="line">             "<span class="tag">Microsoft</span> <span class="tag">YaHei</span>", "微软雅黑", </span><br><span class="line">             <span class="tag">STXihei</span>, "华文细黑", </span><br><span class="line">             <span class="tag">serif</span>;</span><br></pre></td></tr></table></figure>
+<p>字体设置技巧</p>
+<ul>
+<li>1.先设置英文字体，再设置中文字体(英文在中文字体下显示不好，避免中文字体包含的英文字符采用中文字体显示)</li>
+<li>2.中文字体中文名称和英文名称一起指定（避免出现识别不了的情况）</li>
+<li>3.设置一个通用字体结尾，这样当前面指定的特定字体用户计算机上都没装有的情况下，字体可以按照我们期望的字体风格显示.</li>
+</ul>
 								</div>
 								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
 							
@@ -220,67 +273,6 @@
 <p><div id="baguai-wrap"><div class="b1-circle"></div></div></p>
 <p><div id="baguai-wrap"><div class="b2-circle"></div></div></p>
 <p><div id="baguai-wrap"><div class="b-circle"></div></div><br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*八卦*/</span></span><br><span class="line"><span class="id">#baguai-wrap</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-top</span>:<span class="value"> <span class="number">30px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">150px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> gray</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#baguai-wrap</span> <span class="class">.b-circle</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">50px</span> solid <span class="hexcolor">#ffffff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">50px</span> solid <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">overflow</span>:<span class="value"> visible</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#baguai-wrap</span> <span class="class">.b-circle</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">''</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> -<span class="number">25px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">20px</span> solid <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#ffffff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#baguai-wrap</span> <span class="class">.b-circle</span><span class="pseudo">:after</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">''</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">50px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> -<span class="number">25px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">20px</span> solid <span class="hexcolor">#ffffff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/17/html语法标准/" target="_blank">html不能这么写，你知道吗？</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-17</a>
-								</span>
-								<span class="post-tag">
-									<a class="tag" href=""></a>
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<ul>
-<li>a标签不可以嵌套交互式元素</li>
-<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
-<li>p标签不能包含块级元素</li>
-<li>如下的标签不可包含块级元素</li>
-<li>li标签可以包含div以及ul</li>
-<li>元素并排（块级和块级并列，内联和内联并列)</li>
-</ul>
-								</div>
-								<div class="post-more">
-									<h2 id="标签错误嵌套">标签错误嵌套</h2><h3 id="语法错误">语法错误</h3><ul>
-<li>a标签不可以嵌套交互式元素[a， audio（如果设置了controls属性）， button， details， embed， iframe， img（如果设置了usemap属性）， input（如果type属性不为hidden状态）， keygen， label， menu（如果type属性为toolbar状态），object（如果设置了usemap属性）， select， textarea， video（如果设置了controls属性）]</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*下面这些写法浏览器是不能够正常解析的*/</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;a href=""&gt;click&lt;/a&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;button&gt;click&lt;/button&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;input type="text"&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;textarea name="" id="" cols="10" rows="5"&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<p><a href=""><a href="">click</a></a><a href=""><button>click</button></a><a href=""><input type="text"></a><a href=""><textarea name="" id="" cols="30" rows="10"></textarea></a></p>
-<p>有的虽然解析正常，但却达不到预想的目的</p>
-<h3 id="语义错误">语义错误</h3><p>页面可能正常解析，但不符合语义。这是因为浏览器自带容错机制，对于不规范的写法也能够正确的解析，各浏览器的容错机制不同，所以尽量按规范来写。</p>
-<ul>
-<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;jikexueyuan&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;IT education&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">/*错误*/</span><br><span class="line">&lt;span&gt;</span><br><span class="line">	&lt;div&gt;wrong&lt;/div&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>p标签不能包含块级元素</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*错误的写法*/</span><br><span class="line">&lt;p&gt;</span><br><span class="line">	&lt;h1&gt;&lt;/h1&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如下的标签不可包含块级元素</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">h1、h2、h3、h4、h5、h6、p</span><br><span class="line"></span><br><span class="line">/*错误*/</span><br><span class="line">&lt;h1&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">&lt;/h1&gt;</span><br><span class="line">&lt;h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>li标签可以包含div以及ul(这个是不是很牛，可以包含父级元素)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;li&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>元素并排（块级和块级并列，内联和内联并列)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;img src="" alt=""&gt;</span><br><span class="line">	&lt;a href=""&gt;&lt;/a&gt;</span><br><span class="line">	&lt;span&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">/*错误*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;span&gt;我是内联元素&lt;/span&gt;</span><br><span class="line">	&lt;p&gt;我是块级元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>如有错误，请指出，欢迎补充其它一些错误情况。</p>
 								</div>
 								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
 							

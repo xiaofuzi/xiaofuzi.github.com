@@ -88,6 +88,20 @@
 <p>absolute-size：<br>根据对象字体进行调节。可选参数值：xx-small | x-small | small | medium | large | x-large | xx-large<br>relative-size：<br>相对于父对像中字体尺寸进行相对调节。使用成比例的em单位计算。可选参数值：smaller | larger<br>length：<br>用长度值指定文字大小。不允许负值。<br>percentage：<br>用百分比指定文字大小。其百分比取值是基于父对象中字体的尺寸。不允许负值。</p>
 <p>line-height: 行高，设置行间距离，不可设置负值</p>
 <p>当给块级元素设置行高时，它定义的是元素中基线之间的最小距离而不是最大距离。</p>
+<h3 id="font-family">font-family</h3><p>font-family 规定元素的字体系列<br>font-family 可以指定一系列的字体，如果浏览器不支持第一个字体，则会尝试下一个。也就是说，font-family 属性的值是用于某个元素的字体族名称或一个字体优先级表，浏览器会使用它可识别的第一个值。</p>
+<p>有两种类型的字体系列名称：</p>
+<ul>
+<li>指定的系列名称：具体字体的名称，比如：”times”、”courier”、”arial”。</li>
+<li>通常字体系列名称：比如：”serif”、”sans-serif”、”cursive”、”fantasy”、”monospace”</li>
+</ul>
+<p>这里为什么需要通用字体系列名称，这里是css帮助我们解决字体命名混乱的问题而增加的，因为相似的字体命名可能会不一样，所以我们可以设置通用字体系列，如当我们设置 “serif”字体系列时，浏览器找到Times、Georgia 和 New Century Schoolbook时就会使用其中的一种字体来渲染，因为他们都属于”serif”字体。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">font-family</span>: <span class="tag">Georgia</span>, "<span class="tag">Times</span> <span class="tag">New</span> <span class="tag">Roman</span>", </span><br><span class="line">             "<span class="tag">Microsoft</span> <span class="tag">YaHei</span>", "微软雅黑", </span><br><span class="line">             <span class="tag">STXihei</span>, "华文细黑", </span><br><span class="line">             <span class="tag">serif</span>;</span><br></pre></td></tr></table></figure>
+<p>字体设置技巧</p>
+<ul>
+<li>1.先设置英文字体，再设置中文字体(英文在中文字体下显示不好，避免中文字体包含的英文字符采用中文字体显示)</li>
+<li>2.中文字体中文名称和英文名称一起指定（避免出现识别不了的情况）</li>
+<li>3.设置一个通用字体结尾，这样当前面指定的特定字体用户计算机上都没装有的情况下，字体可以按照我们期望的字体风格显示.</li>
+</ul>
 
 				</div>
 				<!-- 多说评论框 start -->

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="keywords" content="
+	图片延迟加载简单实现
+">
+	<meta name="description" content="杨小福的博客，记点笔记">
+	<title>
+		
+	图片延迟加载简单实现
+
+	</title>
+	<link rel="stylesheet" href="/css/public.css">
+	<link rel="stylesheet" href="/css/page.css">
+	<link rel="stylesheet" href="/css/monokai.min.css">
+	<link rel="stylesheet" href="/css/post_add.css">
+	<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+</head>
+<body>
+	<div id="headerWrapper" class="cf">
+		<header id="header" class="cf">
+			<div id="logo">
+				<h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+				<div class="logo-subtitle">
+					programmer
+				</div>
+			</div>
+			<nav id="main-nav">
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/archives">博文</a></li>
+					<li><a href="/websites/index.html">网址导航</a></li>
+					<li><a href="/about">关于</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/20/图片延迟加载简单实现/">图片延迟加载简单实现</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-20</a>
+						</span>
+						<span class="post-tag">
+							<a class="tag" href=""></a>
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<style>img {opacity: 1;transition: opacity 0.2s;}img[data-src] {opacity: 0;}</style>
+
+<p>图片往往是造成网页加载缓慢的原因，通过延迟图片的加载可以提高用户体验，优先加载重要的内容。</p>
+<p><img data-src="/img/tree.png" alt="tree"><br><img data-src="/img/christina.jpg" alt="christina"></p>
+<h2 id="1-使用data-src属性代替img的src属性">1.使用data-src属性代替img的src属性</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"wrapper"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">img</span> <span class="attribute">data-src</span>=<span class="value">"./img/lazy.jpg"</span> <span class="attribute">alt</span>=<span class="value">"lazy.jpg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*先将待加载图片隐藏，加载完成后显示*/</span></span><br><span class="line"><span class="tag">img</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">transition</span>:<span class="value"> opacity <span class="number">0.2s</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">img</span><span class="attr_selector">[data-src]</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    &#125;</span></span><br></pre></td></tr></table></figure>
+<p>说明：img标签并不会将图片嵌入到网页中，而是提供一个占位符即给图片提供一个显示的空间。图片的显示需要浏览器根据src属性来加载。所以上述方式并不会加载图片。</p>
+<h2 id="2-当html文档加载完成后通过js将img的data-src属性转换为src,从而加载图片">2.当html文档加载完成后通过js将img的data-src属性转换为src,从而加载图片</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*原生js实现*/</span></span><br><span class="line">[].forEach.call(<span class="built_in">document</span>.querySelectorAll(<span class="string">'img[data-src]'</span>), <span class="function"><span class="keyword">function</span>(<span class="params">img</span>) </span>&#123;</span><br><span class="line">        img.setAttribute(<span class="string">'src'</span>, img.getAttribute(<span class="string">'data-src'</span>));</span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        	<span class="comment">/*图片加载完成后data-src属性就可以去掉了*/</span></span><br><span class="line">            img.removeAttribute(<span class="string">'data-src'</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>说明：遍历所有包含data-src属性的img元素然后将data-src属性转换为src属性</p>
+<script>
+    [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
+        img.setAttribute('src', img.getAttribute('data-src'));
+        img.onload = function() {
+            /*图片加载完成后data-src属性就可以去掉了*/
+            img.removeAttribute('data-src');
+        };
+    });
+</script>
+
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="图片延迟加载简单实现" data-title="图片延迟加载简单实现" data-url="/2015/11/20/图片延迟加载简单实现/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<i id="upToTop"></i>
+		<p>
+			联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+		</p>
+	</footer>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script src="/js/post.js"></script>
+	<script>
+		$(document).ready(function() {
+  			$('.highlight').each(function(i, block) {
+               hljs.highlightBlock(block);
+  			});
+		});
+	</script>
+</body>
+</html>

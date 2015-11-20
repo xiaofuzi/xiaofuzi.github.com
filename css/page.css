@@ -221,6 +221,45 @@
 	color: red;
 }
 
+/*分页*/
+.pagination a,
+.pagination span{
+	display: inline-block;
+	width: 30px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	color: #999;
+	font-weight: 900;
+	border: 1px solid #eee;
+	margin-left: -1px;
+}
+
+.pagination .prev{
+	display: inline-block;
+	padding: 0 5px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	border: 1px solid #eee;
+}
+
+.pagination .next{
+	display: inline-block;
+	padding: 0 5px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	border: 1px solid #eee;
+}
+
+.pagination a{
+	color: #666;
+}
+
+.pagination a:hover{
+	color: #222;
+}
 
 /*外部字体引入*/
 @font-face {
@@ -256,6 +295,28 @@
 	width: 20px;
 	margin-right: 10px;
 	vertical-align: -5px;
+}
+
+/*代码区域样式修改*/
+.highlight{
+	position: relative;
+}
+
+#highlightTheme{
+	position: absolute;
+	top: 3px;
+	right: 3px;
+}
+
+#highlightTheme span{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 3px;
+	border: 1px solid #999;
+	box-shadow: 1px 1px 2px #999;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 /*up to top*/

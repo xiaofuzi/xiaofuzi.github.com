@@ -100,5 +100,6 @@ $(function() {
             };
         });
     };
+    
     lazyLoad();
 })

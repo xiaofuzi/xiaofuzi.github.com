@@ -202,6 +202,10 @@
 <h2 id="事件">事件</h2><p>当给事件附加数据时，传入一个哈希而不是原始值，这可以让后面的贡献者加入更多数据到事件数据 里而不用找出并更新那个事件的事件处理器。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*bad*/</span></span><br><span class="line">$(<span class="keyword">this</span>).trigger(<span class="string">'listingUpdated'</span>, listing.id);</span><br><span class="line">$(<span class="keyword">this</span>).on(<span class="string">'listingUpdated'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e,listingId</span>)</span>&#123;</span><br><span class="line">   	<span class="comment">/*do something with listingId*/</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">/*good*/</span></span><br><span class="line">$(<span class="keyword">this</span>).trigger(<span class="string">'listingUpdated'</span>, &#123;listingId: listing.id&#125;);</span><br><span class="line">$(<span class="keyword">this</span>).on(<span class="string">'listingUpdated'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e, data</span>)</span>&#123;</span><br><span class="line">   <span class="comment">/*do something with data.listingId*/</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 				</div>
+				<div class="post-nav">
+					<span class="prev"><a href="/2015/11/03/css居中那些事/">Prev</a></span>
+					<span class="next"><a href="/2015/11/02/前端开发环境搭建/">Next</a></span>
+				</div>
 				<!-- 多说评论框 start -->
 					<div class="ds-thread" data-thread-key="前端代码规范" data-title="前端代码规范" data-url="/2015/11/03/前端代码规范/"></div>
 				<!-- 多说评论框 end -->

@@ -64,8 +64,8 @@
 <li>a标签不可以嵌套交互式元素</li>
 <li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
 <li>p标签不能包含块级元素</li>
-<li>如下的标签不可包含块级元素</li>
-<li>li标签可以包含div以及ul</li>
+<li>这些标签不可包含块级元素</li>
+<li>li标签可以包含div以及ul，ul的子元素应该只有li</li>
 <li>元素并排（块级和块级并列，内联和内联并列)</li>
 </ul>
 <a id="more"></a>
@@ -91,13 +91,17 @@
 <ul>
 <li>li标签可以包含div以及ul(这个是不是很牛，可以包含父级元素)</li>
 </ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;li&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;li&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/li&gt;</span><br><span class="line">/*bad*/</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">	&lt;a href=""&gt;迷路的a标签&lt;/a&gt;</span><br><span class="line">	&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>元素并排（块级和块级并列，内联和内联并列)</li>
 </ul>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*正确*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;img src="" alt=""&gt;</span><br><span class="line">	&lt;a href=""&gt;&lt;/a&gt;</span><br><span class="line">	&lt;span&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">/*错误*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;span&gt;我是内联元素&lt;/span&gt;</span><br><span class="line">	&lt;p&gt;我是块级元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p>如有错误，请指出，欢迎补充其它一些错误情况。</p>
 
+				</div>
+				<div class="post-nav">
+					<span class="prev"><a href="/2015/11/18/css特殊图形绘制/">Prev</a></span>
+					<span class="next"><a href="/2015/11/17/用xampp搭建一个静态服务器/">Next</a></span>
 				</div>
 				<!-- 多说评论框 start -->
 					<div class="ds-thread" data-thread-key="html不能这么写，你知道吗？" data-title="html不能这么写，你知道吗？" data-url="/2015/11/17/html语法标准/"></div>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="keywords" content="
+	jQuery is not must for us——DOM操作
+">
+	<meta name="description" content="杨小福的博客，记点笔记">
+	<title>
+		
+	jQuery is not must for us——DOM操作
+
+	</title>
+	<link rel="stylesheet" href="/css/public.css">
+	<link rel="stylesheet" href="/css/page.css">
+	<link rel="stylesheet" href="/css/monokai.min.css">
+	<link rel="stylesheet" href="/css/post_add.css">
+	<link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+</head>
+<body>
+	<div id="headerWrapper" class="cf">
+		<header id="header" class="cf">
+			<div id="logo">
+				<h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+				<div class="logo-subtitle">
+					programmer
+				</div>
+			</div>
+			<nav id="main-nav">
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/archives">博文</a></li>
+					<li><a href="/websites/index.html">网址导航</a></li>
+					<li><a href="/about">关于</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/24/jquery-is-not-must/DOM-manipulation/">jQuery is not must for us——DOM操作</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-24</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<p>通过浏览器提供的DOM API,我们可以完成对页面元素的增删改查移动等。</p>
+<ul>
+<li>创建元素</li>
+<li>插入元素</li>
+<li>移动元素</li>
+<li>删除元素</li>
+<li>类操作</li>
+<li>属性操作</li>
+<li>文本操作</li>
+<li>样式操作</li>
+</ul>
+<a id="more"></a>
+<h2 id="创建元素">创建元素</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery*/</span></span><br><span class="line">	$(<span class="string">'&lt;div&gt;&lt;/div&gt;'</span>);</span><br><span class="line"><span class="comment">/*DOM*/</span></span><br><span class="line"><span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="插入元素">插入元素</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="在id为1的div的后面插入一个id为1-1的div">在id为1的div的后面插入一个id为1.1的div</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"01"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery*/</span></span><br><span class="line">	$(<span class="string">'#1'</span>).after(<span class="string">'&lt;div id="1.1"&gt;&lt;/div&gt;'</span>);</span><br><span class="line"><span class="comment">/*DOM*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'1'</span>).insertAdjacentHTML(<span class="string">'afterend'</span>, <span class="string">'&lt;div id="1.1"&gt;&lt;/div&gt;'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="在id为1的div之前插入一个id为A的div">在id为1的div之前插入一个id为A的div</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"A"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#1'</span>).before(<span class="string">'&lt;div id="A"&gt;&lt;/div&gt;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*DOM</span><br><span class="line">document.getElementById('1').insertAdjacentHTML('beforebegin', '&lt;div id="A"&gt;&lt;/div&gt;');</span></span><br></pre></td></tr></table></figure>
+<h3 id="插入子元素">插入子元素</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"oldChild"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>插入一个子元素将其变成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"newChild"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"oldChild"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).prepend(<span class="string">'&lt;div id="newChild"&gt;&lt;/div&gt;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*DOM*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>)</span><br><span class="line">	.insertAdjacentHTML(<span class="string">'afterbegin'</span>, <span class="string">'&lt;div id="newChild"&gt;&lt;/div&gt;'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="移动元素">移动元素</h2><p>将下面的结构</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"orphan"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>变成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"orphan"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="jQuery">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).append(<span class="string">'#orphan'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>)</span><br><span class="line">	.appendChild(<span class="built_in">document</span>.getElementById(<span class="string">'orphan'</span>));</span><br></pre></td></tr></table></figure>
+<p>如果想将id为orphan的div插入到c1</p>
+<h3 id="jQuery-1">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).prepend($(<span class="string">'#orphan'</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>)</span><br><span class="line">	.insertBefore(<span class="built_in">document</span>.getElementById(<span class="string">'orphan'</span>), <span class="built_in">document</span>.getElementById(<span class="string">'c1'</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="移除">移除</h2><p>这里假设存在一个id为foobar的元素</p>
+<h3 id="jQuery-2">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foobar'</span>).remove();</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-1">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foobar'</span>).parentNode.removeChild(<span class="built_in">document</span>.getElementById(<span class="string">"foobar"</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="添加和移除class">添加和移除class</h2><p>现在我们希望将</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span> <span class="attribute">class</span>=<span class="value">"bold"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="jQuery-3">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).addClass(<span class="string">'bold'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-2">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*IE9有问题*/</span></span><br><span class="line">docuement.getElementById(<span class="string">'foo'</span>).classList.add(<span class="string">'bold'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*所有浏览器都支持*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).className += <span class="string">'bold'</span>;</span><br></pre></td></tr></table></figure>
+<p>移除bold类</p>
+<h3 id="jQuery-4">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).removeClass(<span class="string">'bold'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-3">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*IE9有问题*/</span></span><br><span class="line">docuement.getElementById(<span class="string">'foo'</span>).classList.remove(<span class="string">'bold'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*所有浏览器都支持</span><br><span class="line">document.getElementById('foo').className = document.getElementById('foo').className.replace(/^bold$/, '');</span></span><br></pre></td></tr></table></figure>
+<h2 id="属性修改">属性修改</h2><p>给id=”foo”的元素设置role属性为button</p>
+<h3 id="jQuery-5">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).attr(<span class="string">'role'</span>, <span class="string">'button'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-4">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).setAttribute(<span class="string">'role'</span>, <span class="string">'button'</span>);</span><br></pre></td></tr></table></figure>
+<p>移除我们添加的属性</p>
+<h3 id="jQuery-6">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).removeAttr(<span class="string">'role'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-5">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).removeAttribute(<span class="string">'role'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="文本修改">文本修改</h2><h3 id="jQuery-7">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).text(<span class="string">'Goodbye!'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-6">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).innerHTML = <span class="string">'Goodbye!'</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).innerText = <span class="string">'GoodBye!'</span>;</span><br><span class="line"><span class="comment">/*IE9+*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).textContent = <span class="string">'GoodBye!'</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="样式修改">样式修改</h2><h3 id="jQuery-8">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#note'</span>).css(<span class="string">'fontWeight'</span>, <span class="string">'bold'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-7">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'note'</span>).style.fontWeight = <span class="string">'bold'</span>;</span><br></pre></td></tr></table></figure>
+
+				</div>
+				<div class="post-nav">
+					<span class="prev"><a href="/">Prev</a></span>
+					<span class="next"><a href="/2015/11/24/jquery-is-not-must/ajax-request/">Next</a></span>
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="jQuery is not must for us——DOM操作" data-title="jQuery is not must for us——DOM操作" data-url="/2015/11/24/jquery-is-not-must/DOM-manipulation/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<i id="upToTop"></i>
+		<p>
+			联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+		</p>
+	</footer>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script src="/js/post.js"></script>
+	<script>
+		$(document).ready(function() {
+  			$('.highlight').each(function(i, block) {
+               hljs.highlightBlock(block);
+  			});
+		});
+	</script>
+</body>
+</html>

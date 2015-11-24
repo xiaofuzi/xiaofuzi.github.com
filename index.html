@@ -47,6 +47,183 @@
 				 		
 						<header>
 							<h1>
+								<a href="/2015/11/24/jquery-is-not-must/DOM-manipulation/" target="_blank">jQuery is not must for us——DOM操作</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-24</a>
+								</span>
+								<span class="post-tag">
+									
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<p>通过浏览器提供的DOM API,我们可以完成对页面元素的增删改查移动等。</p>
+<ul>
+<li>创建元素</li>
+<li>插入元素</li>
+<li>移动元素</li>
+<li>删除元素</li>
+<li>类操作</li>
+<li>属性操作</li>
+<li>文本操作</li>
+<li>样式操作</li>
+</ul>
+								</div>
+								<div class="post-more">
+									<h2 id="创建元素">创建元素</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery*/</span></span><br><span class="line">	$(<span class="string">'&lt;div&gt;&lt;/div&gt;'</span>);</span><br><span class="line"><span class="comment">/*DOM*/</span></span><br><span class="line"><span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="插入元素">插入元素</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="在id为1的div的后面插入一个id为1-1的div">在id为1的div的后面插入一个id为1.1的div</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"01"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery*/</span></span><br><span class="line">	$(<span class="string">'#1'</span>).after(<span class="string">'&lt;div id="1.1"&gt;&lt;/div&gt;'</span>);</span><br><span class="line"><span class="comment">/*DOM*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'1'</span>).insertAdjacentHTML(<span class="string">'afterend'</span>, <span class="string">'&lt;div id="1.1"&gt;&lt;/div&gt;'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="在id为1的div之前插入一个id为A的div">在id为1的div之前插入一个id为A的div</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"A"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#1'</span>).before(<span class="string">'&lt;div id="A"&gt;&lt;/div&gt;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*DOM</span><br><span class="line">document.getElementById('1').insertAdjacentHTML('beforebegin', '&lt;div id="A"&gt;&lt;/div&gt;');</span></span><br></pre></td></tr></table></figure>
+<h3 id="插入子元素">插入子元素</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"oldChild"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>插入一个子元素将其变成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"newChild"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"oldChild"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).prepend(<span class="string">'&lt;div id="newChild"&gt;&lt;/div&gt;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*DOM*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>)</span><br><span class="line">	.insertAdjacentHTML(<span class="string">'afterbegin'</span>, <span class="string">'&lt;div id="newChild"&gt;&lt;/div&gt;'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="移动元素">移动元素</h2><p>将下面的结构</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"orphan"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>变成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c2"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"c3"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"orphan"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="jQuery">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).append(<span class="string">'#orphan'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>)</span><br><span class="line">	.appendChild(<span class="built_in">document</span>.getElementById(<span class="string">'orphan'</span>));</span><br></pre></td></tr></table></figure>
+<p>如果想将id为orphan的div插入到c1</p>
+<h3 id="jQuery-1">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).prepend($(<span class="string">'#orphan'</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>)</span><br><span class="line">	.insertBefore(<span class="built_in">document</span>.getElementById(<span class="string">'orphan'</span>), <span class="built_in">document</span>.getElementById(<span class="string">'c1'</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="移除">移除</h2><p>这里假设存在一个id为foobar的元素</p>
+<h3 id="jQuery-2">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foobar'</span>).remove();</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-1">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foobar'</span>).parentNode.removeChild(<span class="built_in">document</span>.getElementById(<span class="string">"foobar"</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="添加和移除class">添加和移除class</h2><p>现在我们希望将</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"foo"</span> <span class="attribute">class</span>=<span class="value">"bold"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="jQuery-3">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).addClass(<span class="string">'bold'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-2">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*IE9有问题*/</span></span><br><span class="line">docuement.getElementById(<span class="string">'foo'</span>).classList.add(<span class="string">'bold'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*所有浏览器都支持*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).className += <span class="string">'bold'</span>;</span><br></pre></td></tr></table></figure>
+<p>移除bold类</p>
+<h3 id="jQuery-4">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).removeClass(<span class="string">'bold'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-3">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*IE9有问题*/</span></span><br><span class="line">docuement.getElementById(<span class="string">'foo'</span>).classList.remove(<span class="string">'bold'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*所有浏览器都支持</span><br><span class="line">document.getElementById('foo').className = document.getElementById('foo').className.replace(/^bold$/, '');</span></span><br></pre></td></tr></table></figure>
+<h2 id="属性修改">属性修改</h2><p>给id=”foo”的元素设置role属性为button</p>
+<h3 id="jQuery-5">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).attr(<span class="string">'role'</span>, <span class="string">'button'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-4">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).setAttribute(<span class="string">'role'</span>, <span class="string">'button'</span>);</span><br></pre></td></tr></table></figure>
+<p>移除我们添加的属性</p>
+<h3 id="jQuery-6">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).removeAttr(<span class="string">'role'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-5">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).removeAttribute(<span class="string">'role'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="文本修改">文本修改</h2><h3 id="jQuery-7">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#foo'</span>).text(<span class="string">'Goodbye!'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-6">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).innerHTML = <span class="string">'Goodbye!'</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).innerText = <span class="string">'GoodBye!'</span>;</span><br><span class="line"><span class="comment">/*IE9+*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).textContent = <span class="string">'GoodBye!'</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="样式修改">样式修改</h2><h3 id="jQuery-8">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#note'</span>).css(<span class="string">'fontWeight'</span>, <span class="string">'bold'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-7">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'note'</span>).style.fontWeight = <span class="string">'bold'</span>;</span><br></pre></td></tr></table></figure>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
+				 	
+				
+				 		
+						<header>
+							<h1>
+								<a href="/2015/11/24/jquery-is-not-must/ajax-request/" target="_blank">jQuery is not must for us——异步请求</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-24</a>
+								</span>
+								<span class="post-tag">
+									
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<p>jQuery对象只是对XMLHttpRequest对象进行了封装，真正的异步请求还是由浏览器发起的。</p>
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>URL Encode</li>
+<li>JSON</li>
+<li>Uploading</li>
+<li>CORS</li>
+<li>JSONP</li>
+</ul>
+								</div>
+								<div class="post-more">
+									<h2 id="GET请求">GET请求</h2><p>在这里我们向服务器发起一个请求，给服务器传一个id参数然后希望服务器传回该id的用户名。</p>
+<h3 id="jQuery">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*常用的jquery get请求方式*/</span></span><br><span class="line">$.ajax(<span class="string">'myservice/username'</span>, &#123;</span><br><span class="line">	data: &#123;</span><br><span class="line">	id: <span class="string">'unique_id'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">success</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"用户名是："</span> + name);</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params">data, status</span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"请求失败. Return status of "</span> + status);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="原生XMLHttpRequest对象实现">原生XMLHttpRequest对象实现</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, encodeURL(<span class="string">'myservice/username?id=unique_id'</span>));</span><br><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(xhr.status === <span class="number">200</span>)&#123;</span><br><span class="line">	alert(<span class="string">"用户名是："</span> + xhr.responseText);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	alert(<span class="string">'Request failed. Return status of '</span> + xhr.status);</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+<h2 id="POST">POST</h2><p>post用来向服务器传送数据，这里我们传入一个用户id和新用户名，希望服务器完成对该用户的修改同时会返回修改的内容。</p>
+<h3 id="jQuery-1">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newName = <span class="string">'yangxiaofu'</span>;</span><br><span class="line">$.ajax(<span class="string">'myservice/username?'</span> + $.param(&#123;id: <span class="string">'unique_id'</span>&#125;),</span><br><span class="line">&#123;	method: <span class="string">'POST'</span>,</span><br><span class="line">	data: &#123;</span><br><span class="line">		name: newName</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">sucess</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(name !== newName)&#123;</span><br><span class="line">		alert(<span class="string">"something wrong. Name is now "</span> + name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params">data, status</span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">'Request failed. Returned status of '</span> + status);</span><br><span class="line">&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="原生XMLHttpRequest对象实现-1">原生XMLHttpRequest对象实现</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newName = <span class="string">"yangxiaofu"</span>,</span><br><span class="line">	xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">"POST"</span>,</span><br><span class="line">	<span class="built_in">encodeURI</span>(<span class="string">'myservice/username?id=unique_id'</span>));</span><br><span class="line">	xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/x-www-form-urlencode'</span>);</span><br><span class="line">	xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(xhr.status === <span class="number">200</span> &amp;&amp; xhr.responseText !== newName)&#123;</span><br><span class="line">		alert(<span class="string">'Something went wrong.  Name is now '</span> + xhr.responseText);</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.status !== <span class="number">200</span>) &#123;</span><br><span class="line">        alert(<span class="string">'Request failed.  Returned status of '</span> + xhr.status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">xhr.send(<span class="built_in">encodeURI</span>(<span class="string">'name='</span> + newName));</span><br></pre></td></tr></table></figure>
+<h3 id="URL_Encoding">URL Encoding</h3><p>将一个对象转换成URL编码的字符串</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$.param(&#123;</span><br><span class="line">	key1: <span class="string">"value1"</span>,</span><br><span class="line">	<span class="string">'key2'</span>: <span class="string">"value2"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们可以用encodeURL和encodeURLComponent来实现同样的功能,如果 URI 组件中含有分隔符，比如 ? 和 #，则应当使用 encodeURIComponent() 方法分别对各组件进行编码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">param</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> encodedString = <span class="string">''</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> object)&#123;</span><br><span class="line">		<span class="keyword">if</span>(object.hasOwnProperty(prop))&#123;</span><br><span class="line">			<span class="keyword">if</span>(encodedString.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">				encodedString += <span class="string">'&amp;'</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			encodedString += encodeURL(prop + <span class="string">'='</span> + object[prop]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> encodedString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="文件上传">文件上传</h2><p>首先我们应该明确，IE9及之前的版本如果要上传文件的话只能通过form表单，即如下的形式</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"file"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过浏览器提供的文件API ,我们可以通过两种方式上传文件：</p>
+<ul>
+<li>使用multipart/form-data形式的表单</li>
+<li>将文件数据存放在请求体中</li>
+</ul>
+<p>通过下面的表单提交文件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"file"</span> <span class="attribute">id</span>=<span class="value">"test-input"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="jQuery-2">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> file = $(<span class="string">'#test-input'</span>)[<span class="number">0</span>].files[<span class="number">0</span>],</span><br><span class="line">	formData = <span class="keyword">new</span> FormData();</span><br><span class="line"></span><br><span class="line">formData.append(<span class="string">'file'</span>, file);</span><br><span class="line"></span><br><span class="line">$.ajax(<span class="string">'myserver/uploads'</span>,&#123;</span><br><span class="line">	method: <span class="string">'POST'</span>,</span><br><span class="line">	contentType: <span class="literal">false</span>,</span><br><span class="line">	processData: <span class="literal">false</span>,</span><br><span class="line">	data: formData</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*直接提交文件数据*/</span></span><br><span class="line">$.ajax(<span class="string">'myserver/uploads'</span>,&#123;</span><br><span class="line">	method: <span class="string">'POST'</span>,</span><br><span class="line">	contentType: file.type,</span><br><span class="line">	processData: <span class="literal">false</span>,	<span class="comment">/*避免jquery使用URL encode的形式对文件数据进行编码*/</span></span><br><span class="line">	data: file</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="XMLHttpRequest">XMLHttpRequest</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*multipart编码形式*/</span></span><br><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(),</span><br><span class="line">	file = <span class="built_in">document</span>.getElementById(<span class="string">'test-input'</span>).files[<span class="number">0</span>],</span><br><span class="line">	xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">formData.append(<span class="string">'file'</span>, file);</span><br><span class="line">xhr.open(<span class="string">'POST'</span>, <span class="string">'myserver/uploads'</span>);</span><br><span class="line">xhr.send(formData);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*将文件数据以request body的形式提交*/</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="built_in">document</span>.getElementById(<span class="string">'test-input'</span>).files[<span class="number">0</span>],</span><br><span class="line">	xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">	xhr.open(<span class="string">'POST'</span>, <span class="string">'myserver/uploads'</span>);</span><br><span class="line">	xhr.setRequestHeader(<span class="string">'Content-Type'</span>, file.type);</span><br><span class="line">	xhr.send(file);</span><br></pre></td></tr></table></figure>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
+				 	
+				
+				 		
+						<header>
+							<h1>
+								<a href="/2015/11/24/jQuery-is-not-must-for-us/" target="_blank">jQuery is not must for us</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-24</a>
+								</span>
+								<span class="post-tag">
+									
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<p>许多刚开始学习js的开发者将jquery当做javascript本身，这其实是一个很大的误解。</p>
+<p>在我们学习javascript的时候应该区分开这三者的区别：</p>
+<ul>
+<li>javascript</li>
+<li>Web API</li>
+<li>jQuery(或者是其它的框架)</li>
+</ul>
+<p>注意jQuery只是一个库，它并不是javascript本身。</p>
+<h2 id="目录">目录</h2><ul>
+<li>选择器</li>
+<li><a href="/2015/11/24/jquery-is-not-must/DOM-manipulation/">DOM操作</a></li>
+<li><a href="/2015/11/24/jquery-is-not-must/ajax-request/">Ajax调用</a></li>
+<li>事件</li>
+<li>辅助函数</li>
+</ul>
+
+							
+						</div>
+				 	
+				
+				 		
+						<header>
+							<h1>
 								<a href="/2015/11/20/图片延迟加载简单实现/" target="_blank">图片延迟加载简单实现</a>
 							</h1>
 							<div class="post-info">
@@ -85,211 +262,6 @@
         };
     });
 </script>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/19/那些被忽视的字体细节/" target="_blank">那些被忽视的字体细节</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-19</a>
-								</span>
-								<span class="post-tag">
-									
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<h2 id="font属性">font属性</h2><p>简写形式</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">font: font-style font-variant font-weight font-size/line-height font-family|caption|icon|menu|message-box|small-caption|status-bar|initial|inherit;</span><br></pre></td></tr></table></figure>
-<p>我们并不需要设置全部的参数，没有设置的浏览器会使用默认的样式(默认样式与浏览器相关)</p>
-								</div>
-								<div class="post-more">
-									<ul>
-<li>font-style</li>
-<li>font-variant</li>
-<li>font-weight</li>
-<li>font-size/line-height</li>
-<li>font-family</li>
-</ul>
-<h3 id="font-style:_设置或检索对象中的字体样式">font-style: 设置或检索对象中的字体样式</h3><p>normal：<br>指定文本字体样式为正常的字体<br>italic：<br>指定文本字体样式为斜体。对于没有斜体变量的特殊字体，将应用oblique<br>oblique：<br>指定文本字体样式为倾斜的字体</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">font-style：normal | italic | oblique</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">b</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-style:italic;"</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-style:oblique;"</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><b>Hello Xiaofu</b> <b style="font-style:italic;">Hello Xiaofu</b> <b style="font-style:oblique;">Hello Xiaofu</b></p>
-<hr>
-
-<h3 id="font-variant:_设置或检索对象中的文本是否为小型的大写字母">font-variant: 设置或检索对象中的文本是否为小型的大写字母</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">font-variant：normal | small-caps</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-variant:normal;"</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-variant:small-caps;"</span>&gt;</span>Hello Xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">b</span> <span class="attribute">style</span>=<span class="value">"font-variant:small-caps;"</span>&gt;</span>hello xiaofu<span class="tag">&lt;/<span class="title">b</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><b style="font-variant:normal;">Hello Xiaofu</b> <b style="font-variant:small-caps;">Hello Xiaofu</b> <b style="font-variant:small-caps;">hello xiaofu</b></p>
-<p>从上面可以看到small-caps属性会将小写字符转换为小型的大写字符，即大写形式，但大小和小写的大小一样.</p>
-<hr>
-
-<h3 id="font-weight:_设置文本的粗细">font-weight: 设置文本的粗细</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">font-weight：normal | bold | bolder | lighter | &lt;integer&gt;</span><br><span class="line">/*integer的取值范围：100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900*/</span><br></pre></td></tr></table></figure>
-<p><span style="font-weight:normal;">hello xiaofu[400]</span><br><span style="font-weight:bold;">hello xiaofu[700]</span><br><span style="font-weight:bolder;">hello xiaofu</span><br><span style="font-weight:lighter;">hello xiaofu</span></p>
-<hr>
-
-<h3 id="font-size/line-height:_设置文本字体大小">font-size/line-height: 设置文本字体大小</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">font-size：&lt;absolute-size&gt; | &lt;relative-size&gt; | &lt;length&gt; | &lt;percentage&gt;</span><br></pre></td></tr></table></figure>
-<p>absolute-size：<br>根据对象字体进行调节。可选参数值：xx-small | x-small | small | medium | large | x-large | xx-large<br>relative-size：<br>相对于父对像中字体尺寸进行相对调节。使用成比例的em单位计算。可选参数值：smaller | larger<br>length：<br>用长度值指定文字大小。不允许负值。<br>percentage：<br>用百分比指定文字大小。其百分比取值是基于父对象中字体的尺寸。不允许负值。</p>
-<p>line-height: 行高，设置行间距离，不可设置负值</p>
-<p>当给块级元素设置行高时，它定义的是元素中基线之间的最小距离而不是最大距离。</p>
-<h3 id="font-family">font-family</h3><p>font-family 规定元素的字体系列<br>font-family 可以指定一系列的字体，如果浏览器不支持第一个字体，则会尝试下一个。也就是说，font-family 属性的值是用于某个元素的字体族名称或一个字体优先级表，浏览器会使用它可识别的第一个值。</p>
-<p>有两种类型的字体系列名称：</p>
-<ul>
-<li>指定的系列名称：具体字体的名称，比如：”times”、”courier”、”arial”。</li>
-<li>通常字体系列名称：比如：”serif”、”sans-serif”、”cursive”、”fantasy”、”monospace”</li>
-</ul>
-<p>这里为什么需要通用字体系列名称，这里是css帮助我们解决字体命名混乱的问题而增加的，因为相似的字体命名可能会不一样，所以我们可以设置通用字体系列，如当我们设置 “serif”字体系列时，浏览器找到Times、Georgia 和 New Century Schoolbook时就会使用其中的一种字体来渲染，因为他们都属于”serif”字体。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">font-family</span>: <span class="tag">Georgia</span>, "<span class="tag">Times</span> <span class="tag">New</span> <span class="tag">Roman</span>", </span><br><span class="line">             "<span class="tag">Microsoft</span> <span class="tag">YaHei</span>", "微软雅黑", </span><br><span class="line">             <span class="tag">STXihei</span>, "华文细黑", </span><br><span class="line">             <span class="tag">serif</span>;</span><br></pre></td></tr></table></figure>
-<p>字体设置技巧</p>
-<ul>
-<li>1.先设置英文字体，再设置中文字体(英文在中文字体下显示不好，避免中文字体包含的英文字符采用中文字体显示)</li>
-<li>2.中文字体中文名称和英文名称一起指定（避免出现识别不了的情况）</li>
-<li>3.设置一个通用字体结尾，这样当前面指定的特定字体用户计算机上都没装有的情况下，字体可以按照我们期望的字体风格显示.</li>
-</ul>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/18/the-litte-schemer/" target="_blank">The Little Schemer——read again</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-18</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/lisp/" target="_blank">lisp</a>
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/pl/" target="_blank">pl</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<p><style>img{max-width:100%;}</style><br><img data-src="/img/learn-programm.png" alt="oh,man.I just want to learn programm video game!"><br>oh,man.I just want to learn programm video game!</p>
-<h2 id="The_Law_of_Car">The Law of Car</h2><blockquote>
-<p>The primitive car is defined only for non-empty lists.</p>
-</blockquote>
-								</div>
-								<div class="post-more">
-									<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the car of l</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs))(and)(pickle) relish)</span><br><span class="line"></span><br><span class="line">A:</span><br><span class="line">((hotdogs)),</span><br><span class="line">	read as:</span><br><span class="line">	"The list of the list of hotdogs."</span><br><span class="line">	((hotdogs)) is the first S-expression of l.</span><br></pre></td></tr></table></figure>
-<p>[“S表达式”, “列表”]</p>
-<p><hr><br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (car l)</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs)) (and) (pickle) relish)</span><br><span class="line"></span><br><span class="line">A:</span><br><span class="line">((hotdogs)),</span><br><span class="line">because (car l) is another way to ask for "the car of the </span><br><span class="line">list l."</span><br></pre></td></tr></table></figure></p>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (car (car l))</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs)) (and))</span><br><span class="line">A:</span><br><span class="line">(hotdogs).</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is (a b c)</span><br><span class="line">A:</span><br><span class="line">(b c)</span><br><span class="line">	because (b c) is the list l without (car l).</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is ((a b c) x y z)</span><br><span class="line">A:</span><br><span class="line">(x y z)</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is (hamburger)</span><br><span class="line">A:</span><br><span class="line">()</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cdr a)</span><br><span class="line">where </span><br><span class="line">a is hotdogs</span><br><span class="line">A:</span><br><span class="line">No answer</span><br><span class="line">	You cannot ask for the cdr of an atom.</span><br></pre></td></tr></table></figure>
-<h2 id="The_Law_of_Cdr">The Law of Cdr</h2><blockquote>
-<p>The primitive cdr is defined only for non-empty lists.<br>The cdr of any non-empty list is always another list.</p>
-<hr>
-
-</blockquote>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">what is (car (cdr l))</span><br><span class="line">where</span><br><span class="line">l is ((b)(x y)((c)))</span><br><span class="line">A:</span><br><span class="line">(x y),</span><br><span class="line">because((x y)((c))) is (cdr l), and (x y) is the car of</span><br><span class="line">(cdr l).</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cdr (cdr l))</span><br><span class="line">where</span><br><span class="line">	l is ((b)(x y)((c)))</span><br><span class="line">A:</span><br><span class="line">(((c))),</span><br><span class="line">because(x y)((c)) is (cdr l), and (((c))) is the cdr of (cdr l).</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">what does car take as an argument?</span><br><span class="line">A:</span><br><span class="line">it takes any non-empty list.</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What does cdr take as an argument?</span><br><span class="line">A:</span><br><span class="line">It takes any non-empty list.</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cons of the atom a and the list l</span><br><span class="line">Where a is peanut</span><br><span class="line">and</span><br><span class="line">	l is (butter and jelly)</span><br><span class="line">This can also be written "(cons a l)".</span><br><span class="line">	Read: "cons the atom a onto the list l."</span><br><span class="line">A:</span><br><span class="line">(peanut butter and jelly),</span><br><span class="line">	because cons adds an atom to the front of a list.</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cons s l)</span><br><span class="line">where</span><br><span class="line">	s is ((help) this)</span><br><span class="line">and</span><br><span class="line">	l is (is very ((hard) to learn))</span><br><span class="line">A:</span><br><span class="line">(((help) this) is very ((hard) to learn)).</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What does cons take as its arguments?</span><br><span class="line">A:</span><br><span class="line">cons takes two arguments:</span><br><span class="line">	the first one is any S-expression;</span><br><span class="line">	the second one is any list.</span><br></pre></td></tr></table></figure>
-<h2 id="The_Law_of_Cons">The Law of Cons</h2><blockquote>
-<p>The primitive cons takes two arguments.<br>The second argument to cons must be a list.<br>The result is a list.</p>
-</blockquote>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/18/css特殊图形绘制/" target="_blank">css特殊图形绘制</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-18</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/css/" target="_blank">css</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<p><style>#line1{width: 300px;height: 0;border: 2px solid red;} #line2{width: 300px;height: 4px;background: blue;} #square1{width: 100px;height: 100px;background: #35b558;} #square2{width: 0;height:0;border:50px solid yellow;} #circle1{width: 100px;height: 100px;border-radius: 50%; background: #35b558;} #circle2{width: 0;height:0;border:50px solid yellow;border-radius: 50%;}#circle-box{width: 100px;height: 100px;border:50px solid #35b558; border-radius: 50%;} #circle2-box{width: 100px;height: 50px;border:20px solid red; border-radius: 100px 50px 100px 0px / 50px 20px 50px 0px} #trangle div{display: inline-block;} #trangle .trangle1{width: 0;height: 0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:100px solid red;}#trangle .trangle2{width: 0;height: 0;border-left:50px solid transparent;border-right:50px solid transparent;border-top:100px solid #35b558;}#trangle .trangle3{width: 0;height: 0;border-left:100px solid blue;border-top:50px solid transparent;border-bottom:50px solid transparent;}#trangle .trangle4{width: 0;height: 0;border-right:100px solid yellow;border-top:50px solid transparent;border-bottom:50px solid transparent;}<br></style><br><img src="/img/batteries_included.png" alt="batteries_included" style="max-width:100%;"><br>OK… this one looked funnier in my head at 3 in the morning.</p>
-<p>直线</p>
-<div id="line1"></div><br><div id="line2"></div>
-								</div>
-								<div class="post-more">
-									<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*使用边框的方式需要注意添加了几个方向的边框，默认border会添加四个方向的边框*/</span></span><br><span class="line"><span class="id">#line1</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">2px</span> solid red</span></span>;</span><br><span class="line">&#125;</span> </span><br><span class="line"></span><br><span class="line"><span class="id">#line2</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">4px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p><hr><br>正方形</p>
-<div id="square1">#square1</div><br><div id="square2">#square2</div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="id">#square1</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#35b558</span></span></span>;</span><br><span class="line">&#125;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">/*注意文本区*/</span></span><br><span class="line"><span class="id">#square2</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">50px</span> solid yellow</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<hr>
-
-
-<p>圆形</p>
-<div id="circle1">#circle1</div><br><div id="circle2">#circle2</div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="id">#circle1</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#35b558</span></span></span>;</span><br><span class="line">&#125;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">/*注意文本区*/</span></span><br><span class="line"><span class="id">#circle2</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">50px</span> solid yellow</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="border-radius参数说明">border-radius参数说明</h2><p>语法</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*完整的圆角可以设置8个参数，左上角水平圆角半径大小 右上角水平圆角半径大小 右下角水平圆角半径大小 左下角水平圆角半径大小/左上角垂直圆角半径大小 右上角垂直圆角半径大小 右下角垂直圆角半径大小 左下角垂直圆角半径大小*/</span><br><span class="line">border-radius: 1-4 length|% / 1-4 length|%;</span><br><span class="line"></span><br><span class="line">border-radius: 10px;</span><br><span class="line">/*等同于*/</span><br><span class="line">border-top-left-radius: 10px;</span><br><span class="line">border-top-right-radius: 10px;</span><br><span class="line">border-bottom-right-radius: 10px;</span><br><span class="line">border-bottom-left-radius: 10px;</span><br><span class="line"></span><br><span class="line">/*注意对角补全,斜杠前为水平半径、后为垂直半径*/</span><br><span class="line">border-radius: 2px 1px 4px / 0.5px 3px;</span><br><span class="line"></span><br><span class="line">border-top-left-radius: 2px 0.5px;</span><br><span class="line">border-top-right-radius: 1px 3px;</span><br><span class="line">border-bottom-right-radius: 4px 0.5px;</span><br><span class="line">border-bottom-left-radius: 1px 3px;</span><br></pre></td></tr></table></figure>
-<p>圆环</p>
-<div id="circle-box"></div><br><div id="circle2-box"></div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="id">#circle-box</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">50px</span> solid <span class="hexcolor">#35b558</span></span></span>; </span><br><span class="line">	<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*调整单个参数可以得到更为复杂的图形*/</span></span><br><span class="line"><span class="id">#circle2-box</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">20px</span> solid red</span></span>; </span><br><span class="line">	<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">100px</span> <span class="number">50px</span> <span class="number">100px</span> <span class="number">0px</span> / <span class="number">50px</span> <span class="number">20px</span> <span class="number">50px</span> <span class="number">0px</span></span></span></span>&#125;</span><br></pre></td></tr></table></figure>
-<p>三角形</p>
-<div id="trangle"><div class="trangle1"></div><div class="trangle2"></div><div class="trangle3"></div><div class="trangle4"></div></div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="id">#trangle</span> <span class="class">.trangle1</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">100px</span> solid red</span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="id">#trangle</span> <span class="class">.trangle2</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">100px</span> solid <span class="hexcolor">#35b558</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="id">#trangle</span> <span class="class">.trangle3</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">100px</span> solid blue</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="id">#trangle</span> <span class="class">.trangle4</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">100px</span> solid yellow</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">    &#125;</span></span><br></pre></td></tr></table></figure>
-<p>爱心</p>
-<div id="heart"></div>
-
-<p>八卦</p>
-<p><div id="baguai-wrap"><div class="b1-circle"></div></div></p>
-<p><div id="baguai-wrap"><div class="b2-circle"></div></div></p>
-<p><div id="baguai-wrap"><div class="b-circle"></div></div><br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*八卦*/</span></span><br><span class="line"><span class="id">#baguai-wrap</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-top</span>:<span class="value"> <span class="number">30px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">150px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> gray</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#baguai-wrap</span> <span class="class">.b-circle</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">50px</span> solid <span class="hexcolor">#ffffff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">50px</span> solid <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">overflow</span>:<span class="value"> visible</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#baguai-wrap</span> <span class="class">.b-circle</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">''</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> -<span class="number">25px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">20px</span> solid <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#ffffff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#baguai-wrap</span> <span class="class">.b-circle</span><span class="pseudo">:after</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">''</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">50px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> -<span class="number">25px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">20px</span> solid <span class="hexcolor">#ffffff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
 								</div>
 								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
 							

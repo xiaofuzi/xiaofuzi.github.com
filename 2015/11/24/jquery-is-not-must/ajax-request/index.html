@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="keywords" content="
+	jQuery is not must for us——异步请求
+">
+	<meta name="description" content="杨小福的博客，记点笔记">
+	<title>
+		
+	jQuery is not must for us——异步请求
+
+	</title>
+	<link rel="stylesheet" href="/css/public.css">
+	<link rel="stylesheet" href="/css/page.css">
+	<link rel="stylesheet" href="/css/monokai.min.css">
+	<link rel="stylesheet" href="/css/post_add.css">
+	<link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+</head>
+<body>
+	<div id="headerWrapper" class="cf">
+		<header id="header" class="cf">
+			<div id="logo">
+				<h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+				<div class="logo-subtitle">
+					programmer
+				</div>
+			</div>
+			<nav id="main-nav">
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/archives">博文</a></li>
+					<li><a href="/websites/index.html">网址导航</a></li>
+					<li><a href="/about">关于</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/24/jquery-is-not-must/ajax-request/">jQuery is not must for us——异步请求</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-24</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<p>jQuery对象只是对XMLHttpRequest对象进行了封装，真正的异步请求还是由浏览器发起的。</p>
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>URL Encode</li>
+<li>JSON</li>
+<li>Uploading</li>
+<li>CORS</li>
+<li>JSONP</li>
+</ul>
+<a id="more"></a>
+<h2 id="GET请求">GET请求</h2><p>在这里我们向服务器发起一个请求，给服务器传一个id参数然后希望服务器传回该id的用户名。</p>
+<h3 id="jQuery">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*常用的jquery get请求方式*/</span></span><br><span class="line">$.ajax(<span class="string">'myservice/username'</span>, &#123;</span><br><span class="line">	data: &#123;</span><br><span class="line">	id: <span class="string">'unique_id'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">success</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"用户名是："</span> + name);</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params">data, status</span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"请求失败. Return status of "</span> + status);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="原生XMLHttpRequest对象实现">原生XMLHttpRequest对象实现</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, encodeURL(<span class="string">'myservice/username?id=unique_id'</span>));</span><br><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(xhr.status === <span class="number">200</span>)&#123;</span><br><span class="line">	alert(<span class="string">"用户名是："</span> + xhr.responseText);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	alert(<span class="string">'Request failed. Return status of '</span> + xhr.status);</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+<h2 id="POST">POST</h2><p>post用来向服务器传送数据，这里我们传入一个用户id和新用户名，希望服务器完成对该用户的修改同时会返回修改的内容。</p>
+<h3 id="jQuery-1">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newName = <span class="string">'yangxiaofu'</span>;</span><br><span class="line">$.ajax(<span class="string">'myservice/username?'</span> + $.param(&#123;id: <span class="string">'unique_id'</span>&#125;),</span><br><span class="line">&#123;	method: <span class="string">'POST'</span>,</span><br><span class="line">	data: &#123;</span><br><span class="line">		name: newName</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">sucess</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(name !== newName)&#123;</span><br><span class="line">		alert(<span class="string">"something wrong. Name is now "</span> + name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params">data, status</span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">'Request failed. Returned status of '</span> + status);</span><br><span class="line">&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="原生XMLHttpRequest对象实现-1">原生XMLHttpRequest对象实现</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newName = <span class="string">"yangxiaofu"</span>,</span><br><span class="line">	xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">"POST"</span>,</span><br><span class="line">	<span class="built_in">encodeURI</span>(<span class="string">'myservice/username?id=unique_id'</span>));</span><br><span class="line">	xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/x-www-form-urlencode'</span>);</span><br><span class="line">	xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(xhr.status === <span class="number">200</span> &amp;&amp; xhr.responseText !== newName)&#123;</span><br><span class="line">		alert(<span class="string">'Something went wrong.  Name is now '</span> + xhr.responseText);</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.status !== <span class="number">200</span>) &#123;</span><br><span class="line">        alert(<span class="string">'Request failed.  Returned status of '</span> + xhr.status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">xhr.send(<span class="built_in">encodeURI</span>(<span class="string">'name='</span> + newName));</span><br></pre></td></tr></table></figure>
+<h3 id="URL_Encoding">URL Encoding</h3><p>将一个对象转换成URL编码的字符串</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$.param(&#123;</span><br><span class="line">	key1: <span class="string">"value1"</span>,</span><br><span class="line">	<span class="string">'key2'</span>: <span class="string">"value2"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们可以用encodeURL和encodeURLComponent来实现同样的功能,如果 URI 组件中含有分隔符，比如 ? 和 #，则应当使用 encodeURIComponent() 方法分别对各组件进行编码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">param</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> encodedString = <span class="string">''</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> object)&#123;</span><br><span class="line">		<span class="keyword">if</span>(object.hasOwnProperty(prop))&#123;</span><br><span class="line">			<span class="keyword">if</span>(encodedString.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">				encodedString += <span class="string">'&amp;'</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			encodedString += encodeURL(prop + <span class="string">'='</span> + object[prop]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> encodedString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="文件上传">文件上传</h2><p>首先我们应该明确，IE9及之前的版本如果要上传文件的话只能通过form表单，即如下的形式</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"file"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过浏览器提供的文件API ,我们可以通过两种方式上传文件：</p>
+<ul>
+<li>使用multipart/form-data形式的表单</li>
+<li>将文件数据存放在请求体中</li>
+</ul>
+<p>通过下面的表单提交文件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"file"</span> <span class="attribute">id</span>=<span class="value">"test-input"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="jQuery-2">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> file = $(<span class="string">'#test-input'</span>)[<span class="number">0</span>].files[<span class="number">0</span>],</span><br><span class="line">	formData = <span class="keyword">new</span> FormData();</span><br><span class="line"></span><br><span class="line">formData.append(<span class="string">'file'</span>, file);</span><br><span class="line"></span><br><span class="line">$.ajax(<span class="string">'myserver/uploads'</span>,&#123;</span><br><span class="line">	method: <span class="string">'POST'</span>,</span><br><span class="line">	contentType: <span class="literal">false</span>,</span><br><span class="line">	processData: <span class="literal">false</span>,</span><br><span class="line">	data: formData</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*直接提交文件数据*/</span></span><br><span class="line">$.ajax(<span class="string">'myserver/uploads'</span>,&#123;</span><br><span class="line">	method: <span class="string">'POST'</span>,</span><br><span class="line">	contentType: file.type,</span><br><span class="line">	processData: <span class="literal">false</span>,	<span class="comment">/*避免jquery使用URL encode的形式对文件数据进行编码*/</span></span><br><span class="line">	data: file</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="XMLHttpRequest">XMLHttpRequest</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*multipart编码形式*/</span></span><br><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(),</span><br><span class="line">	file = <span class="built_in">document</span>.getElementById(<span class="string">'test-input'</span>).files[<span class="number">0</span>],</span><br><span class="line">	xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">formData.append(<span class="string">'file'</span>, file);</span><br><span class="line">xhr.open(<span class="string">'POST'</span>, <span class="string">'myserver/uploads'</span>);</span><br><span class="line">xhr.send(formData);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*将文件数据以request body的形式提交*/</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="built_in">document</span>.getElementById(<span class="string">'test-input'</span>).files[<span class="number">0</span>],</span><br><span class="line">	xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">	xhr.open(<span class="string">'POST'</span>, <span class="string">'myserver/uploads'</span>);</span><br><span class="line">	xhr.setRequestHeader(<span class="string">'Content-Type'</span>, file.type);</span><br><span class="line">	xhr.send(file);</span><br></pre></td></tr></table></figure>
+
+				</div>
+				<div class="post-nav">
+					<span class="prev"><a href="/2015/11/24/jquery-is-not-must/DOM-manipulation/">Prev</a></span>
+					<span class="next"><a href="/2015/11/24/jQuery-is-not-must-for-us/">Next</a></span>
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="jQuery is not must for us——异步请求" data-title="jQuery is not must for us——异步请求" data-url="/2015/11/24/jquery-is-not-must/ajax-request/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<i id="upToTop"></i>
+		<p>
+			联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+		</p>
+	</footer>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script src="/js/post.js"></script>
+	<script>
+		$(document).ready(function() {
+  			$('.highlight').each(function(i, block) {
+               hljs.highlightBlock(block);
+  			});
+		});
+	</script>
+</body>
+</html>

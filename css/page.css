@@ -221,6 +221,23 @@
 	color: red;
 }
 
+/*上一篇，下一篇*/
+.post-nav a{
+	color: #333;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	cursor: pointer;
+}
+.post-nav a:hover{
+	color: #4183C4; 
+	text-decoration: none;
+}
+
+.post-nav .next{
+	float: right;
+}
+
 /*分页*/
 .pagination a,
 .pagination span{

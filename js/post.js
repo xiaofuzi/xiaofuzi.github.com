@@ -91,4 +91,14 @@ var Post = {
 
 $(function() {
     Post.init();
+    var lazyLoad = function() {
+        [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
+            img.setAttribute('src', img.getAttribute('data-src'));
+            img.onload = function() {
+                /*图片加载完成后data-src属性就可以去掉了*/
+                img.removeAttribute('data-src');
+            };
+        });
+    };
+    lazyLoad();
 })

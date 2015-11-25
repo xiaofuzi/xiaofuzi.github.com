@@ -1,26 +1,33 @@
 var Silder = {
-	itemWrap: '#itemWrap',
-	subItem: '#itemWrap .sub-item',
 	silderIndexs: '.silder-index',
 	leftBtn: '#leftBtn',
 	rightBtn: '#rightBtn',
-	init: function(){
-		//jquery对象实例化
-		this.itemWrap = $(this.itemWrap);
-		this.imgItems = $(this.subItem);
-		this.silderIndexs = $(this.silderIndexs);
-		this.leftBtn = $(this.leftBtn);
-		this.rightBtn = $(this.rightBtn);
+	itemWrap: '#itemWrap',
+	subItem: '#itemWrap .sub-item',
+	init: function(params){
+		if(params){
+			this.sliderCreate(params);
+		}
 
 		this.scroll();
+		this.autoTurnLeft();
 		this.sliderIndex();
 	},
+	//初始配置
+	sliderCreate(params){
+		for(var ele in params){
+			if(params[ele]){
+				Silder[ele] = params[ele];
+			}
+		}
+	},
 	scroll: function(){
-		var $itemWrap = this.itemWrap;
-		var $imgItems = this.imgItems;
-		var $leftBtn = this.leftBtn;
-		var $rightBtn = this.rightBtn;
-		var $silderIndexs = this.silderIndexs;
+		//jquery对象实例化
+		var $itemWrap = $(this.itemWrap);
+		var $imgItems = $(this.subItem);
+		var $leftBtn = $(this.leftBtn);
+		var $rightBtn = $(this.rightBtn);
+		var $silderIndexs = $(this.silderIndexs);
 		
 		$leftBtn.on('click', function(){
 			$itemWrap.animate({
@@ -59,29 +66,42 @@ var Silder = {
 			})
 		})
 	},
+	//自动轮播
+	autoTurnLeft: function(){
+		var $leftBtn = $(this.leftBtn);
+		setInterval(function(){
+			$leftBtn.trigger('click');
+		}, 5000)
+	},
 	sliderIndex: function(){
-		var $silderIndexs = this.silderIndexs;
-		var $itemWrap = this.itemWrap;
-		var $imgItems = this.imgItems;
+		//jquery对象实例化
+		var $itemWrap = $(this.itemWrap);
+		var $imgItems = $(this.subItem);
+		var $silderIndexs = $(this.silderIndexs);
+
 		$silderIndexs.each(function(){
 			$this = $(this);
 			$this.on('click', function(){
+				//jquery对象实例化
+				$itemWrap = $(Silder.itemWrap);
+				$imgItems = $(Silder.subItem);
+				$silderIndexs = $(Silder.silderIndexs);
+
 				$$this = $(this);
 				var index = $$this.attr('data-index');
-				var currentIndex = 0;
 				$imgItems.each(function(){
 					_this = $(this);
 					if(_this.attr('data-index') == index){
-						$itemWrap.animate({
-							'margin-left': 0 - $imgItems.width()*currentIndex
-						}, 1000)
-						//导航按钮状态切换
-						$silderIndexs.removeClass('active');
-						$$this.addClass('active');
-						return true;
+						$itemWrap.css('margin-left', 0);
+						//退出循环
+						return false;	
+					}else{
+						$itemWrap.append($(Silder.subItem).first());
 					}
-					currentIndex++;				
-				});
+					//导航按钮状态切换
+					$silderIndexs.removeClass('active');
+					$$this.addClass('active');				
+				})
 			})
 		})
 	}

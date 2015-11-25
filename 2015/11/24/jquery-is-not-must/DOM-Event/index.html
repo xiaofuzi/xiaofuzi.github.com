@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="keywords" content="
+	
+">
+	<meta name="description" content="杨小福的博客，记点笔记">
+	<title>
+		
+	
+
+	</title>
+	<link rel="stylesheet" href="/css/public.css">
+	<link rel="stylesheet" href="/css/page.css">
+	<link rel="stylesheet" href="/css/monokai.min.css">
+	<link rel="stylesheet" href="/css/post_add.css">
+	<link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+</head>
+<body>
+	<div id="headerWrapper" class="cf">
+		<header id="header" class="cf">
+			<div id="logo">
+				<h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+				<div class="logo-subtitle">
+					programmer
+				</div>
+			</div>
+			<nav id="main-nav">
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/archives">博文</a></li>
+					<li><a href="/websites/index.html">网址导航</a></li>
+					<li><a href="/about">关于</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/24/jquery-is-not-must/DOM-Event/"></a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-24</a>
+						</span>
+						<span class="post-tag">
+							
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<p>在这里我们将学会使用使用Web相关的事件API。jQuery给我们提供了非常好的事件API,但理解好底层是如何实现的可以帮助我们更好的使用jQuery,同时遇到错误也能修复。</p>
+<ul>
+<li>发送DOM事件</li>
+<li>发送自定义事件</li>
+<li>监听事件</li>
+<li>移除事件句柄</li>
+<li>修改事件</li>
+<li>事件预测</li>
+<li>键盘事件</li>
+<li>鼠标事件</li>
+<li>浏览器加载事件</li>
+<li>老式浏览器的支持</li>
+</ul>
+<h2 id="DOM事件发送">DOM事件发送</h2><p>以点击事件为例：<br>focus/blur/submit语法相同</p>
+<h3 id="jQuery">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(a).click();</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a.click();</span><br></pre></td></tr></table></figure>
+<h2 id="自定义事件">自定义事件</h2><h3 id="jQuery-1">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*触发一个事件(custom-event)*/</span></span><br><span class="line">$(<span class="string">'element'</span>).trigger(<span class="string">'custom-event'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-1">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(<span class="string">'Event'</span>);</span><br><span class="line">event.initEvent(<span class="string">'custom-event'</span>, <span class="literal">true</span>, <span class="literal">true</span>); <span class="comment">/*第二和第三参数说明属于冒泡事件并可取消默认事件*/</span></span><br><span class="line">someElement.dispatchEvent(event);	<span class="comment">/*发起事件*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*ie not support*/</span></span><br><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> CustomEvent(<span class="string">'custom-event'</span>, &#123;bubbles: <span class="literal">true</span>, cancelable: <span class="literal">true</span>&#125;);</span><br><span class="line">someElement.dispatchEvent(event);</span><br></pre></td></tr></table></figure>
+<h2 id="事件监听">事件监听</h2><h3 id="jQuery-2">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'element'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*当点击的时候做点什么*、</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-2">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ie 9*/</span></span><br><span class="line">element.addEventLister(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*当点击的时候做点什么*、</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
+<h2 id="移除事件">移除事件</h2><h3 id="jQuery-3">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery还提供了一个移除某元素上所有事件的api*/</span></span><br><span class="line">$(<span class="string">'element'</span>).off(<span class="string">'click'</span>, myEventHander);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-3">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">elment.removeEventLister(<span class="string">'click'</span>, myEventHander);</span><br></pre></td></tr></table></figure>
+
+				</div>
+				<div class="post-nav">
+					
+						<span class="prev"><a href="/2015/11/25/web-tools/web工程化真的有必要吗/">Prev</a></span>
+					
+					
+						<span class="next"><a href="/2015/11/24/jquery-is-not-must/DOM-manipulation/">Next</a></span>
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="" data-title="" data-url="/2015/11/24/jquery-is-not-must/DOM-Event/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<i id="upToTop"></i>
+		<p>
+			联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+		</p>
+	</footer>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script src="/js/post.js"></script>
+	<script>
+		$(document).ready(function() {
+  			$('.highlight').each(function(i, block) {
+               hljs.highlightBlock(block);
+  			});
+		});
+	</script>
+</body>
+</html>

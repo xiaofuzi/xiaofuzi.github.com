@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="keywords" content="
+	web工程化真的有必要吗
+">
+	<meta name="description" content="杨小福的博客，记点笔记">
+	<title>
+		
+	web工程化真的有必要吗
+
+	</title>
+	<link rel="stylesheet" href="/css/public.css">
+	<link rel="stylesheet" href="/css/page.css">
+	<link rel="stylesheet" href="/css/monokai.min.css">
+	<link rel="stylesheet" href="/css/post_add.css">
+	<link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+</head>
+<body>
+	<div id="headerWrapper" class="cf">
+		<header id="header" class="cf">
+			<div id="logo">
+				<h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+				<div class="logo-subtitle">
+					programmer
+				</div>
+			</div>
+			<nav id="main-nav">
+				<ul>
+					<li><a href="/">首页</a></li>
+					<li><a href="/archives">博文</a></li>
+					<li><a href="/websites/index.html">网址导航</a></li>
+					<li><a href="/about">关于</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/25/web-tools/web工程化真的有必要吗/">web工程化真的有必要吗</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-25</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/tool/" target="_blank">tool</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<p>如今的网站变得越来越庞大？</p>
+<ul>
+<li>页面需要引入大量的JS、CSS、图片等资源文件</li>
+<li>网页在变得越来越复杂</li>
+<li>页面端的代码变得更多</li>
+</ul>
+<p>web页面变得复杂，代码量增多，为了便于管理，所以需要模块化、工程化。</p>
+<p class="text-important">如果你的项目并不是很庞大，你自己就可以比较好的处理各种资源的依赖以及管理，那么工程化的工具对你来说也许并不是必要的。</p>
+
+<p>模块化这个概念并不是因为web变得复杂才出现，其实早已经再软件工程中使用。</p>
+<ul>
+<li>c/c++语言中可以将功能进行抽象然后在不同的文件中实现相应的功能，最后使用include的方式将各个文件连接起来</li>
+<li>web中我们可以通过’<script>‘、’<style>‘标签将脚本和样式文件从页面中分离出去</li>
+<li>CMD/AMD模块管理</li>
+<li>ES6 自带模块加载功能(import)</li>
+</ul>
+<p>这里我们看一下浏览器提供的js管理功能有什么不足，假如我们现在有一个页面需要引入如下的几个js文件</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"script01.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script02.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script03.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script04.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script05.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>可能会遇到的问题：</p>
+<ul>
+<li>命名冲突(全局的变量、函数)</li>
+<li>js文件的顺序和位置会对结果产生影响</li>
+<li>需要自己处理依赖关系</li>
+<li>文件变多将会难以管理维护</li>
+</ul>
+<p>在这里我们将每个文件当做一个模块来管理，因为文件最终需要传到客户端才能执行，所以在传输上也需要做相应的处理。</p>
+<ul>
+<li><p>每个模块一个请求</p>
+<blockquote>
+<p>即每个模块对应的文件都会单独的加载到浏览器上，这种方式也是浏览器默认使用的加载方式</p>
+</blockquote>
+</li>
+<li><p>所有的模块只请求一次</p>
+<blockquote>
+<p>先在本地将所有的模块文件打包成一个文件，然后浏览器只需要请求该文件即可，不足的是不能做到根据依赖需要进行请求加载</p>
+</blockquote>
+</li>
+<li><p>对模块进行本地编译的时候根据依赖关系打包成几个包，这样就可以用更灵活的方式进行加载而不用每次都全部加载到客户端。(参考 <a href="https://developers.google.com/web-toolkit/doc/latest/DevGuideCodeSplitting">Google’s GWT</a>)</p>
+</li>
+</ul>
+<p>大多数的模块加载工具只针对js,webpack将其做得更彻底，页面中引用的资源都可以使用模块化的加载方式：</p>
+<ul>
+<li>css、less样式</li>
+<li>图片</li>
+<li>字体</li>
+<li>js</li>
+<li>etc.</li>
+</ul>
+<p>资源编译的过程中往往需要考虑三个问题：</p>
+<ul>
+<li>资源定位</li>
+<li>内容嵌入</li>
+<li>依赖声明</li>
+</ul>
+<p>前端工程构建工具-fis</p>
+<p><a href="http://fis.baidu.com/fis3/index.html">FIS3</a>，百度研发的一个比较好的前端构建工具。用来解决前端工程中性能优化、资源加载(异步、同步、按需、预加载、依赖管理、合并、内嵌)、模块化开发、开发规范、代码部署等问题。</p>
+</script></li></ul>
+				</div>
+				<div class="post-nav">
+					
+						<span class="prev"><a href="/2015/11/25/web组件/轮播图的一个实现思路/">Prev</a></span>
+					
+					
+						<span class="next"><a href="/2015/11/24/jquery-is-not-must/DOM-Event/">Next</a></span>
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="web工程化真的有必要吗" data-title="web工程化真的有必要吗" data-url="/2015/11/25/web-tools/web工程化真的有必要吗/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<i id="upToTop"></i>
+		<p>
+			联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+		</p>
+	</footer>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script src="/js/post.js"></script>
+	<script>
+		$(document).ready(function() {
+  			$('.highlight').each(function(i, block) {
+               hljs.highlightBlock(block);
+  			});
+		});
+	</script>
+</body>
+</html>

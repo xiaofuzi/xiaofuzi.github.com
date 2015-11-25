@@ -47,6 +47,179 @@
 				 		
 						<header>
 							<h1>
+								<a href="/2015/11/25/web组件/轮播图的一个实现思路/" target="_blank">简易轮播实现思路</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-25</a>
+								</span>
+								<span class="post-tag">
+									
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/css/" target="_blank">css</a>
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<h2 id="轮播效果预览">轮播效果预览</h2><p><style>iframe{width: 100%;min-height: 400px;}</style></p>
+<iframe src="compents/galler/index.html" frameborder="0"></iframe>
+								</div>
+								<div class="post-more">
+									<h3 id="结构布局">结构布局</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"contain-wrapp"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"item-wrap"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-item"</span>&gt;</span></span><br><span class="line">	    	<span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/img/compents/background01.jpg"</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">class</span>=<span class="value">"img-item"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-item"</span>&gt;</span></span><br><span class="line">	    	<span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/img/compents/cat-cartoon.jpg"</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">class</span>=<span class="value">"img-item"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-item"</span>&gt;</span></span><br><span class="line">	    	<span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/img/compents/cup.jpg"</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">class</span>=<span class="value">"img-item"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-item"</span>&gt;</span></span><br><span class="line">	    	<span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/img/compents/leaf.jpg"</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">class</span>=<span class="value">"img-item"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-item&gt;</span><br><span class="line">	    	&lt;img src="</span>/<span class="attribute">img</span>/<span class="attribute">compents</span>/<span class="attribute">nature01.jpg</span>" <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">class</span>=<span class="value">"img-item"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>contain-wrapper作为轮播盒子框架，即限定可见区域</li>
+<li>item-wrap作为轮播外层的盒子</li>
+<li>sub-item作为每一个轮播图的盒子</li>
+</ul>
+<p>1 .contain-wrapper的宽高等于sub-item的宽高,多个sub-item并排[可以用浮动的方式实现]<br>2 .item-wrap的宽度等于sub-item的总宽度，高度等于sub-item的高度，然后将contain-wrapper的overflow属性设为hidden<br>3 .这样虽然item-wrap的宽度大于contain-wrapper的宽度，但因为父级设置了overflow:hidden,所以也只能显示一张图片的大小。<br>4 .为了得到轮播的效果这时可以使用动画将item-wrap在水平方向平移，也就得到了轮播的效果</p>
+<h3 id="轮播实现">轮播实现</h3><p>添加轮播按钮，点击时触发轮播事件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 轮播按钮 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"left-btn-wrap"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"silder-left-btn"</span> <span class="attribute">id</span>=<span class="value">"leftBtn"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"right-btn-wrap"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"silder-right-btn"</span> <span class="attribute">id</span>=<span class="value">"rightBtn"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里可以使用jQuery的animate动效实现轮播效果</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*左滚动</span><br><span class="line">参数说明：</span><br><span class="line">$itemWrap=$('.item-wrap'); 轮播外层盒子</span><br><span class="line">*/</span></span><br><span class="line">$leftBtn.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$itemWrap.animate(&#123;</span><br><span class="line">		<span class="string">'margin-left'</span>: <span class="number">0</span> - $imgItems.width()</span><br><span class="line">	&#125;, <span class="number">1000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">/*轮播一次就动态的将第一个图片元素移到最后，变成最后一张图片，这样可以实现无限循环的效果*/</span></span><br><span class="line">		$itemWrap.append($(<span class="string">'.item-wrap ,sub-item'</span>).first());</span><br><span class="line">		$itemWrap.css(<span class="string">"margin-left"</span>,<span class="number">0</span>);</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;）</span><br><span class="line"></span><br><span class="line"><span class="comment">/*右滚动*/</span></span><br><span class="line">$rightBtn.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$itemWrap.prepend($(<span class="string">'#itemWrap .sub-item'</span>).last());</span><br><span class="line">		$itemWrap.css(<span class="string">"margin-left"</span>,<span class="number">0</span> - $imgItems.width());</span><br><span class="line">	$itemWrap.animate(&#123;</span><br><span class="line">		<span class="string">'margin-left'</span>: <span class="number">0</span></span><br><span class="line">	&#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;）</span><br></pre></td></tr></table></figure>
+<p>这样就可以实现一个简单的轮播图的效果，上面给出的事例还带有轮播导航条[右下角],这可以通过增加一个data-index属性来记录轮播索引位置。</p>
+<p><a href="/compents/galler/index.html">查看完整demo</a></p>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
+						<hr>
+				 	
+				
+				 		
+						<header>
+							<h1>
+								<a href="/2015/11/25/web-tools/web工程化真的有必要吗/" target="_blank">web工程化真的有必要吗</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-25</a>
+								</span>
+								<span class="post-tag">
+									
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/tool/" target="_blank">tool</a>
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<p>如今的网站变得越来越庞大？</p>
+<ul>
+<li>页面需要引入大量的JS、CSS、图片等资源文件</li>
+<li>网页在变得越来越复杂</li>
+<li>页面端的代码变得更多</li>
+</ul>
+<p>web页面变得复杂，代码量增多，为了便于管理，所以需要模块化、工程化。</p>
+<p class="text-important">如果你的项目并不是很庞大，你自己就可以比较好的处理各种资源的依赖以及管理，那么工程化的工具对你来说也许并不是必要的。</p>
+
+<p>模块化这个概念并不是因为web变得复杂才出现，其实早已经再软件工程中使用。</p>
+<ul>
+<li>c/c++语言中可以将功能进行抽象然后在不同的文件中实现相应的功能，最后使用include的方式将各个文件连接起来</li>
+<li>web中我们可以通过’<script>‘、’<style>‘标签将脚本和样式文件从页面中分离出去</li>
+<li>CMD/AMD模块管理</li>
+<li>ES6 自带模块加载功能(import)</li>
+</ul>
+<p>这里我们看一下浏览器提供的js管理功能有什么不足，假如我们现在有一个页面需要引入如下的几个js文件</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"script01.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script02.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script03.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script04.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script05.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>可能会遇到的问题：</p>
+<ul>
+<li>命名冲突(全局的变量、函数)</li>
+<li>js文件的顺序和位置会对结果产生影响</li>
+<li>需要自己处理依赖关系</li>
+<li>文件变多将会难以管理维护</li>
+</ul>
+<p>在这里我们将每个文件当做一个模块来管理，因为文件最终需要传到客户端才能执行，所以在传输上也需要做相应的处理。</p>
+<ul>
+<li><p>每个模块一个请求</p>
+<blockquote>
+<p>即每个模块对应的文件都会单独的加载到浏览器上，这种方式也是浏览器默认使用的加载方式</p>
+</blockquote>
+</li>
+<li><p>所有的模块只请求一次</p>
+<blockquote>
+<p>先在本地将所有的模块文件打包成一个文件，然后浏览器只需要请求该文件即可，不足的是不能做到根据依赖需要进行请求加载</p>
+</blockquote>
+</li>
+<li><p>对模块进行本地编译的时候根据依赖关系打包成几个包，这样就可以用更灵活的方式进行加载而不用每次都全部加载到客户端。(参考 <a href="https://developers.google.com/web-toolkit/doc/latest/DevGuideCodeSplitting">Google’s GWT</a>)</p>
+</li>
+</ul>
+<p>大多数的模块加载工具只针对js,webpack将其做得更彻底，页面中引用的资源都可以使用模块化的加载方式：</p>
+<ul>
+<li>css、less样式</li>
+<li>图片</li>
+<li>字体</li>
+<li>js</li>
+<li>etc.</li>
+</ul>
+<p>资源编译的过程中往往需要考虑三个问题：</p>
+<ul>
+<li>资源定位</li>
+<li>内容嵌入</li>
+<li>依赖声明</li>
+</ul>
+<p>前端工程构建工具-fis</p>
+<p><a href="http://fis.baidu.com/fis3/index.html">FIS3</a>，百度研发的一个比较好的前端构建工具。用来解决前端工程中性能优化、资源加载(异步、同步、按需、预加载、依赖管理、合并、内嵌)、模块化开发、开发规范、代码部署等问题。</p>
+</script></li></ul>
+							
+						</div>
+						<hr>
+				 	
+				
+				 		
+						<header>
+							<h1>
+								<a href="/2015/11/24/jquery-is-not-must/DOM-Event/" target="_blank"></a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-24</a>
+								</span>
+								<span class="post-tag">
+									
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<p>在这里我们将学会使用使用Web相关的事件API。jQuery给我们提供了非常好的事件API,但理解好底层是如何实现的可以帮助我们更好的使用jQuery,同时遇到错误也能修复。</p>
+<ul>
+<li>发送DOM事件</li>
+<li>发送自定义事件</li>
+<li>监听事件</li>
+<li>移除事件句柄</li>
+<li>修改事件</li>
+<li>事件预测</li>
+<li>键盘事件</li>
+<li>鼠标事件</li>
+<li>浏览器加载事件</li>
+<li>老式浏览器的支持</li>
+</ul>
+<h2 id="DOM事件发送">DOM事件发送</h2><p>以点击事件为例：<br>focus/blur/submit语法相同</p>
+<h3 id="jQuery">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(a).click();</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a.click();</span><br></pre></td></tr></table></figure>
+<h2 id="自定义事件">自定义事件</h2><h3 id="jQuery-1">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*触发一个事件(custom-event)*/</span></span><br><span class="line">$(<span class="string">'element'</span>).trigger(<span class="string">'custom-event'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-1">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(<span class="string">'Event'</span>);</span><br><span class="line">event.initEvent(<span class="string">'custom-event'</span>, <span class="literal">true</span>, <span class="literal">true</span>); <span class="comment">/*第二和第三参数说明属于冒泡事件并可取消默认事件*/</span></span><br><span class="line">someElement.dispatchEvent(event);	<span class="comment">/*发起事件*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*ie not support*/</span></span><br><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> CustomEvent(<span class="string">'custom-event'</span>, &#123;bubbles: <span class="literal">true</span>, cancelable: <span class="literal">true</span>&#125;);</span><br><span class="line">someElement.dispatchEvent(event);</span><br></pre></td></tr></table></figure>
+<h2 id="事件监听">事件监听</h2><h3 id="jQuery-2">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'element'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*当点击的时候做点什么*、</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-2">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ie 9*/</span></span><br><span class="line">element.addEventLister(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*当点击的时候做点什么*、</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
+<h2 id="移除事件">移除事件</h2><h3 id="jQuery-3">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery还提供了一个移除某元素上所有事件的api*/</span></span><br><span class="line">$(<span class="string">'element'</span>).off(<span class="string">'click'</span>, myEventHander);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-3">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">elment.removeEventLister(<span class="string">'click'</span>, myEventHander);</span><br></pre></td></tr></table></figure>
+
+							
+						</div>
+						<hr>
+				 	
+				
+				 		
+						<header>
+							<h1>
 								<a href="/2015/11/24/jquery-is-not-must/DOM-manipulation/" target="_blank">jQuery is not must for us——DOM操作</a>
 							</h1>
 							<div class="post-info">
@@ -117,154 +290,6 @@
 <h3 id="DOM-6">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).innerHTML = <span class="string">'Goodbye!'</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).innerText = <span class="string">'GoodBye!'</span>;</span><br><span class="line"><span class="comment">/*IE9+*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>).textContent = <span class="string">'GoodBye!'</span>;</span><br></pre></td></tr></table></figure>
 <h2 id="样式修改">样式修改</h2><h3 id="jQuery-8">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#note'</span>).css(<span class="string">'fontWeight'</span>, <span class="string">'bold'</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="DOM-7">DOM</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'note'</span>).style.fontWeight = <span class="string">'bold'</span>;</span><br></pre></td></tr></table></figure>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-						<hr>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/24/jquery-is-not-must/ajax-request/" target="_blank">jQuery is not must for us——异步请求</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-24</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<p>jQuery对象只是对XMLHttpRequest对象进行了封装，真正的异步请求还是由浏览器发起的。</p>
-<ul>
-<li>GET</li>
-<li>POST</li>
-<li>URL Encode</li>
-<li>JSON</li>
-<li>Uploading</li>
-<li>CORS</li>
-<li>JSONP</li>
-</ul>
-								</div>
-								<div class="post-more">
-									<h2 id="GET请求">GET请求</h2><p>在这里我们向服务器发起一个请求，给服务器传一个id参数然后希望服务器传回该id的用户名。</p>
-<h3 id="jQuery">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*常用的jquery get请求方式*/</span></span><br><span class="line">$.ajax(<span class="string">'myservice/username'</span>, &#123;</span><br><span class="line">	data: &#123;</span><br><span class="line">	id: <span class="string">'unique_id'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">success</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"用户名是："</span> + name);</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params">data, status</span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"请求失败. Return status of "</span> + status);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="原生XMLHttpRequest对象实现">原生XMLHttpRequest对象实现</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, encodeURL(<span class="string">'myservice/username?id=unique_id'</span>));</span><br><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(xhr.status === <span class="number">200</span>)&#123;</span><br><span class="line">	alert(<span class="string">"用户名是："</span> + xhr.responseText);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	alert(<span class="string">'Request failed. Return status of '</span> + xhr.status);</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
-<h2 id="POST">POST</h2><p>post用来向服务器传送数据，这里我们传入一个用户id和新用户名，希望服务器完成对该用户的修改同时会返回修改的内容。</p>
-<h3 id="jQuery-1">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newName = <span class="string">'yangxiaofu'</span>;</span><br><span class="line">$.ajax(<span class="string">'myservice/username?'</span> + $.param(&#123;id: <span class="string">'unique_id'</span>&#125;),</span><br><span class="line">&#123;	method: <span class="string">'POST'</span>,</span><br><span class="line">	data: &#123;</span><br><span class="line">		name: newName</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">sucess</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(name !== newName)&#123;</span><br><span class="line">		alert(<span class="string">"something wrong. Name is now "</span> + name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params">data, status</span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">'Request failed. Returned status of '</span> + status);</span><br><span class="line">&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h3 id="原生XMLHttpRequest对象实现-1">原生XMLHttpRequest对象实现</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newName = <span class="string">"yangxiaofu"</span>,</span><br><span class="line">	xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">"POST"</span>,</span><br><span class="line">	<span class="built_in">encodeURI</span>(<span class="string">'myservice/username?id=unique_id'</span>));</span><br><span class="line">	xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/x-www-form-urlencode'</span>);</span><br><span class="line">	xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(xhr.status === <span class="number">200</span> &amp;&amp; xhr.responseText !== newName)&#123;</span><br><span class="line">		alert(<span class="string">'Something went wrong.  Name is now '</span> + xhr.responseText);</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.status !== <span class="number">200</span>) &#123;</span><br><span class="line">        alert(<span class="string">'Request failed.  Returned status of '</span> + xhr.status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">xhr.send(<span class="built_in">encodeURI</span>(<span class="string">'name='</span> + newName));</span><br></pre></td></tr></table></figure>
-<h3 id="URL_Encoding">URL Encoding</h3><p>将一个对象转换成URL编码的字符串</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$.param(&#123;</span><br><span class="line">	key1: <span class="string">"value1"</span>,</span><br><span class="line">	<span class="string">'key2'</span>: <span class="string">"value2"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>我们可以用encodeURL和encodeURLComponent来实现同样的功能,如果 URI 组件中含有分隔符，比如 ? 和 #，则应当使用 encodeURIComponent() 方法分别对各组件进行编码。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">param</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> encodedString = <span class="string">''</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> object)&#123;</span><br><span class="line">		<span class="keyword">if</span>(object.hasOwnProperty(prop))&#123;</span><br><span class="line">			<span class="keyword">if</span>(encodedString.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">				encodedString += <span class="string">'&amp;'</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			encodedString += encodeURL(prop + <span class="string">'='</span> + object[prop]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> encodedString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="文件上传">文件上传</h2><p>首先我们应该明确，IE9及之前的版本如果要上传文件的话只能通过form表单，即如下的形式</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"file"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>通过浏览器提供的文件API ,我们可以通过两种方式上传文件：</p>
-<ul>
-<li>使用multipart/form-data形式的表单</li>
-<li>将文件数据存放在请求体中</li>
-</ul>
-<p>通过下面的表单提交文件</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"file"</span> <span class="attribute">id</span>=<span class="value">"test-input"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="jQuery-2">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> file = $(<span class="string">'#test-input'</span>)[<span class="number">0</span>].files[<span class="number">0</span>],</span><br><span class="line">	formData = <span class="keyword">new</span> FormData();</span><br><span class="line"></span><br><span class="line">formData.append(<span class="string">'file'</span>, file);</span><br><span class="line"></span><br><span class="line">$.ajax(<span class="string">'myserver/uploads'</span>,&#123;</span><br><span class="line">	method: <span class="string">'POST'</span>,</span><br><span class="line">	contentType: <span class="literal">false</span>,</span><br><span class="line">	processData: <span class="literal">false</span>,</span><br><span class="line">	data: formData</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*直接提交文件数据*/</span></span><br><span class="line">$.ajax(<span class="string">'myserver/uploads'</span>,&#123;</span><br><span class="line">	method: <span class="string">'POST'</span>,</span><br><span class="line">	contentType: file.type,</span><br><span class="line">	processData: <span class="literal">false</span>,	<span class="comment">/*避免jquery使用URL encode的形式对文件数据进行编码*/</span></span><br><span class="line">	data: file</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="XMLHttpRequest">XMLHttpRequest</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*multipart编码形式*/</span></span><br><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(),</span><br><span class="line">	file = <span class="built_in">document</span>.getElementById(<span class="string">'test-input'</span>).files[<span class="number">0</span>],</span><br><span class="line">	xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">formData.append(<span class="string">'file'</span>, file);</span><br><span class="line">xhr.open(<span class="string">'POST'</span>, <span class="string">'myserver/uploads'</span>);</span><br><span class="line">xhr.send(formData);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*将文件数据以request body的形式提交*/</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="built_in">document</span>.getElementById(<span class="string">'test-input'</span>).files[<span class="number">0</span>],</span><br><span class="line">	xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">	xhr.open(<span class="string">'POST'</span>, <span class="string">'myserver/uploads'</span>);</span><br><span class="line">	xhr.setRequestHeader(<span class="string">'Content-Type'</span>, file.type);</span><br><span class="line">	xhr.send(file);</span><br></pre></td></tr></table></figure>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-						<hr>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/24/jQuery-is-not-must-for-us/" target="_blank">jQuery is not must for us</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-24</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<p>许多刚开始学习js的开发者将jquery当做javascript本身，这其实是一个很大的误解。</p>
-<p>在我们学习javascript的时候应该区分开这三者的区别：</p>
-<ul>
-<li>javascript</li>
-<li>Web API</li>
-<li>jQuery(或者是其它的框架)</li>
-</ul>
-<p>注意jQuery只是一个库，它并不是javascript本身。</p>
-<h2 id="目录">目录</h2><ul>
-<li>选择器</li>
-<li><a href="/2015/11/24/jquery-is-not-must/DOM-manipulation/">DOM操作</a></li>
-<li><a href="/2015/11/24/jquery-is-not-must/ajax-request/">Ajax调用</a></li>
-<li>事件</li>
-<li>辅助函数</li>
-</ul>
-
-							
-						</div>
-						<hr>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/20/图片延迟加载简单实现/" target="_blank">图片延迟加载简单实现</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-20</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/js/" target="_blank">js</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<style>img {opacity: 1;transition: opacity 0.2s;max-width: 100%;}img[data-src] {opacity: 0;}</style>
-
-<p>图片往往是造成网页加载缓慢的原因，通过延迟图片的加载可以提高用户体验，优先加载重要的内容。</p>
-<p><img data-src="/img/tree.png" alt="tree"><br>
-								</div>
-								<div class="post-more">
-									<br><img data-src="/img/christina.jpg" alt="christina"></p>
-<h2 id="1-使用data-src属性代替img的src属性">1.使用data-src属性代替img的src属性</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"wrapper"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">img</span> <span class="attribute">data-src</span>=<span class="value">"./img/lazy.jpg"</span> <span class="attribute">alt</span>=<span class="value">"lazy.jpg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*先将待加载图片隐藏，加载完成后显示*/</span></span><br><span class="line"><span class="tag">img</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">transition</span>:<span class="value"> opacity <span class="number">0.2s</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">img</span><span class="attr_selector">[data-src]</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    &#125;</span></span><br></pre></td></tr></table></figure>
-<p>说明：img标签并不会将图片嵌入到网页中，而是提供一个占位符即给图片提供一个显示的空间。图片的显示需要浏览器根据src属性来加载。所以上述方式并不会加载图片。</p>
-<h2 id="2-当html文档加载完成后通过js将img的data-src属性转换为src,从而加载图片">2.当html文档加载完成后通过js将img的data-src属性转换为src,从而加载图片</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*原生js实现*/</span></span><br><span class="line">[].forEach.call(<span class="built_in">document</span>.querySelectorAll(<span class="string">'img[data-src]'</span>), <span class="function"><span class="keyword">function</span>(<span class="params">img</span>) </span>&#123;</span><br><span class="line">        img.setAttribute(<span class="string">'src'</span>, img.getAttribute(<span class="string">'data-src'</span>));</span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        	<span class="comment">/*图片加载完成后data-src属性就可以去掉了*/</span></span><br><span class="line">            img.removeAttribute(<span class="string">'data-src'</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="comment">/*jQuery实现*/</span></span><br><span class="line">$(<span class="string">'img[data-src]'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> $img = $(<span class="keyword">this</span>);</span><br><span class="line">    $img.attr(<span class="string">'src'</span>, $img.attr(<span class="string">'data-src'</span>));</span><br><span class="line">    $img.load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $img.removeAttr(<span class="string">'data-src'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>说明：遍历所有包含data-src属性的img元素然后将data-src属性转换为src属性</p>
-<script>
-    [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
-        img.setAttribute('src', img.getAttribute('data-src'));
-        img.onload = function() {
-            /*图片加载完成后data-src属性就可以去掉了*/
-            img.removeAttribute('data-src');
-        };
-    });
-</script>
 								</div>
 								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
 							

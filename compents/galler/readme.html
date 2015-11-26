@@ -1,8 +1,6 @@
 <h2 id="简介">简介</h2><p>轮播效果实现，依赖于jQuery,默认样式为全屏轮播，如有需要可自定义样式。</p>
 <p>在线示例：<a href="http://yangxiaofu.com/compents/galler/index.html">http://yangxiaofu.com/compents/galler/index.html</a></p>
-<h2 id="如何使用">如何使用</h2><ol>
-<li>HTML结构</li>
-</ol>
+<h2 id="如何使用">如何使用</h2><p>1 .HTML结构</p>
 <pre><code class="html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"page-wrapp"</span>&gt;</span>
     <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"item-wrap"</span>&gt;</span>
         <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub-item"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
@@ -45,9 +43,7 @@
 <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </code></pre>
 <p>这样就添加了一张图片元素</p>
-<ol>
-<li>自定义样式，在main.css之后引入</li>
-</ol>
+<p>2 .自定义样式，在main.css之后引入</p>
 <ul>
 <li>给page-wrapp设宽高</li>
 </ul>
@@ -95,6 +91,6 @@ Slider = {
 }
 <span class="comment">/*初始化时作为参数传入*/</span>
 $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-    Silder.init();
+    Silder.init(mySlider);
 })
 </code></pre>

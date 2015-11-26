@@ -4,6 +4,7 @@ var Silder = {
 	rightBtn: '#rightBtn',
 	itemWrap: '#itemWrap',
 	subItem: '#itemWrap .sub-item',
+	exdends: {},/*扩展参数*/
 	init: function(params){
 		if(params){
 			this.sliderCreate(params);
@@ -67,11 +68,26 @@ var Silder = {
 		})
 	},
 	//自动轮播
-	autoTurnLeft: function(){
+	autoTurnLeft: function(Time){
 		var $leftBtn = $(this.leftBtn);
-		setInterval(function(){
+		var Time = Time || 5000;
+		this.exdends['s_leftInterval'] = setInterval(function(){
 			$leftBtn.trigger('click');
+		}, Time);
+	},
+	autoTurnRight: function(Time){
+		var $rightBtn = $(this.leftBtn);
+		var Time = Time || 5000;
+		this.exdends['s_rightInterval'] = setInterval(function(){
+			$rightBtn.trigger('click');
 		}, 5000)
+	},
+	//取消轮播
+	cancelTurnLeft: function(){
+		clearInterval(this.exdends['s_leftInterval']);
+	},
+	cancelTurnRight: function(){
+		clearInterval(this.exdends['s_rightInterval']);
 	},
 	sliderIndex: function(){
 		//jquery对象实例化

@@ -4,126 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>全屏轮播实现</title>
-    <style>
-    *{
-    	margin: 0;
-    	padding: 0;
-    }
-    html,
-    body,
-    .container,
-    .page-wrapper,
-    .page-wrapper .item-wrap,
-    .page-wrapper .sub-item,
-    .page-wrapper .sub-item .img-item {
-    	position: relative;
-        height: 100%;
-    }
-    
-    .page-wrapper {
-        min-width: 720px;
-        min-height: 500px;
-        overflow: hidden;
-        zoom: 1;
-    }
-    
-    .page-wrapper .item-wrap {
-        width: 500%;
-        overflow: hidden;
-        zoom: 1;
-    }
-    
-    .page-wrapper .sub-item {
-        float: left;
-        width: 20%;
-    }
-    
-    .page-wrapper .sub-item .img-item {
-        width: 100%;
-    }
-
-    .left-btn-wrap{
-    	position: absolute;
-    	top: 0;
-    	left: 0;
-    	height: 100%;
-    	width: 120px;
-    	background: rgba(0, 0, 0, 0.3);
-    	transition: opacity 1s;
-    	-webkit-transition: opacity 1s;
-    	-ms-transition: opacity 1s;
-    	-moz-transition: opacity 1s;
-    	opacity: 0;
-    	cursor: pointer;
-    }
-
-	.right-btn-wrap{
-    	position: absolute;
-    	top: 0;
-    	right: 0;
-    	height: 100%;
-    	width: 120px;
-    	background: rgba(0, 0, 0, 0.3);
-    	transition: opacity 1s;
-    	-webkit-transition: opacity 1s;
-    	-ms-transition: opacity 1s;
-    	-moz-transition: opacity 1s;
-    	opacity: 0;
-    	cursor: pointer;
-    }
-
-
-    .silder-left-btn{
-    	position: absolute;
-    	display: block;
-    	width: 40px;
-    	height: 72px;
-    	top: 50%;
-    	left: 20px;
-    	transform: translate(0, -50%);
-    	background: url(/img/icon/slider_btn_icon.png) no-repeat 0 -85px;
-    }
-
-     .silder-right-btn{
-    	position: absolute;
-    	display: block;
-    	width: 40px;
-    	height: 72px;
-    	top: 50%;
-    	right: 20px;
-    	transform: translate(0, -50%);
-    	background: url(/img/icon/slider_btn_icon.png) no-repeat 0 0;
-    }
-
-     .left-btn-wrap:hover{
-		opacity: 1;
-    }
-
-	.right-btn-wrap:hover{
-		opacity: 1;
-    }
-
-	#silderNav{
-		position: absolute;
-		bottom: 20px;
-		right: 20px;
-
-	}
-	#silderNav li{
-		display: inline-block;
-		width: 20px;
-		line-height: 20px;
-		text-align: center;
-		color: #ffffff;
-		background: #999;
-		border-radius: 50%;
-		cursor: pointer;
-	}
-	#silderNav li.active,
-	#silderNav li:hover{
-		background: #000000;
-	}
-    </style>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
@@ -131,40 +12,52 @@
         <div class="page-wrapper">
             <div class="item-wrap" id="itemWrap">
                 <div class="sub-item" data-index='1'>
-                	<img data-src="/img/compents/background01.jpg" alt="" class="img-item">
+                    <img data-src="./img/background01.jpg" alt="" class="img-item">
                 </div>
                 <div class="sub-item" data-index='2'>
-                	<img data-src="/img/compents/cat-cartoon.jpg" alt="" class="img-item">
+                    <img data-src="./img/cat-cartoon.jpg" alt="" class="img-item">
                 </div>
                 <div class="sub-item" data-index='3'>
-                	<img data-src="/img/compents/cup.jpg" alt="" class="img-item">
+                    <img data-src="./img/cup.jpg" alt="" class="img-item">
                 </div>
                 <div class="sub-item" data-index='4'>
-                	<img data-src="/img/compents/leaf.jpg" alt="" class="img-item">
+                    <img data-src="./img/leaf.jpg" alt="" class="img-item">
                 </div>
                 <div class="sub-item" data-index='5'>
-                	<img data-src="/img/compents/nature01.jpg" alt="" class="img-item">
+                    <img data-src="./img/nature01.jpg" alt="" class="img-item">
                 </div>
             </div>
             <!-- 轮播按钮 -->
             <div class="left-btn-wrap">
-            	<span class="silder-left-btn" id="leftBtn"></span>
+                <span class="silder-left-btn" id="leftBtn"></span>
             </div>
             <div class="right-btn-wrap">
-            	<span class="silder-right-btn" id="rightBtn"></span>
+                <span class="silder-right-btn" id="rightBtn"></span>
             </div>
             <ul id="silderNav">
-            	<li class="silder-index active" data-index='1'>1</li>
-            	<li class="silder-index" data-index='2'>2</li>
-            	<li class="silder-index" data-index='3'>3</li>
-            	<li class="silder-index" data-index='4'>4</li>
-            	<li class="silder-index" data-index='5'>5</li>
+                <li class="silder-index active" data-index='1'>1</li>
+                <li class="silder-index" data-index='2'>2</li>
+                <li class="silder-index" data-index='3'>3</li>
+                <li class="silder-index" data-index='4'>4</li>
+                <li class="silder-index" data-index='5'>5</li>
             </ul>
         </div>
     </div>
-    <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="./slider.js"></script>
-    <script src="/js/post.js"></script>
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/slider.js"></script>
+    <script>
+    //图片延迟加载
+    var lazyLoad = function() {
+        [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
+            img.setAttribute('src', img.getAttribute('data-src'));
+            img.onload = function() {
+                /*图片加载完成后data-src属性就可以去掉了*/
+                img.removeAttribute('data-src');
+            };
+        });
+    };
+    lazyLoad();
+    </script>
 </body>
 
 </html>

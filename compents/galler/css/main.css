@@ -1,0 +1,119 @@
+* {
+        margin: 0;
+        padding: 0;
+    }
+    
+    html,
+    body,
+    .container,
+    .page-wrapper,
+    .page-wrapper .item-wrap,
+    .page-wrapper .sub-item,
+    .page-wrapper .sub-item .img-item {
+        position: relative;
+        height: 100%;
+    }
+    
+    .page-wrapper {
+        min-width: 720px;
+        min-height: 500px;
+        overflow: hidden;
+        zoom: 1;
+    }
+    
+    .page-wrapper .item-wrap {
+        width: 500%;
+        overflow: hidden;
+        zoom: 1;
+    }
+    
+    .page-wrapper .sub-item {
+        float: left;
+        width: 20%;
+    }
+    
+    .page-wrapper .sub-item .img-item {
+        width: 100%;
+    }
+    
+    .left-btn-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 120px;
+        background: rgba(0, 0, 0, 0.3);
+        transition: opacity 1s;
+        -webkit-transition: opacity 1s;
+        -ms-transition: opacity 1s;
+        -moz-transition: opacity 1s;
+        opacity: 0;
+        cursor: pointer;
+    }
+    
+    .right-btn-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 120px;
+        background: rgba(0, 0, 0, 0.3);
+        transition: opacity 1s;
+        -webkit-transition: opacity 1s;
+        -ms-transition: opacity 1s;
+        -moz-transition: opacity 1s;
+        opacity: 0;
+        cursor: pointer;
+    }
+    
+    .silder-left-btn {
+        position: absolute;
+        display: block;
+        width: 40px;
+        height: 72px;
+        top: 50%;
+        left: 20px;
+        transform: translate(0, -50%);
+        background: url(../img/icon/slider_btn_icon.png) no-repeat 0 -85px;
+    }
+    
+    .silder-right-btn {
+        position: absolute;
+        display: block;
+        width: 40px;
+        height: 72px;
+        top: 50%;
+        right: 20px;
+        transform: translate(0, -50%);
+        background: url(../img/icon/slider_btn_icon.png) no-repeat 0 0;
+    }
+    
+    .left-btn-wrap:hover {
+        opacity: 1;
+    }
+    
+    .right-btn-wrap:hover {
+        opacity: 1;
+    }
+    
+    #silderNav {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    #silderNav li {
+        display: inline-block;
+        width: 20px;
+        line-height: 20px;
+        text-align: center;
+        color: #ffffff;
+        background: #999;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    #silderNav li.active,
+    #silderNav li:hover {
+        background: #000000;
+    }

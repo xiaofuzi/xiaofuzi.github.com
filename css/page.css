@@ -154,6 +154,10 @@
 	font-size: 14px;
 }
 
+.post-body img{
+	max-width: 100%;
+}
+
 .post-body h1,
 .post-body h2,
 .post-body h3,

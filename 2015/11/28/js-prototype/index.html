@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="
+	prototype、__proto__、constructor、this——不懂别说会JS
+">
+    <meta name="description" content="杨小福的博客，记点笔记">
+    <title>
+        
+	prototype、__proto__、constructor、this——不懂别说会JS
+
+    </title>
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/monokai.min.css">
+    <link rel="stylesheet" href="/css/post_add.css">
+    <link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0904845f91ea208faa55eaa72f93fab1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    <div id="headerWrapper" class="cf">
+        <header id="header" class="cf">
+            <div id="logo">
+                <h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+                <div class="logo-subtitle">
+                    programmer
+                </div>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/archives">博文</a></li>
+                    <li><a href="/websites/index.html">网址导航</a></li>
+                    <li><a href="/about">关于</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/28/js-prototype/">prototype、__proto__、constructor、this——不懂别说会JS</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-27</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<ul>
+<li>每一个Javascript对象(null除外)都和另一个对象相关联，即原型，每一个对象都从原型继承属性。</li>
+<li>所有通过对象直接量创建的对象都具有同一个原型对象，通过Object.prototype可以获得对原型对象的引用。</li>
+<li>通过new关键字和构造函数创建的对象的原型就是构造函数的prototype属性的值</li>
+<li>普通的原型对象属于普通对象，普通对象都具有原型(Object.prototype比较特殊，不继承任何属性)</li>
+<li>所有的内置构造函数以及大部分自定义构造函数都具有一个继承自Object.prototype的原型</li>
+<li>构造函数的原型中存在预先定义好的constructor属性，对象继承的constructor均指代他们的构造函数。构造函数是类的标识，因此这个constructor属性为对象提供了类</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> F();</span><br><span class="line">o.constructor === F	<span class="comment">/*true,指代类本身*/</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="Javascript中class的写法">Javascript中class的写法</h2><p>注：为和普通函数区别开，类的命名首字母一般是大写</p>
+<p>下面定义了Cat、cat类<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*写法一：*/</span></span><br><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"cat:小写的猫"</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*写法二：*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:小写的猫"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对象生成">对象生成</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> objCat = <span class="keyword">new</span> Cat; <span class="comment">/*大写的猫对象*/</span></span><br><span class="line"><span class="keyword">var</span> objcat = <span class="keyword">new</span> cat; <span class="comment">/*小写的猫对象*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*输出*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat, objcat);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-01.png" alt="类的命名首字母大写并不是强制的"></p>
+<p>这里输出的结果是相同的，即类的命名首字母大写并不是强制的</p>
+<h2 id="prototype_VS_proto_对象">prototype VS <strong>proto</strong> 对象</h2><h3 id="添加prototype对象">添加prototype对象</h3><p>这里给Cat添加prototype对象,cat不做改动</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*写法一：*/</span></span><br><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"cat:小写的猫"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Cat.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"I like fish!"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">说明：同一个类生成的所有对象会共用类的prototype对象上挂载的方法和属性</span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">`javascript</span><br><span class="line">redCat = new Cat;</span><br><span class="line">greenCat = new Cat;</span><br><span class="line"></span><br><span class="line">console.log(redCat.eat(), greenCat.eat());</span></span><br></pre></td></tr></table></figure>
+<p>redCat和greenCat调用的是同一个方法即Cat.prototype.eat,所以都会输出”I like fish!”.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Cat.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"I like fish!"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>/<em>同样输出两个生成的对象</em>/</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(objCat, objcat);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-02.png" alt="这里给Cat添加prototype对象,cat不做改动"></p>
+<p>从上图可以发现大写的猫对象多输出了两行,这里出现了一个”<strong>proto</strong>“属性,那么它代表什么呢？因为这是我们的Cat类设置了prototype后Cat对象才出现的属性，所以我们可以猜测这两者之间有某种密切的关系，为了验证我们的想法，我们可以输出测试一下。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(objCat.__proto__, Cat.prototype);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-03.png" alt="console.log(objCat.__proto__, Cat.prototype)"></p>
+<p>我们可以惊奇的发现输出结果一模一样，为了再次证明它们是同一个东西，我们再次进行验证</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*注意这里是3个等号哦*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat.__proto__ === Cat.prototype);  			<span class="comment">/*result:true*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat.__proto__.eat(), Cat.prototype.eat());	<span class="comment">/*I like fish! I like fish!,调用了同一个 eat 方法*/</span></span><br></pre></td></tr></table></figure>
+<p>从这里我们可以得一个结论：对象会继承类的prototype对象并存在一个名为”<strong>proto</strong>“的属性中,即对象的”<strong>proto</strong>“属性指向生成它的类的”prototype”对象</p>
+<p class="text-important">protoype和<strong>proto</strong>统称为原型对象，但前者是在类中，后者是在对象中的表示，对象中是不存在prototype属性的</p>
+
+<h2 id="constructor属性">constructor属性</h2><p>构造函数的原型中存在预先定义好的constructor属性，对象继承的constructor均指代他们的构造函数。构造函数是类的标识，因此这个constructor属性为对象提供了类.</p>
+<p>这句话怎么来理解呢？</p>
+<p>1 .构造函数的原型中存在预定义好的constructor属性<br>2 .constructor指代他们的构造函数<br>3 .constructor属性为对象提供了类</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> CatConstructor = Cat.prototype.constructor;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Cat:"</span>, Cat, Cat.prototype);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"CatConstructor:"</span>, CatConstructor, CatConstructor.prototype);</span><br></pre></td></tr></table></figure>
+<p>这里为了更清晰的理解上面这几个点，我们将Cat类的原型的constructor属性赋值给CatConstructor,然后分别打印他们本身以及他们的原型对象。</p>
+<p><img src="/img/prototype/cat-04.png" alt="Cat.prototype.constructor"></p>
+<p>从上图我们可以发现两者是完全一样的，即Cat.prototype.constructor等于Cat本身。</p>
+<p>那么第三点怎么理解呢？既然constructor代表Cat构造函数本身，那么我们是不是可以用它来生成对象——类才具有的功能</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> CatConstructor = Cat.prototype.constructor;</span><br><span class="line"><span class="keyword">var</span> newObjCat = <span class="keyword">new</span> CatConstructor;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"objCat:"</span>, objCat, <span class="string">"newObjCat"</span>, newObjCat);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-05.png" alt="" objcat:",="" objcat,="" "newobjcat",="" newobjcat"=""></p>
+<p>如我们所料，上面输出的objCat和newObjCat结果是一样的，所以验证了第三点，类的原型的constructor属性即类本身</p>
+<h2 id="this——到底指向了谁">this——到底指向了谁</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Cat.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Cat:"</span>, <span class="keyword">this</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Cat-prototype:"</span>, <span class="keyword">this</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.init();				<span class="comment">/*this代表Cat类本身*/</span></span><br><span class="line">Cat.prototype.init();	<span class="comment">/*this代表Cat.prototype对象*/</span></span><br><span class="line"></span><br><span class="line">objCat.init();			<span class="comment">/*this代表objCat对象本身*/</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-06.png" alt="this——到底指向了谁"></p>
+<p>从上图可以发现，输出为：</p>
+<p>Cat.init():输出构成函数本身<br>Cat.prototype.init():输出类的原型对象<br>objCat.init(): 输出结果都是objCat对象本身且调用的是Cat.prototype.init方法</p>
+<p>从上面我们可以知道this始终指向调用方法的对象本身</p>
+<h3 id="构造函数中调用原型对象上绑定的方法——指向谁呢">构造函数中调用原型对象上绑定的方法——指向谁呢</h3><p>注：当我们在说构造函数的时候，其实是将构造函数和类等同起来</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery构造函数模拟*/</span></span><br><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">	<span class="comment">/*调用原型上绑定的init方法*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> Cat.prototype.init();</span><br><span class="line">&#125;;</span><br><span class="line">Cat.prototype = &#123;</span><br><span class="line">	init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;	<span class="comment">/*当做为构造函数时，返回值好像并没有啥用处*/</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype.init.prototype = Cat.prototype;</span><br><span class="line"></span><br><span class="line">Cat();</span><br></pre></td></tr></table></figure>
+<h3 id="稍稍复杂一点的情况">稍稍复杂一点的情况</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">	<span class="comment">/*调用原型上绑定的init方法*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> Cat.prototype.init(params);</span><br><span class="line">&#125;;</span><br><span class="line">Cat.prototype = &#123;</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.animal = params;</span><br><span class="line">        <span class="keyword">this</span>.type = params;</span><br><span class="line">        <span class="keyword">this</span>.color = params;</span><br><span class="line">    &#125;,</span><br><span class="line">    eat: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"I like fish!"</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    name: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.animal;</span><br><span class="line">    &#125;,</span><br><span class="line">    color: <span class="string">'yellow'</span></span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype.init.prototype = Cat.prototype;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> redCat = Cat(<span class="string">"redCat"</span>);</span><br><span class="line"><span class="keyword">var</span> greenCat = Cat(<span class="string">"greenCat"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(redCat, greenCat);</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<p><img src="/img/prototype/cat-07.png" alt="jquery对象生成方式模拟"></p>
+<p class="text-important">这里的init方法里的this指向的是Cat.prototype,init方法里的animal和Cat类的animal也没有关系,init这时相当于我们的构造函数，而它自身又是自身的prototype里的一个方法[是不是已已绕晕。。。]</p>
+
+<ul>
+<li>this.animal = params;</li>
+<li>this.type = params;</li>
+<li>this.color = params;</li>
+</ul>
+<p>它们是构造函数即类的属性，而init函数外面的color: ‘yellow’是挂在原型上的，所以生成的对象在访问color属性的时候是获取构造函数里的值[原型链继承的优先级]</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(redCat.__proto__.color);		<span class="comment">/*yelow,我的确是挂在类的原型上的*/</span></span><br></pre></td></tr></table></figure>
+<p class="text-important">上述的jquery构造函数语法模拟的一个不足就是无法得到Cat类上的属性,如Cat里的animal.[如果你有好的方法获取请告知我]</p>
+
+
+
+
+
+
+
+				</div>
+				<div class="post-nav">
+					
+					
+						<span class="next"><a href="/2015/11/25/web组件/轮播图的一个实现思路/">Next</a></span>
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="prototype、__proto__、constructor、this——不懂别说会JS" data-title="prototype、__proto__、constructor、this——不懂别说会JS" data-url="/2015/11/28/js-prototype/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+    <footer id="footer">
+        <i id="upToTop"></i>
+        <p>
+            联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/post.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.highlight').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+</body>
+
+</html>

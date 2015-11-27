@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>["prototype","__proto__","constructor","this","WTF"]</title>
+</head>
+
+<body>
+</body>
+<script>
+var Cat = function() {
+    this.animal = "Cat:大写的猫";
+}
+Cat.prototype.eat = function(){
+	return "I like fish!";
+}
+
+Cat.init = function(){
+	console.log("Cat:", this);
+	return this;
+}
+
+Cat.prototype.init = function(){
+	console.log("Cat-prototype:", this);
+	return this;
+}
+
+var CatConstructor = Cat.prototype.constructor;
+
+
+var cat = function() {
+    this.animal = "cat:小写的猫";
+}
+
+var objCat = new Cat;
+var objcat = new cat;
+
+console.log(Cat, cat);
+
+redCat = new Cat;
+greenCat = new Cat;
+
+console.log(redCat.eat(), greenCat.eat());
+
+console.log(objCat, objcat, Cat.prototype);
+console.log(objCat.__proto__, Cat.prototype);
+console.log(objCat.__proto__ === Cat.prototype);
+console.log(objCat.__proto__.eat(), Cat.prototype.eat());
+console.log("Cat:", Cat, Cat.prototype);
+console.log("CatConstructor:", CatConstructor, CatConstructor.prototype);
+
+var newObjCat = new CatConstructor;
+
+console.log("objCat:", objCat, "newObjCat", newObjCat);
+
+/*this用法测试*/
+console.log("this用法测试");
+Cat.init();
+Cat.prototype.init();
+objCat.init();
+
+
+// var Cat = function() {
+//     this.animal = "Cat:大写的猫";
+//     //this.name = 'cat';
+//     /*调用原型上绑定的init方法*/
+//     //return new Cat.prototype.init();
+// };
+// Cat.prototype.init = function() {
+//     //console.log("Cat-prototype:", this);
+//     return this;
+// }
+// Cat.prototype.name = 'pcat';
+// Cat.prototype.init.prototype = Cat.prototype;
+
+// //Cat();
+// console.log("类中调用原型方法时this的指向");
+// console.log(new Cat.prototype.init());
+
+
+var aQuery = function(selector, context) {
+       //return  new aQuery.prototype.init();
+       return new aQuery.create();
+}
+
+aQuery.create = function(){
+
+}
+
+aQuery.prototype = {
+    init: function() {
+        //return this;
+    },
+    name: function() {
+        return this.age
+    },
+    age: 20
+}
+
+//aQuery.prototype.init.prototype = aQuery.prototype;
+aQuery.create.prototype = aQuery.prototype;
+
+
+console.log('aQuery',aQuery().__proto__, aQuery.prototype) //20
+</script>
+
+</html>

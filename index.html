@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/page.css">
     <link rel="stylesheet" href="/css/monokai.min.css">
     <link rel="stylesheet" href="/css/post_add.css">
-    <link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+    <link id="theme-highlight" rel="stylesheet" data-href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
     <script>
     var _hmt = _hmt || [];
     (function() {
@@ -52,6 +52,58 @@
 	<div id="pageWrapper">
 		<div id="mainContent">
 			<article class="post">
+				
+				 		
+						<header>
+							<h1>
+								<a href="/2015/11/28/jquery-is-not-must/DOM-selector/" target="_blank">jQuery is not must for us--元素选取</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-28</a>
+								</span>
+								<span class="post-tag">
+									
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<h2 id="元素选择">元素选择</h2><p>1 .ID<br>2 .class<br>3 .Tag<br>4 .Attributes<br>5 .伪类<br>6 .孩子选择器<br>7 .后代选择器<br>8 .排除选择器<br>9 .多组选择器</p>
+<h3 id="ID">ID</h3><h4 id="jQuery">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">"#myElement"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myElement"</span>);</span><br><span class="line"><span class="comment">/*IE 8+*/</span></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#myElement'</span>);</span><br></pre></td></tr></table></figure>
+								</div>
+								<div class="post-more">
+									<h3 id="class">class</h3><h4 id="jQuery-1">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'.myElement'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-1">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ie 9+*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementsByClassNmae(<span class="string">'.myElement'</span>);</span><br><span class="line"><span class="comment">/*ie 8+*/</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'.myElement'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Tag">Tag</h3><h4 id="jQuery-2">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'div'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-2">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</span><br><span class="line"><span class="comment">/**ie 8+/</span><br><span class="line">document.querySelectorAll('div');</span></span><br></pre></td></tr></table></figure>
+<h3 id="Attribute[属性]">Attribute[属性]</h3><h4 id="jQuery-3">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'[data-bar="red-bar"'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-3">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ie 8+*/</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'[data-bar="red-bar"'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="伪类">伪类</h3><h4 id="jQuery-4">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#myForm:invalid'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-4">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//IE 10+</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'#myForm:invalid'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="孩子选择器">孩子选择器</h3><h4 id="jQuery-5">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).children();</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-5">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*会返回注释和文本节点*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>).childNodes</span><br><span class="line"><span class="comment">/*ie 9+ 忽略注释和文本节点*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>).children;</span><br></pre></td></tr></table></figure>
+<p>选择包含ng-click属性的子节点</p>
+<h4 id="jQuery-6">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).children(<span class="string">'[ng-click]'</span>);</span><br><span class="line">$(<span class="string">'#parent &gt; [ng-click]'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-6">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#parent &gt; [ng-click]'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="后代选择">后代选择</h3><h4 id="jQuery-7">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">"#parent a"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-7">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"#parent a"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="排除选择">排除选择</h3><h4 id="jQuery-8">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">"div"</span>).not(<span class="string">'.ignore'</span>);</span><br><span class="line">$(<span class="string">'div:not(.ignore)'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-8">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">documenet.querySelectorAll(<span class="string">'div:not(.ignore)'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="多重选择">多重选择</h3><h4 id="jQuery-9">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'DIV, A, SCRIPT'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-9">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'DIV, A, SCRIPT'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="jQuery选择器模拟">jQuery选择器模拟</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.$ = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> selectorType = <span class="string">'querySelectorAll'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (selector.indexOf(<span class="string">'#'</span>) === <span class="number">0</span>) &#123;</span><br><span class="line">        selectorType = <span class="string">'getElementById'</span>;</span><br><span class="line">        selector = selector.substr(<span class="number">1</span>, selector.length);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>[selectorType](selector);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
+						<hr>
+				 	
 				
 				 		
 						<header>
@@ -243,89 +295,38 @@
 <h3 id="DOM_API-2">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ie 9*/</span></span><br><span class="line">element.addEventLister(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*当点击的时候做点什么*、</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
 <h2 id="移除事件">移除事件</h2><h3 id="jQuery-3">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery还提供了一个移除某元素上所有事件的api*/</span></span><br><span class="line">$(<span class="string">'element'</span>).off(<span class="string">'click'</span>, myEventHander);</span><br></pre></td></tr></table></figure>
 <h3 id="DOM_API-3">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">elment.removeEventLister(<span class="string">'click'</span>, myEventHander);</span><br></pre></td></tr></table></figure>
+<h2 id="事件修改">事件修改</h2><p>阻止事件冒泡</p>
+<h3 id="jQuery-4">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(element).on(<span class="string">'event'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event.stopPropagation();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-4">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'event'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event.stopPropagation();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>阻止其它事件对当前元素的影响</p>
+<h3 id="jQuery-5">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(element).on(<span class="string">'event'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event.stopImmediatePropagation();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-5">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'event'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event.stopImmediatePropagation();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>阻止浏览器默认事件，比如一个a标签的跳转事件</p>
+<h3 id="jQuery-6">jQuery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(Aelement).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event.stopPropagation();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-6">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Aelement.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event.preventDefault();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="预测事件">预测事件</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"my-list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>foo <span class="tag">&lt;<span class="title">button</span>&gt;</span>x<span class="tag">&lt;/<span class="title">button</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>bar <span class="tag">&lt;<span class="title">button</span>&gt;</span>x<span class="tag">&lt;/<span class="title">button</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>abc <span class="tag">&lt;<span class="title">button</span>&gt;</span>x<span class="tag">&lt;/<span class="title">button</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>123 <span class="tag">&lt;<span class="title">button</span>&gt;</span>x<span class="tag">&lt;/<span class="title">button</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>点击按钮的时候删除其li标签</p>
+<h3 id="jquery">jquery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#my-list'</span>).on(<span class="string">'click'</span>, <span class="string">'BUTTON'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).parent().remove();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-7">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'my-list'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> clickedEl = event.target;</span><br><span class="line">    <span class="keyword">if</span>(clickedEl.tagName === <span class="string">'BUTTON'</span>) &#123;</span><br><span class="line">       <span class="keyword">var</span> listItem = clickedEl.parentNode;</span><br><span class="line">       listItem.parentNode.removeChild(listItem);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="键盘事件">键盘事件</h2><h3 id="jquery-1">jquery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).keydown(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(event.ctrlkey &amp;&amp; event.which === <span class="number">72</span>)&#123;</span><br><span class="line">		<span class="comment">/*ctrl+H*/</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-8">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'keydown'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.ctrlKey &amp;&amp; event.which === <span class="number">72</span>) &#123;</span><br><span class="line">        <span class="comment">/*ctrl+H*/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="鼠标事件">鼠标事件</h2><h3 id="jquery-2">jquery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'element'</span>).hover(<span class="function"><span class="keyword">function</span> <span class="title">hoverIn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hoverOut</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-9">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">someEl.addEventListener(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">someEl.addEventListener(<span class="string">'mouseout'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="浏览器加载事件">浏览器加载事件</h2><ul>
+<li>文档加载</li>
+<li>样式加载</li>
+<li>图片加载</li>
+<li>iframes加载</li>
+</ul>
+<h3 id="jquery-3">jquery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*页面加载并渲染完毕*/</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-10">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*页面加载并渲染完毕*/</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>文档加载完毕但未渲染</p>
+<h3 id="jquery-4">jquery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*文档加载完毕*/</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-11">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="jquery-5">jquery</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="DOM_API-12">DOM API</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 								</div>
 								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-						<hr>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/25/web-tools/web工程化真的有必要吗/" target="_blank">web工程化真的有必要吗</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-25</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/tool/" target="_blank">tool</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<p>如今的网站变得越来越庞大？</p>
-<ul>
-<li>页面需要引入大量的JS、CSS、图片等资源文件</li>
-<li>网页在变得越来越复杂</li>
-<li>页面端的代码变得更多</li>
-</ul>
-<p>web页面变得复杂，代码量增多，为了便于管理，所以需要模块化、工程化。</p>
-<p class="text-important">如果你的项目并不是很庞大，你自己就可以比较好的处理各种资源的依赖以及管理，那么工程化的工具对你来说也许并不是必要的。</p>
-
-<p>模块化这个概念并不是因为web变得复杂才出现，其实早已经再软件工程中使用。</p>
-<ul>
-<li>c/c++语言中可以将功能进行抽象然后在不同的文件中实现相应的功能，最后使用include的方式将各个文件连接起来</li>
-<li>web中我们可以通过\script、style标签将脚本和样式文件从页面中分离出去</li>
-<li>CMD/AMD模块管理</li>
-<li>ES6 自带模块加载功能(import)</li>
-</ul>
-<p>这里我们看一下浏览器提供的js管理功能有什么不足，假如我们现在有一个页面需要引入如下的几个js文件</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"script01.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script02.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script03.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script04.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"script05.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>可能会遇到的问题：</p>
-<ul>
-<li>命名冲突(全局的变量、函数)</li>
-<li>js文件的顺序和位置会对结果产生影响</li>
-<li>需要自己处理依赖关系</li>
-<li>文件变多将会难以管理维护</li>
-</ul>
-<p>在这里我们将每个文件当做一个模块来管理，因为文件最终需要传到客户端才能执行，所以在传输上也需要做相应的处理。</p>
-<ul>
-<li><p>每个模块一个请求</p>
-<blockquote>
-<p>即每个模块对应的文件都会单独的加载到浏览器上，这种方式也是浏览器默认使用的加载方式</p>
-</blockquote>
-</li>
-<li><p>所有的模块只请求一次</p>
-<blockquote>
-<p>先在本地将所有的模块文件打包成一个文件，然后浏览器只需要请求该文件即可，不足的是不能做到根据依赖需要进行请求加载</p>
-</blockquote>
-</li>
-<li><p>对模块进行本地编译的时候根据依赖关系打包成几个包，这样就可以用更灵活的方式进行加载而不用每次都全部加载到客户端。(参考 <a href="https://developers.google.com/web-toolkit/doc/latest/DevGuideCodeSplitting" target="_blank" rel="external">Google’s GWT</a>)</p>
-</li>
-</ul>
-<p>大多数的模块加载工具只针对js,webpack将其做得更彻底，页面中引用的资源都可以使用模块化的加载方式：</p>
-<ul>
-<li>css、less样式</li>
-<li>图片</li>
-<li>字体</li>
-<li>js</li>
-<li>etc.</li>
-</ul>
-<p>资源编译的过程中往往需要考虑三个问题：</p>
-<ul>
-<li>资源定位</li>
-<li>内容嵌入</li>
-<li>依赖声明</li>
-</ul>
-<p>前端工程构建工具-fis</p>
-<p><a href="http://fis.baidu.com/fis3/index.html" target="_blank" rel="external">FIS3</a>，百度研发的一个比较好的前端构建工具。用来解决前端工程中性能优化、资源加载(异步、同步、按需、预加载、依赖管理、合并、内嵌)、模块化开发、开发规范、代码部署等问题。</p>
-
 							
 						</div>
 						<hr>

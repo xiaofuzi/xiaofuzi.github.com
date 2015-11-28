@@ -92,11 +92,20 @@ var Post = {
 $(function() {
     Post.init();
     var lazyLoad = function() {
+        /*图片延迟加载实现*/
         [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
             img.setAttribute('src', img.getAttribute('data-src'));
             img.onload = function() {
                 /*图片加载完成后data-src属性就可以去掉了*/
                 img.removeAttribute('data-src');
+            };
+        });
+        /*css延迟加载，解决CDN速度不稳定的问题*/
+        [].forEach.call(document.querySelectorAll('link[data-href]'), function(link) {
+            link.setAttribute('href', link.getAttribute('data-href'));
+            window.onload = function() {
+                /*样式加载完成后data-href属性就可以去掉了*/
+                link.removeAttribute('data-href');
             };
         });
     };

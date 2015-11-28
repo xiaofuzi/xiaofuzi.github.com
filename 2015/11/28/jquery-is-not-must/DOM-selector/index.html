@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="
+	jQuery is not must for us--元素选取
+">
+    <meta name="description" content="杨小福的博客，记点笔记">
+    <title>
+        
+	jQuery is not must for us--元素选取
+
+    </title>
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/monokai.min.css">
+    <link rel="stylesheet" href="/css/post_add.css">
+    <link id="theme-highlight" rel="stylesheet" data-href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0904845f91ea208faa55eaa72f93fab1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    <div id="headerWrapper" class="cf">
+        <header id="header" class="cf">
+            <div id="logo">
+                <h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+                <div class="logo-subtitle">
+                    programmer
+                </div>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/archives">博文</a></li>
+                    <li><a href="/websites/index.html">网址导航</a></li>
+                    <li><a href="/about">关于</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2015/11/28/jquery-is-not-must/DOM-selector/">jQuery is not must for us--元素选取</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2015-11-28</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<h2 id="元素选择">元素选择</h2><p>1 .ID<br>2 .class<br>3 .Tag<br>4 .Attributes<br>5 .伪类<br>6 .孩子选择器<br>7 .后代选择器<br>8 .排除选择器<br>9 .多组选择器</p>
+<h3 id="ID">ID</h3><h4 id="jQuery">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">"#myElement"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myElement"</span>);</span><br><span class="line"><span class="comment">/*IE 8+*/</span></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#myElement'</span>);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="class">class</h3><h4 id="jQuery-1">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'.myElement'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-1">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ie 9+*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementsByClassNmae(<span class="string">'.myElement'</span>);</span><br><span class="line"><span class="comment">/*ie 8+*/</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'.myElement'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Tag">Tag</h3><h4 id="jQuery-2">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'div'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-2">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</span><br><span class="line"><span class="comment">/**ie 8+/</span><br><span class="line">document.querySelectorAll('div');</span></span><br></pre></td></tr></table></figure>
+<h3 id="Attribute[属性]">Attribute[属性]</h3><h4 id="jQuery-3">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'[data-bar="red-bar"'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-3">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ie 8+*/</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'[data-bar="red-bar"'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="伪类">伪类</h3><h4 id="jQuery-4">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#myForm:invalid'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-4">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//IE 10+</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'#myForm:invalid'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="孩子选择器">孩子选择器</h3><h4 id="jQuery-5">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).children();</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-5">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*会返回注释和文本节点*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>).childNodes</span><br><span class="line"><span class="comment">/*ie 9+ 忽略注释和文本节点*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>).children;</span><br></pre></td></tr></table></figure>
+<p>选择包含ng-click属性的子节点</p>
+<h4 id="jQuery-6">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#parent'</span>).children(<span class="string">'[ng-click]'</span>);</span><br><span class="line">$(<span class="string">'#parent &gt; [ng-click]'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-6">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#parent &gt; [ng-click]'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="后代选择">后代选择</h3><h4 id="jQuery-7">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">"#parent a"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-7">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"#parent a"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="排除选择">排除选择</h3><h4 id="jQuery-8">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">"div"</span>).not(<span class="string">'.ignore'</span>);</span><br><span class="line">$(<span class="string">'div:not(.ignore)'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-8">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">documenet.querySelectorAll(<span class="string">'div:not(.ignore)'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="多重选择">多重选择</h3><h4 id="jQuery-9">jQuery</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'DIV, A, SCRIPT'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="DOM_API-9">DOM API</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'DIV, A, SCRIPT'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="jQuery选择器模拟">jQuery选择器模拟</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.$ = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> selectorType = <span class="string">'querySelectorAll'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (selector.indexOf(<span class="string">'#'</span>) === <span class="number">0</span>) &#123;</span><br><span class="line">        selectorType = <span class="string">'getElementById'</span>;</span><br><span class="line">        selector = selector.substr(<span class="number">1</span>, selector.length);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>[selectorType](selector);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+				</div>
+				<div class="post-nav">
+					
+					
+						<span class="next"><a href="/2015/11/28/js-prototype/">Next</a></span>
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="jQuery is not must for us--元素选取" data-title="jQuery is not must for us--元素选取" data-url="/2015/11/28/jquery-is-not-must/DOM-selector/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+    <footer id="footer">
+        <i id="upToTop"></i>
+        <p>
+            联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/post.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.highlight').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+</body>
+
+</html>

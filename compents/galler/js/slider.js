@@ -16,7 +16,7 @@ var Silder = {
 
 		this.scroll();
 		this.autoTurnLeft();
-		this.stopTurn();
+		//this.stopTurn();
 		this.sliderIndex();
 	},
 	//初始配置

@@ -4,7 +4,11 @@ var Silder = {
 	rightBtn: '#rightBtn',
 	itemWrap: '#itemWrap',
 	subItem: '#itemWrap .sub-item',
-	exdends: {},/*扩展参数*/
+	exdends: {
+		isAuto: true,			/*是否处于自动轮播*/
+		autoTurnLeft: true,
+		autoTurnRight: false
+	},/*扩展参数*/
 	init: function(params){
 		if(params){
 			this.sliderCreate(params);
@@ -12,6 +16,7 @@ var Silder = {
 
 		this.scroll();
 		this.autoTurnLeft();
+		this.stopTurn();
 		this.sliderIndex();
 	},
 	//初始配置
@@ -71,16 +76,25 @@ var Silder = {
 	autoTurnLeft: function(Time){
 		var $leftBtn = $(this.leftBtn);
 		var Time = Time || 5000;
-		this.exdends['s_leftInterval'] = setInterval(function(){
-			$leftBtn.trigger('click');
-		}, Time);
+		if(!this.exdends['isAuto']){
+			return false;
+		}else{
+			this.exdends['s_leftInterval'] = setInterval(function(){
+				$leftBtn.trigger('click');
+			}, Time);
+		}
 	},
 	autoTurnRight: function(Time){
 		var $rightBtn = $(this.leftBtn);
 		var Time = Time || 5000;
-		this.exdends['s_rightInterval'] = setInterval(function(){
-			$rightBtn.trigger('click');
-		}, 5000)
+		/*设置自动向左轮播情况下的处理*/
+		if(!this.exdends['isAuto']){
+			return false;
+		}else{
+			this.exdends['s_rightInterval'] = setInterval(function(){
+				$rightBtn.trigger('click');
+			}, Time)
+		}	
 	},
 	//取消轮播
 	cancelTurnLeft: function(){
@@ -88,6 +102,30 @@ var Silder = {
 	},
 	cancelTurnRight: function(){
 		clearInterval(this.exdends['s_rightInterval']);
+	},
+	/*当鼠标悬浮到left-btn-wrap、right-btn-wrap时停止自动轮播
+	*/
+	stopTurn: function(){
+		_this = this;
+		if(_this.exdends["isAuto"]){
+			var lBtnWrap = $(_this.leftBtn).parent();
+			$(lBtnWrap).mouseenter(function(){
+				console.log(_this);
+				if(Silder.exdends['s_leftInterval']){
+					Silder.cancelTurnLeft();
+				}
+			}).mouseleave(function(){
+				Silder.autoTurnLeft();
+			})
+			var rBtnWrap = $(_this.rightBtn).parent()
+			$(rBtnWrap).mouseenter(function(){
+				if(_this.exdends['s_rightInterval']){
+					_this.cancelTurnRight()
+				}
+			}).mouseleave(function(){
+				_this.autoTurnRight();
+			});
+		}
 	},
 	sliderIndex: function(){
 		//jquery对象实例化

@@ -235,7 +235,7 @@
 <p>我们可以惊奇的发现输出结果一模一样，为了再次证明它们是同一个东西，我们再次进行验证</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*注意这里是3个等号哦*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat.__proto__ === Cat.prototype);  			<span class="comment">/*result:true*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat.__proto__.eat(), Cat.prototype.eat());	<span class="comment">/*I like fish! I like fish!,调用了同一个 eat 方法*/</span></span><br></pre></td></tr></table></figure>
 <p>从这里我们可以得一个结论：对象会继承类的prototype对象并存在一个名为”<strong>proto</strong>“的属性中,即对象的”<strong>proto</strong>“属性指向生成它的类的”prototype”对象</p>
-<p class="text-important">protoype和<strong>proto</strong>统称为原型对象，但前者是在类中，后者是在对象中的表示，实例对象中没有prototype属性的</p>
+<p class="text-important">protoype和<strong>proto</strong>统称为原型对象，但前者是在类中，后者是在对象中的表示，实例对象中没有prototype属性的。[js中的类是通过function来模拟的，每一个function都有一个prototype属性</p>
 
 <h2 id="constructor属性">constructor属性</h2><p>构造函数的原型中存在预先定义好的constructor属性，对象继承的constructor均指代他们的构造函数。构造函数是类的标识，因此这个constructor属性为对象提供了类.</p>
 <p>这句话怎么来理解呢？</p>

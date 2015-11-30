@@ -103,6 +103,21 @@ aQuery.create.prototype = aQuery.prototype;
 
 
 console.log('aQuery',aQuery().__proto__, aQuery.prototype) //20
+
+
+name = "xiaoyang";
+var namespace = function(){
+    var name = "xiaofu";
+    function name00(){
+        console.log(this.name, this.caller);
+    }
+    var name01 = function(){
+        console.log(this.name, this.caller);
+    }
+    name00();
+    name01();
+}
+namespace();
 </script>
 
 </html>

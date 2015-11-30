@@ -53,21 +53,42 @@
 		<div id="mainContent">
 			<article class="post">
 				
+				
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
 				 		
 						<header>
 							<h1>
-								<a href="/2015/11/18/the-litte-schemer/" target="_blank">The Little Schemer——read again</a>
+								<a href="/2015/11/28/js-prototype/" target="_blank">prototype、__proto__、constructor、this——不懂别说会JS</a>
 							</h1>
 							<div class="post-info">
 								<span class="post-time">
-									<a class="permalink" href="" >2015-11-18</a>
+									<a class="permalink" href="" >2015-11-27</a>
 								</span>
 								<span class="post-tag">
 									
 									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/lisp/" target="_blank">lisp</a>
+										<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
 									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/pl/" target="_blank">pl</a>
+										<a class="tag" href="http://www.yangxiaofu.com/tags/js/" target="_blank">js</a>
 									
 								</span>
 							</div>
@@ -75,56 +96,73 @@
 						<div class="post-body">
 							
 								<div class="post-excerpt">
-									<style>img{max-width:100%;}</style>
-
-<p><a class="text-center" href="http://www.ccs.neu.edu/home/matthias/BTLS/"><img data-src="/img/the-lillte-scheme.jpg" alt="the-little-scheme"></a><br>the little scheme 是一本小人书，却很精妙。阅读它可以让你对编程语言有更好的认识，也能增加你对算法的理解(你真的会用递归了吗？)。<br>说明：该书籍使用scheme来作为讲解的语言，scheme是lisp的一门方言，语法上比较特别的是S表达式。看到S表达式是不是感觉和语法树一般，一开始估计不是很习惯S表达式，但静下心来就会发现其实是一种很好理解也很简洁的语法。Good Luck!</p>
-<p><img class="text-center" data-src="/img/learn-programm.png" alt="oh,man.I just want to learn programm video game!"><br>oh,man.I just want to learn programm video game!</p>
-<h2 id="The_Law_of_Car">The Law of Car</h2><blockquote>
-<p>The primitive car is defined only for non-empty lists.</p>
-</blockquote>
+									<p><img data-src="/img/prototype/so_many_questions.png" alt="so_many_questions"><br>刚开始接触js的时候，我的疑问就像上面密密麻麻的问题。。。</p>
+<h2 id="JS对象">JS对象</h2><ul>
+<li>每一个Javascript对象(null除外)都和另一个对象相关联，即原型，每一个对象都从原型继承属性。</li>
+<li>所有通过对象直接量创建的对象都具有同一个原型对象，通过Object.prototype可以获得对原型对象的引用。</li>
+<li>通过new关键字和构造函数创建的对象的原型就是构造函数的prototype属性的值</li>
+<li>普通的原型对象属于普通对象，普通对象都具有原型(Object.prototype比较特殊，不继承任何属性)</li>
+<li>所有的内置构造函数以及大部分自定义构造函数都具有一个继承自Object.prototype的原型</li>
+<li>构造函数的原型中存在预先定义好的constructor属性，对象继承的constructor均指代他们的构造函数。构造函数是类的标识，因此这个constructor属性为对象提供了类</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> F();</span><br><span class="line">o.constructor === F	<span class="comment">/*true,指代类本身*/</span></span><br></pre></td></tr></table></figure>
 								</div>
 								<div class="post-more">
-									<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the car of l</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs))(and)(pickle) relish)</span><br><span class="line"></span><br><span class="line">A:</span><br><span class="line">((hotdogs)),</span><br><span class="line">	read as:</span><br><span class="line">	"The list of the list of hotdogs."</span><br><span class="line">	((hotdogs)) is the first S-expression of l.</span><br></pre></td></tr></table></figure>
-<p>[“S表达式”, “列表”]</p>
-<p><hr><br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (car l)</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs)) (and) (pickle) relish)</span><br><span class="line"></span><br><span class="line">A:</span><br><span class="line">((hotdogs)),</span><br><span class="line">because (car l) is another way to ask for "the car of the </span><br><span class="line">list l."</span><br></pre></td></tr></table></figure></p>
-<hr>
+									<h2 id="Javascript中class的写法">Javascript中class的写法</h2><p>注：为和普通函数区别开，类的命名首字母一般是大写</p>
+<p>下面定义了Cat、cat类<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*写法一：*/</span></span><br><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"cat:小写的猫"</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*写法二：*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:小写的猫"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里输出的结果是相同的，即类的命名首字母大写并不是强制的</p>
+<h3 id="对象生成">对象生成</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> objCat = <span class="keyword">new</span> Cat; <span class="comment">/*大写的猫对象*/</span></span><br><span class="line"><span class="keyword">var</span> objcat = <span class="keyword">new</span> cat; <span class="comment">/*小写的猫对象*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*输出*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat, objcat);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-01.png" alt="类的命名首字母大写并不是强制的"></p>
+<p>从上面我们可以看到:对象objCat——&gt;<strong>proto</strong>[Cat类]——&gt;<strong>proto</strong>[Object对象],这就是所谓的继承链.</p>
+<h2 id="prototype_VS_proto_对象">prototype VS <strong>proto</strong> 对象</h2><h3 id="添加prototype对象">添加prototype对象</h3><p>这里给Cat添加prototype对象,cat不做改动</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*写法一：*/</span></span><br><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"cat:小写的猫"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Cat.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"I like fish!"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>说明：同一个类生成的所有对象会共用类的prototype对象上挂载的方法和属性</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">redCat = <span class="keyword">new</span> Cat;</span><br><span class="line">greenCat = <span class="keyword">new</span> Cat;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(redCat.eat(), greenCat.eat());</span><br></pre></td></tr></table></figure>
+<p>redCat和greenCat调用的是同一个方法即Cat.prototype.eat,所以都会输出”I like fish!”.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Cat.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"I like fish!"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>/<em>同样输出两个生成的对象</em>/</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(objCat, objcat);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-02.png" alt="这里给Cat添加prototype对象,cat不做改动"></p>
+<p>从上图可以发现大写的猫对象多输出了两行,这里出现了一个”<strong>proto</strong>“属性,那么它代表什么呢？因为这是我们的Cat类设置了prototype后Cat对象才出现的属性，所以我们可以猜测这两者之间有某种密切的关系，为了验证我们的想法，我们可以输出测试一下。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(objCat.__proto__, Cat.prototype);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-03.png" alt="console.log(objCat.__proto__, Cat.prototype)"></p>
+<p>我们可以惊奇的发现输出结果一模一样，为了再次证明它们是同一个东西，我们再次进行验证</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*注意这里是3个等号哦*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat.__proto__ === Cat.prototype);  			<span class="comment">/*result:true*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat.__proto__.eat(), Cat.prototype.eat());	<span class="comment">/*I like fish! I like fish!,调用了同一个 eat 方法*/</span></span><br></pre></td></tr></table></figure>
+<p>从这里我们可以得一个结论：对象会继承类的prototype对象并存在一个名为”<strong>proto</strong>“的属性中,即对象的”<strong>proto</strong>“属性指向生成它的类的”prototype”对象</p>
+<p class="text-important">protoype和<strong>proto</strong>统称为原型对象，但前者是在类中，后者是在对象中的表示，实例对象中没有prototype属性的。[js中的类是通过function来模拟的，每一个function都有一个prototype属性</p>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (car (car l))</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs)) (and))</span><br><span class="line">A:</span><br><span class="line">(hotdogs).</span><br></pre></td></tr></table></figure>
-<hr>
+<h2 id="constructor属性">constructor属性</h2><p>构造函数的原型中存在预先定义好的constructor属性，对象继承的constructor均指代他们的构造函数。构造函数是类的标识，因此这个constructor属性为对象提供了类.</p>
+<p>这句话怎么来理解呢？</p>
+<p>1 .构造函数的原型中存在预定义好的constructor属性<br>2 .constructor指代他们的构造函数<br>3 .constructor属性为对象提供了类</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> CatConstructor = Cat.prototype.constructor;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Cat:"</span>, Cat, Cat.prototype);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"CatConstructor:"</span>, CatConstructor, CatConstructor.prototype);</span><br></pre></td></tr></table></figure>
+<p>这里为了更清晰的理解上面这几个点，我们将Cat类的原型的constructor属性赋值给CatConstructor,然后分别打印他们本身以及他们的原型对象。</p>
+<p><img src="/img/prototype/cat-04.png" alt="Cat.prototype.constructor"></p>
+<p>从上图我们可以发现两者是完全一样的，即Cat.prototype.constructor等于Cat本身。</p>
+<p>那么第三点怎么理解呢？既然constructor代表Cat构造函数本身，那么我们是不是可以用它来生成对象——类才具有的功能</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> CatConstructor = Cat.prototype.constructor;</span><br><span class="line"><span class="keyword">var</span> newObjCat = <span class="keyword">new</span> CatConstructor;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"objCat:"</span>, objCat, <span class="string">"newObjCat"</span>, newObjCat);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-05.png" alt=""objCat:", objCat, "newObjCat", newObjCat"></p>
+<p>如我们所料，上面输出的objCat和newObjCat结果是一样的，所以验证了第三点，类的原型的constructor属性即类本身</p>
+<h2 id="this——到底指向了谁">this——到底指向了谁</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Cat.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Cat:"</span>, <span class="keyword">this</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Cat-prototype:"</span>, <span class="keyword">this</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.init();				<span class="comment">/*this代表Cat类本身*/</span></span><br><span class="line">Cat.prototype.init();	<span class="comment">/*this代表Cat.prototype对象*/</span></span><br><span class="line"></span><br><span class="line">objCat.init();			<span class="comment">/*this代表objCat对象本身*/</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/cat-06.png" alt="this——到底指向了谁"></p>
+<p>从上图可以发现，输出为：</p>
+<p>Cat.init():输出构成函数本身<br>Cat.prototype.init():输出类的原型对象<br>objCat.init(): 输出结果都是objCat对象本身且调用的是Cat.prototype.init方法</p>
+<p>从上面我们可以知道this始终指向调用方法的对象本身</p>
+<h3 id="构造函数中调用原型对象上绑定的方法——指向谁呢">构造函数中调用原型对象上绑定的方法——指向谁呢</h3><p>注：当我们在说构造函数的时候，其实是将构造函数和类等同起来</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery构造函数模拟*/</span></span><br><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">	<span class="comment">/*调用原型上绑定的init方法*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> Cat.prototype.init();</span><br><span class="line">&#125;;</span><br><span class="line">Cat.prototype = &#123;</span><br><span class="line">	init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;	<span class="comment">/*当做为构造函数时，返回值好像并没有啥用处*/</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype.init.prototype = Cat.prototype;</span><br><span class="line"></span><br><span class="line">Cat();</span><br></pre></td></tr></table></figure>
+<h3 id="稍稍复杂一点的情况">稍稍复杂一点的情况</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">	<span class="comment">/*调用原型上绑定的init方法*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> Cat.prototype.init(params);</span><br><span class="line">&#125;;</span><br><span class="line">Cat.prototype = &#123;</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.animal = params;</span><br><span class="line">        <span class="keyword">this</span>.type = params;</span><br><span class="line">        <span class="keyword">this</span>.color = params;</span><br><span class="line">    &#125;,</span><br><span class="line">    eat: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"I like fish!"</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    name: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.animal;</span><br><span class="line">    &#125;,</span><br><span class="line">    color: <span class="string">'yellow'</span></span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype.init.prototype = Cat.prototype;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> redCat = Cat(<span class="string">"redCat"</span>);</span><br><span class="line"><span class="keyword">var</span> greenCat = Cat(<span class="string">"greenCat"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(redCat, greenCat);</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<p><img src="/img/prototype/cat-07.png" alt="jquery对象生成方式模拟"></p>
+<p class="text-important">这里的init方法里的this指向的是Cat.prototype,init方法里的animal和Cat类的animal也没有关系,init这时相当于我们的构造函数，而它自身又是自身的prototype里的一个方法[是不是已已绕晕。。。]</p>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is (a b c)</span><br><span class="line">A:</span><br><span class="line">(b c)</span><br><span class="line">	because (b c) is the list l without (car l).</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is ((a b c) x y z)</span><br><span class="line">A:</span><br><span class="line">(x y z)</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is (hamburger)</span><br><span class="line">A:</span><br><span class="line">()</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cdr a)</span><br><span class="line">where </span><br><span class="line">a is hotdogs</span><br><span class="line">A:</span><br><span class="line">No answer</span><br><span class="line">	You cannot ask for the cdr of an atom.</span><br></pre></td></tr></table></figure>
-<h2 id="The_Law_of_Cdr">The Law of Cdr</h2><blockquote>
-<p>The primitive cdr is defined only for non-empty lists.<br>The cdr of any non-empty list is always another list.</p>
-<hr>
-
-</blockquote>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">what is (car (cdr l))</span><br><span class="line">where</span><br><span class="line">l is ((b)(x y)((c)))</span><br><span class="line">A:</span><br><span class="line">(x y),</span><br><span class="line">because((x y)((c))) is (cdr l), and (x y) is the car of</span><br><span class="line">(cdr l).</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cdr (cdr l))</span><br><span class="line">where</span><br><span class="line">	l is ((b)(x y)((c)))</span><br><span class="line">A:</span><br><span class="line">(((c))),</span><br><span class="line">because(x y)((c)) is (cdr l), and (((c))) is the cdr of (cdr l).</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">what does car take as an argument?</span><br><span class="line">A:</span><br><span class="line">it takes any non-empty list.</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What does cdr take as an argument?</span><br><span class="line">A:</span><br><span class="line">It takes any non-empty list.</span><br></pre></td></tr></table></figure>
-<hr>
-
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cons of the atom a and the list l</span><br><span class="line">Where a is peanut</span><br><span class="line">and</span><br><span class="line">	l is (butter and jelly)</span><br><span class="line">This can also be written "(cons a l)".</span><br><span class="line">	Read: "cons the atom a onto the list l."</span><br><span class="line">A:</span><br><span class="line">(peanut butter and jelly),</span><br><span class="line">	because cons adds an atom to the front of a list.</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cons s l)</span><br><span class="line">where</span><br><span class="line">	s is ((help) this)</span><br><span class="line">and</span><br><span class="line">	l is (is very ((hard) to learn))</span><br><span class="line">A:</span><br><span class="line">(((help) this) is very ((hard) to learn)).</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What does cons take as its arguments?</span><br><span class="line">A:</span><br><span class="line">cons takes two arguments:</span><br><span class="line">	the first one is any S-expression;</span><br><span class="line">	the second one is any list.</span><br></pre></td></tr></table></figure>
-<h2 id="The_Law_of_Cons">The Law of Cons</h2><blockquote>
-<p>The primitive cons takes two arguments.<br>The second argument to cons must be a list.<br>The result is a list.</p>
-</blockquote>
+<ul>
+<li>this.animal = params;</li>
+<li>this.type = params;</li>
+<li>this.color = params;</li>
+</ul>
+<p>它们是构造函数即类的属性，而init函数外面的color: ‘yellow’是挂在原型上的，所以生成的对象在访问color属性的时候是获取构造函数里的值[原型链继承的优先级]</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(redCat.__proto__.color);		<span class="comment">/*输出结果是:yelow,说明我的确是挂在类的原型上的*/</span></span><br></pre></td></tr></table></figure>
+<p class="text-important">上述的jquery构造函数语法模拟的一个不足就是无法得到Cat类上的属性,如Cat里的animal.[如果你有好的方法获取请告知我]</p>
 								</div>
 								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
 							
@@ -132,65 +170,14 @@
 						<hr>
 				 	
 				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/18/css特殊图形绘制/" target="_blank">css特殊图形绘制</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-18</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/css/" target="_blank">css</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<p><style>#line1{width: 300px;height: 0;border: 2px solid red;} #line2{width: 300px;height: 4px;background: blue;} #square1{width: 100px;height: 100px;background: #35b558;} #square2{width: 0;height:0;border:50px solid yellow;} #circle1{width: 100px;height: 100px;border-radius: 50%; background: #35b558;} #circle2{width: 0;height:0;border:50px solid yellow;border-radius: 50%;}#circle-box{width: 100px;height: 100px;border:50px solid #35b558; border-radius: 50%;} #circle2-box{width: 100px;height: 50px;border:20px solid red; border-radius: 100px 50px 100px 0px / 50px 20px 50px 0px} #trangle div{display: inline-block;} #trangle .trangle1{width: 0;height: 0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:100px solid red;}#trangle .trangle2{width: 0;height: 0;border-left:50px solid transparent;border-right:50px solid transparent;border-top:100px solid #35b558;}#trangle .trangle3{width: 0;height: 0;border-left:100px solid blue;border-top:50px solid transparent;border-bottom:50px solid transparent;}#trangle .trangle4{width: 0;height: 0;border-right:100px solid yellow;border-top:50px solid transparent;border-bottom:50px solid transparent;}<br></style><br><img src="/img/batteries_included.png" alt="batteries_included" style="max-width:100%;"><br>OK… this one looked funnier in my head at 3 in the morning.</p>
-<p>直线</p>
-<div id="line1"></div><br><div id="line2"></div>
-								</div>
-								<div class="post-more">
-									<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*使用边框的方式需要注意添加了几个方向的边框，默认border会添加四个方向的边框*/</span></span><br><span class="line"><span class="id">#line1</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">2px</span> solid red</span></span>;</span><br><span class="line">&#125;</span> </span><br><span class="line"></span><br><span class="line"><span class="id">#line2</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">4px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p><hr><br>正方形</p>
-<div id="square1">#square1</div><br><div id="square2">#square2</div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="id">#square1</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#35b558</span></span></span>;</span><br><span class="line">&#125;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">/*注意文本区*/</span></span><br><span class="line"><span class="id">#square2</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">50px</span> solid yellow</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<hr>
-
-
-<p>圆形</p>
-<div id="circle1">#circle1</div><br><div id="circle2">#circle2</div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="id">#circle1</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#35b558</span></span></span>;</span><br><span class="line">&#125;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">/*注意文本区*/</span></span><br><span class="line"><span class="id">#circle2</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">50px</span> solid yellow</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="border-radius参数说明">border-radius参数说明</h2><p>语法</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*完整的圆角可以设置8个参数，左上角水平圆角半径大小 右上角水平圆角半径大小 右下角水平圆角半径大小 左下角水平圆角半径大小/左上角垂直圆角半径大小 右上角垂直圆角半径大小 右下角垂直圆角半径大小 左下角垂直圆角半径大小*/</span><br><span class="line">border-radius: 1-4 length|% / 1-4 length|%;</span><br><span class="line"></span><br><span class="line">border-radius: 10px;</span><br><span class="line">/*等同于*/</span><br><span class="line">border-top-left-radius: 10px;</span><br><span class="line">border-top-right-radius: 10px;</span><br><span class="line">border-bottom-right-radius: 10px;</span><br><span class="line">border-bottom-left-radius: 10px;</span><br><span class="line"></span><br><span class="line">/*注意对角补全,斜杠前为水平半径、后为垂直半径*/</span><br><span class="line">border-radius: 2px 1px 4px / 0.5px 3px;</span><br><span class="line"></span><br><span class="line">border-top-left-radius: 2px 0.5px;</span><br><span class="line">border-top-right-radius: 1px 3px;</span><br><span class="line">border-bottom-right-radius: 4px 0.5px;</span><br><span class="line">border-bottom-left-radius: 1px 3px;</span><br></pre></td></tr></table></figure>
-<p>圆环</p>
-<div id="circle-box"></div><br><div id="circle2-box"></div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="id">#circle-box</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">50px</span> solid <span class="hexcolor">#35b558</span></span></span>; </span><br><span class="line">	<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*调整单个参数可以得到更为复杂的图形*/</span></span><br><span class="line"><span class="id">#circle2-box</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">20px</span> solid red</span></span>; </span><br><span class="line">	<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">100px</span> <span class="number">50px</span> <span class="number">100px</span> <span class="number">0px</span> / <span class="number">50px</span> <span class="number">20px</span> <span class="number">50px</span> <span class="number">0px</span></span></span></span>&#125;</span><br></pre></td></tr></table></figure>
-<p>三角形</p>
-<div id="trangle"><div class="trangle1"></div><div class="trangle2"></div><div class="trangle3"></div><div class="trangle4"></div></div>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="id">#trangle</span> <span class="class">.trangle1</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">100px</span> solid red</span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="id">#trangle</span> <span class="class">.trangle2</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">100px</span> solid <span class="hexcolor">#35b558</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="id">#trangle</span> <span class="class">.trangle3</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">100px</span> solid blue</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="id">#trangle</span> <span class="class">.trangle4</span> <span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">100px</span> solid yellow</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">50px</span> solid transparent</span></span>;</span><br><span class="line">    &#125;</span></span><br></pre></td></tr></table></figure>
-<p>爱心</p>
-<div id="heart"></div>
-
-<p>八卦</p>
-<p><div id="baguai-wrap"><div class="b1-circle"></div></div></p>
-<p><div id="baguai-wrap"><div class="b2-circle"></div></div></p>
-<p><div id="baguai-wrap"><div class="b-circle"></div></div><br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*八卦*/</span></span><br><span class="line"><span class="id">#baguai-wrap</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-top</span>:<span class="value"> <span class="number">30px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">150px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> gray</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#baguai-wrap</span> <span class="class">.b-circle</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">50px</span> solid <span class="hexcolor">#ffffff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">50px</span> solid <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">overflow</span>:<span class="value"> visible</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#baguai-wrap</span> <span class="class">.b-circle</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">''</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> -<span class="number">25px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">20px</span> solid <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#ffffff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#baguai-wrap</span> <span class="class">.b-circle</span><span class="pseudo">:after</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">''</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">50px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> -<span class="number">25px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">20px</span> solid <span class="hexcolor">#ffffff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-						<hr>
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
 				 	
 				
 				 		
@@ -256,84 +243,6 @@
 							
 						</div>
 						<hr>
-				 	
-				
-				 		
-						<header>
-							<h1>
-								<a href="/2015/11/17/用xampp搭建一个静态服务器/" target="_blank">静态服务器搭建</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-17</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/php/" target="_blank">php</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<style>
-    img{
-        width: 50%;
-    }
-</style>
-
-<ol>
-<li><a href="#1-xampp搭建静态服务器">1.xampp搭建静态服务器</a></li>
-<li><a href="#2-SublimeServer">2.sublime插件-SublimeServer</a></li>
-</ol>
-<h2 id="1-xampp搭建静态服务器">1.xampp搭建静态服务器</h2><p>XAMPP是完全免费且易于安装的Apache发行版，其中包含MariaDB、PHP和Perl。我们可以使用它来作为一个简单的静态服务器。</p>
-<p>官网地址：<a href="https://www.apachefriends.org/zh_cn/index.html">https://www.apachefriends.org/zh_cn/index.html</a></p>
-<p>到官网下载对应的版本安装即可</p>
-<p>使用方式：</p>
-<p>1.启动界面</p>
-<p><img src="/img/xampp/xampp01.png" alt="启动界面"></p>
-								</div>
-								<div class="post-more">
-									<p>2.启动服务器</p>
-<p><img src="/img/xampp/xampp02.png" alt="启动服务器"></p>
-<p>3.启动状态</p>
-<p><img src="/img/xampp/xampp03.png" alt="已启动服务器"></p>
-<p>4.静态文件目录</p>
-<p><img src="/img/xampp/xampp04.png" alt="静态文件目录"></p>
-<p><img src="/img/xampp/xampp05.png" alt="静态文件目录"></p>
-<p>将我们写好的静态页面放到htdocs文件夹下就可以通过如下的方式打开我们的页面</p>
-<p>格式：</p>
-<p><a href="http://localhost/">http://localhost/</a> + 静态文件路径(路径以htdocs为根目录，如htdocs下有一个jikexueyuan.html文件，那么可以通过<a href="http://localhost/jikexueyuan.html访问">http://localhost/jikexueyuan.html访问</a>)<br><a href="http://localhost/applications.html">http://localhost/applications.html</a></p>
-<p>如果上述方式无法打开，可通过ip访问</p>
-<p>mac: 在命令行输入 ifconfig<br>window: 在命令行输入 ipconfig</p>
-<p><img src="/img/xampp/xampp06.png" alt="ip"></p>
-<p><a href="http://你的ip地址/">http://你的ip地址/</a> + 静态文件路径<br>http:192.168.1.103/jike/jikexueyuan.html</p>
-<h2 id="2-SublimeServer">2.SublimeServer</h2><p>—-<a href="http://learningcn.com/SublimeServer/">官网地址</a></p>
-<ul>
-<li>package control安装</li>
-<li>手动安装，将SublimeServer文件下到sublime package文件夹即可</li>
-</ul>
-<p>如何使用：</p>
-<ul>
-<li>安装插件</li>
-<li>Tools-&gt;SublimeServer-&gt;Start SublimeServer</li>
-<li><a href="http://localhost:8080/+文件路径(在sublime">http://localhost:8080/+文件路径(在sublime</a> folder中打开的项目，8080为默认端口，如有改动则更改为相应的端口)</li>
-</ul>
-<p>补充说明：</p>
-<p>Hbuilder、webstorm自带有服务器设置</p>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-						<hr>
-				 	
-				
-				 	
-				
-				 	
-				
 				 	
 				
 				 	

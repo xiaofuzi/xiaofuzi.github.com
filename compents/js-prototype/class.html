@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Javascript class</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var Cat = function(){
+		this.name = "cat";
+		this.color = "red";
+		this.getColor = function(){
+			console.log(this.color);
+		}
+	}
+	Cat.prototype.getName = function(){
+		console.log(this.name);
+	}
+	Cat.classify = function(){
+		console.log(this);
+	}
+
+	var cat = new Cat;
+	var cat2 = new Cat;
+	console.log(cat);
+	cat.getColor()
+	cat.color = "green";
+	cat.getName()
+	cat.name = "sss";
+	cat2.getName()
+	cat.getColor()
+	cat.classify()
+</script>
+</html>

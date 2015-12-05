@@ -80,8 +80,8 @@
 #mainContent .items-wrap{
     display: flex;
     display: -webkit-flex;
-    -webkit-flex-direction:column-reverse;
-    flex-direction:column-reverse;
+    -webkit-flex-direction:column;
+    flex-direction:column;
 }
 
 /*post a global style*/

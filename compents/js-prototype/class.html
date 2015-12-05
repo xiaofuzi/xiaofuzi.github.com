@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Javascript class</title>
+    <meta charset="UTF-8">
+    <title>Javascript class</title>
 </head>
+
 <body>
-	
 </body>
 <script>
-	var Cat = function(){
-		this.name = "cat";
-		this.color = "red";
-		this.getColor = function(){
-			console.log(this.color);
-		}
+var Animal = function(name){
+	/*属性*/
+	this.name = name || Animal;
+	console.log(this);
+	/*方法*/
+	this.talk = function(){
+		console.log("what's your name?");
 	}
-	Cat.prototype.getName = function(){
-		console.log(this.name);
-	}
-	Cat.classify = function(){
-		console.log(this);
-	}
+}
 
-	var cat = new Cat;
-	var cat2 = new Cat;
-	console.log(cat);
-	cat.getColor()
-	cat.color = "green";
-	cat.getName()
-	cat.name = "sss";
-	cat2.getName()
-	cat.getColor()
-	cat.classify()
+var cat = new Animal("Cat");	/*名字是Cat*/
+var dog = new Animal("Dog");	/*名字是Dog*/
+
+cat.talk();
+
 </script>
+
 </html>

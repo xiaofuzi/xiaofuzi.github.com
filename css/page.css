@@ -69,12 +69,19 @@
 
 
 /*post style*/
-
 #mainContent {
     position: relative;
     max-width: 900px;
     padding: 20px 10px;
     margin: 0 auto;
+}
+
+/*首页post索引*/
+#mainContent .items-wrap{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-flex-direction:column-reverse;
+    flex-direction:column-reverse;
 }
 
 /*post a global style*/
@@ -100,7 +107,7 @@
 }
 
 #mainContent p {
-    margin-bottom: 15px;
+    margin: 10px 0;
 }
 
 #mainContent p a {

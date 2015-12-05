@@ -354,9 +354,9 @@
     font-style: normal;
 }
 
-#aboutMe * {
+/*#aboutMe * {
     font-family: cartonFont;
-}
+}*/
 
 #aboutMe .missing {
     font-size: 16px;

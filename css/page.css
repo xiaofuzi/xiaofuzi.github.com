@@ -89,6 +89,7 @@
     color: #4183C4;
 }
 
+
 #mainContent h1 {
     font-size: 18px;
     font-weight: 600;
@@ -122,7 +123,7 @@
 #mainContent ul {
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 0 0 0 40px;
+    padding: 0 0 0 20px;
 }
 
 #mainContent ul li {
@@ -130,7 +131,7 @@
     line-height: 150%;
 }
 
-#mainContent ul a {
+#mainContent ul a{
     color: #666;
 }
 
@@ -162,7 +163,7 @@
         box-sizing: border-box;
     }
     #mainContent .post-archive aside .post-tags {
-        padding-left: 30px;
+        padding-left: 20px;
     }
     #mainContent .post-archive aside .post-tags li {
         list-style: circle;
@@ -203,6 +204,10 @@
     margin-top: 10px;
     margin-bottom: 50px;
     font-size: 14px;
+}
+
+.post-body a{
+    font-size: 16px;
 }
 
 .post-body img {

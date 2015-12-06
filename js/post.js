@@ -89,6 +89,7 @@ var Post = {
     }
 }
 
+
 $(function() {
     Post.init();
     var lazyLoad = function() {
@@ -112,3 +113,4 @@ $(function() {
     
     lazyLoad();
 })
+

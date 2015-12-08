@@ -9,21 +9,238 @@
 <body>
 </body>
 <script>
-var Animal = function(name){
-	/*属性*/
-	this.name = name || Animal;
-	console.log(this);
+/*定义一个初始化函数,实例化的对象是不会继承该方法的*/
+	// var initial = function(obj){
+	// 	if(typeof obj === Object){
+	// 		for(var ele in obj){
+	// 			/*判断类是否具有传入的属性，避免从外部更改类的属性*/
+	// 		}
+	// 	}
+	// }
+// var Animal = function(name, age, weight, height){
+// 	/*属性:名字、年龄、体重、身高*/
+// 	this.name = name || "Animal";
+// 	this.age = age || 0;
+// 	this.weight = weight || 0;
+// 	this.height = height || 0;
+
+// 	var sex = 'girl',
+// 	company = 'jikexueyuan';
+	
+// 	var outPut = function(){
+// 		console.log("sex:", sex, "company:", company);
+// 	}
+// 	this.outPut2 = function(){
+// 		console.log("sex:", sex, "company:", company);
+// 	}
+// 	/*方法*/
+// 	/*输出对象信息*/
+// 	this.introduce = function(){
+// 		console.log("name: ", this.name, "age: ", this.age, "weight: ", this.weight, "height: ", this.height);
+// 	}
+// 	/*设置对象属性*/
+// 	this.setMyself = function(name, age, weight, height){
+// 		this.name = name || this.name;
+// 		this.age = age || this.age;
+// 		this.weight = weight || this.weight;
+// 		this.height = height || this.height;
+// 	}
+// 	console.log("this: ", this);
+// }
+// /*实例化的对象自带的方法*/
+// var cat = new Animal("Cat");	/*名字是Cat*/
+// console.log("Cat: ",cat);
+// cat.introduce();
+// cat.setMyself("cat", "18", "50kg", "165cm");
+
+// var Animal = function(name, age, weight, height){
+// 	/*属性:名字、年龄、体重、身高*/
+// 	this.name = name;
+// 	this.age = age;
+
+// 	/*这里我们使用局部变量来声明体重和身高属性*/
+// 	var weight = weight;
+// 	var height = height;
+	
+
+// 	/*方法*/
+// 	/*输出对象信息*/
+// 	this.introduce = function(){
+// 		console.log(this);	/*谁调用，this就指向谁,若是Animal调用，则this指向Animal;若是实例化的对象调用，则指向该对象*/
+// 		/*这里的weight和height不需要用this.weight/this/height的形式来调用*/
+// 		console.log("name: ", this.name, "age: ", this.age, "weight: ", weight, "height: ", height);
+// 	}
+// 	/*设置对象属性*/
+// 	this.setMyself = function(name, age, pweight, pheight){
+// 		this.name = name;
+// 		this.age = age;
+// 		/*为什么改成pweight, pheight,当形参和函数所在上下文的变量冲突时，函数内部是取不到变量的
+// 		这种情况下，这两个都是形参，而不是我们上面声明的局部变量，所以在此将变量名称更改为不同的值。
+// 		weight = weight;
+// 		height = height;
+// 		*/
+// 		weight = pweight;
+// 		height = pheight;
+// 	}
+// 	console.log(this.color);
+// }
+// Animal.color = "red";
+// /*实例化的对象自带的方法*/
+// var cat = new Animal("cat", "18", "50kg", "170cm");	/*名字是Cat*/
+
+// cat.introduce();
+// cat.setMyself("cat", "28", "70kg", "180cm");
+// cat.introduce();
+
+
+// var Animal = function(obj){
+// 	/*属性:名字、年龄、体重、身高*/
+// 	this.name = "Animal";
+// 	this.age = 0;
+// 	this.weight = 0;
+// 	this.height = 0;
+	
+// 	/*初始化方法*/
+// 	this.initial = function(obj){
+// 		this.name = obj['name'] || this.name;
+// 		this.age = obj['age'] || this.age;
+// 		this.weight = obj['weight'] || this.weight;
+// 		this.height = obj['height'] || this.height;
+// 	}
+
+// 	/*方法*/
+// 	/*输出对象信息*/
+// 	this.introduce = function(){
+// 		console.log("name: ", this.name, "age: ", this.age, "weight: ", this.weight, "height: ", this.height);
+// 	}
+// }
+
+// Animal.prototype.fly = function(){
+// 	console.log("I can fly!")
+// }
+
+// /*实例化的对象自带的方法*/
+// var cat = new Animal({name: 'Cat'});	/*名字是Cat*/
+// var dog = new Animal();
+// dog.fly = function(){
+// 	console.log("can't fly!");
+// }
+// dog.fly();
+// cat.fly();
+// cat.introduce();
+// cat.initial({name:"cat",age: "18",weight: "50kg",height: "170cm"});
+// cat.introduce();
+
+// console.log(cat, dog);
+
+
+// /*原始类型*/
+// var name = "yangxiaofu";
+// var age = 18;
+
+// /*复合类型*/
+// var person = {
+// 	name: "yangxiaofu",
+// 	age: 18
+// }
+// var score = [100, 90, 80]
+
+// var newName = name;
+// var newAge = age;
+// var newPerson = person;
+// var newScore = score;
+
+// newName = "xiaoyang";
+// newAge = 20;
+
+// newPerson.name = "newPerson";
+// newPerson.age = '30';
+
+// newScore[1] = 0;
+
+// console.log(name, age);
+// console.log(person, score);
+
+
+// var person = {
+// 	name: "yangxiaofu",
+// 	brother: {
+// 		name: "xiaoyang",
+// 		age: 12
+// 	},
+// 	color: ["red","green"]
+// }
+
+// /*浅拷贝，即只拷贝第一层*/
+// var copy = function(obj){
+// 	var newObj = {};
+// 	for(var p in obj){
+// 		newObj[p] = obj[p];
+// 	}
+// 	return newObj;
+// }
+
+// var newPerson = copy(person);
+// newPerson.name = "newPerson";
+// newPerson.brother.name = "newBrother";
+// newPerson.color[1] = 'black';
+
+// console.log(person.color, newPerson.color);
+
+// 深拷贝，检测对象属性是否是复合类型，若是则递归拷贝
+// var deepCopy = function(obj){
+// 	if(typeof obj != 'object'){
+// 		return obj;
+// 	}else{
+// 		var newObj = obj.constructor === Array?[]:{};
+// 		for(var p in obj){
+// 			newObj[p] = deepCopy(obj[p])/*递归拷贝*/
+// 		}
+// 		return newObj;
+// 	}
+// }
+
+// var deepPerson = deepCopy(person);
+// deepPerson.name = "deepPerson";
+// deepPerson.brother.name = "deepBrother";
+// deepPerson.color[1] = "yellow";
+// console.log(person.color, newPerson.color, deepPerson.color);
+
+
+
+
+var Animal = function(obj){
+	/*属性:名字、年龄、体重、身高*/
+	this.name = "Animal";
+	this.age = 0;
+	this.weight = 0;
+	this.height = 0;
+	
+	/*初始化方法*/
+	this.initial = function(obj){
+		this.name = obj['name'] || this.name;
+		this.age = obj['age'] || this.age;
+		this.weight = obj['weight'] || this.weight;
+		this.height = obj['height'] || this.height;
+	}
+
 	/*方法*/
-	this.talk = function(){
-		console.log("what's your name?");
+	/*输出对象信息*/
+	this.introduce = function(){
+		console.log("name: ", this.name, "age: ", this.age, "weight: ", this.weight, "height: ", this.height);
 	}
 }
 
-var cat = new Animal("Cat");	/*名字是Cat*/
-var dog = new Animal("Dog");	/*名字是Dog*/
-
-cat.talk();
-
+Animal.prototype.fly = function(){
+	console.log("I can fly!");
+}
+/*实例化的对象自带的方法*/
+var cat = new Animal({name: 'Cat'});	/*名字是Cat*/
+cat.fly();
+cat.fly = function(){
+	console.log("I can't fly!");
+}
+cat.fly();
 </script>
 
 </html>

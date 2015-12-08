@@ -84,6 +84,10 @@
     flex-direction:column;
 }
 
+/*#mainContent a:visited{
+    color: #0b0080;
+}*/
+
 /*post a global style*/
 #mainContent .post-body a{
     color: #4183C4;
@@ -113,7 +117,6 @@
 
 #mainContent p a {
     color: #111;
-    text-decoration: underline;
 }
 
 #mainContent p a:hover {
@@ -371,21 +374,21 @@
 
 
 /*websites-page css*/
-
-#websitesNav~ul {
-    padding-left: 20px;
+.websites-body a{
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #999;
+    color: #000;
 }
 
-#websitesNav~ul li {
-    list-style: none;
+.websites-body a:hover{
+    color: #ffffff;
+    background: #000;
+    border: 1px solid #111;
 }
-
-#websitesNav~ul li img {
-    width: 20px;
-    margin-right: 10px;
-    vertical-align: -5px;
-}
-
 
 /*代码区域样式修改*/
 

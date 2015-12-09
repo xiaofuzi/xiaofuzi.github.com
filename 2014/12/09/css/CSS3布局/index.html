@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="杨小福,yangxiaofu,前端,编程,html,css,javascript,nodeJS">
+    <meta name="description" content="杨小福的博客，记点笔记">
+    <title>
+        
+	CSS3布局
+
+    </title>
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/monokai.min.css">
+    <link rel="stylesheet" href="/css/post_add.css">
+    <link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0904845f91ea208faa55eaa72f93fab1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    <div id="headerWrapper" class="cf">
+        <header id="header" class="cf">
+            <div id="logo">
+                <h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+                <div class="logo-subtitle">
+                    programmer
+                </div>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/archives">博文</a></li>
+                    <li><a href="/websites/index.html">网址导航</a></li>
+                    <li><a href="/about">关于</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
+	<style>
+		body{
+			background: #f9f9f9;
+		}
+		#headerWrapper{
+			background: #ffffff;
+		}
+	</style>
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2014/12/09/css/CSS3布局/">CSS3布局</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2014-12-09</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/css/" target="_blank">css</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<h2 id="目录">目录</h2><ul>
+<li>伸缩盒(Flexible Box)(新)</li>
+</ul>
+<h2 id="伸缩盒(Flexible_Box)(新)">伸缩盒(Flexible Box)(新)</h2><ul>
+<li>flex<ul>
+<li>flex-grow</li>
+<li>flex-shrink</li>
+<li>flex-basis</li>
+</ul>
+</li>
+<li>flex-flow<ul>
+<li>flex-direction</li>
+<li>flex-wrap</li>
+</ul>
+</li>
+<li>align-content</li>
+<li>align-items</li>
+<li>align-self</li>
+<li>justify-content</li>
+<li>order</li>
+</ul>
+<h3 id="flex">flex</h3><p>flex帮助我们设置剩余空间如何进行分配(这里要注意是剩余空间，剩余空间等于父容器的宽度减轻子元素的宽度之和)，水平方向的分配。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*下面书写方式意义一样*/</span></span><br><span class="line"><span class="tag">flex</span>: <span class="tag">none</span>;</span><br><span class="line"><span class="tag">flex</span>: 0 0 <span class="tag">auto</span>;</span><br></pre></td></tr></table></figure>
+<p>flex-grow:用来指定扩展比率，即剩余空间为正值时该子元素所分配到的空间比例。</p>
+
+				</div>
+				<div class="post-nav">
+					
+						<span class="prev"><a href="/2015/11/02/前端开发环境搭建/">Prev</a></span>
+					
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="CSS3布局" data-title="CSS3布局" data-url="/2014/12/09/css/CSS3布局/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+    <footer id="footer">
+        <i id="upToTop"></i>
+        <p>
+            联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/post.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.highlight').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+</body>
+
+</html>

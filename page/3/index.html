@@ -74,193 +74,21 @@
 				 	
 				
 				 	
-				 	<div class="post-item">	
-						<header>
-							<h1>
-								<a href="/2015/12/05/reading/matz-ruby/" target="_blank">松本行弘的程序世界——编程语言知多少</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-12-05</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/pl/" target="_blank">pl</a>
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/ruby/" target="_blank">ruby</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<p>第一次读这本书，是我还在读书的时候，那时的我正为C++这样的语言而苦恼，就这样接触了ruby，ruby是一门动态类型的语言，语法优雅，非常灵活，也因为它我开始开发web程序。这本书并不是一本ruby程序指南，而是一本描述程序世界的书籍，虽然讲得不那么深入，却很广泛。</p>
-<p><img data-src="/img/matz/matz.jpg" alt="matz"></p>
-								</div>
-								<div class="post-more">
-									<h2 id="一、我为什么开发Ruby">一、我为什么开发Ruby</h2><h3 id="编程语言的重要性">编程语言的重要性</h3><p>语言体现了人类思考的本质。因为语言，人与人之间才能传递知识和交流思想，才能做深入的思考。在语言学领域，有一个Sapir-Whirf假说，认为语言可以影响说话者的思想，即语言的不同，造成了思想的不同。在这里，我觉得计算机语言很符合这个假说。程序员由于使用的编程语言不同，他的思考方法和编写出来的代码都会受到编程语言的很大影响。</p>
-<h3 id="Ruby的原则">Ruby的原则</h3><p>Ruby编程语言的设计目标是轻松编程、提高开发效率。</p>
-<p>三个原则：</p>
-<ul>
-<li>简洁性</li>
-<li>扩展性</li>
-<li>稳定性</li>
-</ul>
-<h4 id="简洁性">简洁性</h4><p>面向对象编程——面向对象的思想只是把数据和方法看作一个整体，当做对象来处理，并没有解决以前解决不了的问题。面向对象的方法并没有实现任何新的东西，却要在运行时判定要调用的方法，倾向于增大程序的运行开销。实现同样的算法，面向对象的程序往往更慢，过去计算机的执行速度不够快，所以不容许这样的浪费。</p>
-<p>内存管理，不用的内存现在可用垃圾收集器自动释放，而不用程序员自己去释放。变量和表达式的类型检查，在执行时已经可以自动检查，而不用在编译时检查了。</p>
-<p>如果可以把伪代码中非实质性的东西去掉，只保留描述算法的部分就直接运行，那么这种编程语言不就是最好的吗？ruby的目标就是成为开发效率高、“能直接运行的伪码式编程语言”。</p>
-<h4 id="扩展性">扩展性</h4><p>编程语言作为软件开发工具，其最大的特征就是对要实现的功能没有限制。“如果想到就可以做到”，这听起来像小孩说的话，但这在编程语言的世界里，真的就是这么一回事。不管在什么领域，做什么处理，只要用一种编程语言编写出了程序，我们就可以说这种语言适用于这一领域。</p>
-<p>实现扩展性的一个重要方法是抽象化。抽象化是指把数据和要做的处理都封装起来，就像一个黑盒子，我们不知道内部是如何实现的，但是可以用它。ruby在扩展性上看重的是如何最大限度地发挥程序员自身的能力。</p>
-<h4 id="稳定性">稳定性</h4><p>我相信，作为在世界上广泛使用的编程语言，应该有稳定的语法，不能像随风飘荡的灯芯那样闪烁不定。注：作者以Lisp的宏为例，指出了提供巨大的扩展性的同时也使得程序难以理解和阅读。</p>
-<h2 id="二、面向对象">二、面向对象</h2><p>程序员控制计算机，还是在为计算机工作？</p>
-<p>阿尔法综合征——指在伺养宠物的时候，宠物狗误解了一直细心照顾它的主人的地位，反而感觉到它是主人，比主人更了不起。</p>
-<p>几乎所有的编程语言都具备“图灵完备”的属性，无论何种编程语言都可以实现等价的程序，但这并不是说选择什么样的编程语言都一样。每一种语言都有自己的特征、属性、都各有长处和短处，写程序的难易程度也有很大的不同。</p>
-<p>编程技巧：</p>
-<ul>
-<li>编程风格</li>
-<li>算法</li>
-<li>数据结构</li>
-<li>设计模式</li>
-<li>开发方法</li>
-</ul>
-<h3 id="面向对象编程">面向对象编程</h3><p>面向对象的设计方法是20世纪60年代后期，在诞生于瑞典的Simula编程语言中最早使用。Smalltalk编程语言对近代面向对象编程语言影响很大，可以称之为面向对象语言之母。到现在，大多数主流的编程语言使用的都是面向对象的设计方法。</p>
-<h4 id="多态性">多态性</h4><p>多态就是可以把不同种类的东西当做相同的东西来处理。各种数据可以统一地处理、根据对象的不同自动选择最合适的方法而程序内部则不发生冲突、具备扩展性。</p>
-<h4 id="数据抽象和继承">数据抽象和继承</h4><p>数据抽象有时也会称为封装，多态性、数据抽象和继承被称为面向对象编程的三原则。</p>
-<h4 id="面向对象的历史">面向对象的历史</h4><p>Simula语言最早引入了数据和处理数据方法自动结合的抽象数据类型。随后，又增加了类和继承的功能。</p>
-<p>Lisp的发展产生了许多很有创新的方法，多重继承、混合式和多重方法等。</p>
-<p>C语言是面向过程的语言，在C语言中追加面向对象的功能，产出了C++。</p>
-<h4 id="复杂性">复杂性</h4><p>虽然计算机的额性能年年在提高，但它的处理能力终究是有限的，而人类的理解力的局限性给软件生产力带来的限制性更大。为了找到迅速开发大规模复杂软件的方法，有时牺牲性能也在所不惜。</p>
-<h4 id="结构化编程">结构化编程</h4><p>结构化编程的基本思想是有序地控制流程，即把程序的执行顺序限制为顺序、分支和循环3种，把共通的处理归结为例程。结构化编程引入了例程的概念，也就是把基本上相同的处理抽象成例程，其中不同的部分由外部传递进来的参数来对应。结构化编程的限制和抽象化是人类处理复杂软件的非常有效的方法。结构化编程的顺序、分支和循环可以实现一切算法，虽然降低了程序的复杂性和灵活性，但是程序的实现能力并没有降低。现在几乎所有的编程语言都支持结构化编程，结构化编程也成为了编程的基本常识。</p>
-<h4 id="数据的抽象化">数据的抽象化</h4><p>结构化编程降低了程序流程的复杂性，但却不能解决数据的复杂性，面向对象就是为此而出现的。数据抽象是数据和处理方法的结合。对数据内容的处理和操作，必须通过事先定义好的方法来进行。数据和处理方法结合起来成为了黑盒子。</p>
-<h4 id="继承">继承</h4><p>继承就是在保持既有类的性质的基础上而生成新类的方法。原有的类称为父类，新生成的类称为子类。子类继承父类所有的方法，如果需要可以增加新的方法，也可以重写从父类继承的方法。</p>
-<ul>
-<li>单一继承</li>
-<li>多重继承（一个对象有多个父类，如一个公司员工可能同时是一个父亲、儿子）</li>
-</ul>
-<p>单一继承——单一继承关系是单纯的树结构，类之间的关系单纯就不会发生混乱，实现起来也比较简单。<br>多重继承——继承多个类，程序代码共享。单一继承可以实现的功能，多重继承都可以实现，但是类之间的关系会变得复杂，哪个类的功能继承自哪个类就变得难以理解。</p>
-<p>多重继承导致的问题：</p>
-<ul>
-<li>结构复杂化</li>
-<li>优先顺序模糊</li>
-<li>功能冲突</li>
-</ul>
-<p>ruby中多重继承的实现——“Mix-in类”，Mix-in类是具有以下特征的抽象类：</p>
-<ul>
-<li>不能单独生成实例</li>
-<li>不能继承普通类</li>
-</ul>
-<p>实现功能共享的方法是把共享的功能放在Mix-in类里面，然后把Mix-in类插入到继承树里面。</p>
-<h3 id="Duck_Typing">Duck Typing</h3><blockquote>
-<p>If it walks like a duck and quacks like a duck,it must be a duck(走起路来像鸭子，叫起来也像鸭子，那么它就是鸭子)</p>
-</blockquote>
-<p>动态类型的缺点：</p>
-<ul>
-<li>执行时才能发现错误</li>
-<li>程序阅读可能不好理解</li>
-<li>运行速度会比静态类型慢</li>
-</ul>
-<h4 id="元编程">元编程</h4><p>在ruby中可以方便的动态给类增加方法。静态类型的语言中这是很难做到的。</p>
-<h4 id="反射">反射</h4><p>指在程序执行时取出程序的信息或者改变程序信息，实现对程序的动态操作。</p>
-<h3 id="元编程和小编程语言">元编程和小编程语言</h3><p>DSL是针对特定领域的语言，小编程语言一般会具备如下功能：</p>
-<ul>
-<li>类型</li>
-<li>字面量</li>
-<li>表达式</li>
-<li>运算符</li>
-<li>语句</li>
-<li>控制结构</li>
-<li>声明</li>
-<li>上下文相关</li>
-<li>单位</li>
-<li>词汇</li>
-<li>层级数据</li>
-</ul>
-<h2 id="程序块">程序块</h2><p>程序块是ruby语言的特色之一，在方法调用时可以追加代码块。</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line">ary.each &#123; |x| puts x&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="高阶函数">高阶函数</h3><p>ruby程序块功能的原理和高阶函数是一样的。高阶函数是指以函数作为参数的函数。为了实现高阶函数，编程语言中必须把函数和方法作为数据来处理。</p>
-<h2 id="四、设计模式">四、设计模式</h2><p>设计模式指设计上经常反复使用的模式。在软件中，重用一般是通过库，各种软件共享处理过程、数据结构以及类等。但是只有库还不能达到充分地的共享，软件设计中除了库还有共通的部分即模式。</p>
-<p>23种常用设计模式</p>
-<p><img data-src="/img/matz/patterns.png" alt="设计模式"></p>
-<h3 id="prototype模式">prototype模式</h3><p>Prototype(原型)模式”明确一个实例作为要生成对象的种类原型”，通过复制该实例来生成新的对象。<br>相对于类模式的编程，原型模式的编程的构成元素比较少，具有简单实现面向对象功能设计的倾向。</p>
-<h2 id="五、Ajax">五、Ajax</h2><p>Ajax的最大特点是进行异步操作。异步意味着，Web浏览器的通信和页面更新是相互独立的。</p>
-<p>老式的浏览器通信方式：<br>每当用户进行操作之后，需要更新页面，在得到服务器的响应之后，下一个页面才能显示出来。<br>Ajax的通信方式：<br>Ajax技术中，对于用户进行的操作，基本是由Javascript在Web浏览器中进行响应。仅在数据必须从服务器获取的情况下，才在后台进行异步通信。</p>
-<p><img data-src="/img/matz/http.png" alt="http"></p>
-<p>支撑Ajax的3个主要技术：</p>
-<ul>
-<li>Javascript</li>
-<li>XML</li>
-<li>DHTML</li>
-</ul>
-<p>Javascript进行异步通信的对象的名字是XMLHttpRequest.</p>
-<p>DHTML:动态的HTML,可以动态地对HTML进行引用、修改和更新。它是利用装载在网页中的Javascript，使用DOM(文档对象模型)对网页数据进行操作。</p>
-<p>Ajax网站特点：</p>
-<ul>
-<li>没有Web页面跳转</li>
-<li>通过异步通信实现快速反应</li>
-</ul>
-<h2 id="第六章_Ruby_on_rails">第六章 Ruby on rails</h2><p>Web应用的基本是HTTP，一次HTTP处理经过如下的过程：</p>
-<ul>
-<li>Web浏览器对应于用户的操作，像Web服务器发出HTTP请求</li>
-<li>web服务器根据请求，准备好发送到Web浏览器的数据</li>
-<li>Web服务器把数据以HTTP响应的形式送还Web浏览器</li>
-</ul>
-<p>MVC模式对应上面的各个部分如下：</p>
-<ul>
-<li>Web浏览器发送来的HTTP请求通过Web服务器传给控制部分。Web应用框架的分配器(路由)把请求传递给合适的控制部分。</li>
-<li>控制部分操作的模型和请求的信息相对应，同时指定显示使用的视图。视图从模型启动，一边引用模型一边准备发送给Web浏览器的数据。</li>
-<li>Web服务器把数据以HTTP响应的形式送还Web浏览器。</li>
-</ul>
-<p><img data-src="/img/matz/mvc.png" alt="web应用中的MVC"></p>
-<p>MVC的具体实现可能会有细微的差别，如rails的MVC与传统的MVC就有一些不同。</p>
-<h2 id="第七章_文字编码">第七章 文字编码</h2><p>计算机能够处理图像、动画及各种应用程序固有的、多种多样的数据。但从CPU的层次来看，计算机所处理的各种数据都是用比特所表现的二进制数字。为了让计算机能够处理文字，就必须将文字变换为相应的数字。这种对应于文字的数值就称为文字编码。文字的集合称为字符集；在字符集中，每个字符都分配一个编码，这称为字符编码。计算机上仅仅用整数值来表示文字编码的方式称为文字编码方式。计算机不能处理文字本身，就要让文字与编码对应。与文字相对应的编码就称为文字编码。这样计算机只能处理分配了编码的文字，分配了编码的文字集合就称为文字集。</p>
-<h3 id="为什么会发生乱码？">为什么会发生乱码？</h3><p>文字乱码最大原因是把程序的字符编码方式搞错了。把一种字符编码方式的数据按另一种字符编码方式来表示，结果就会完全不同。为了在计算机画面上表示文字，还需要文字编码及文字编码以外的东西。与某种文字编码相对应的文字应具备何种字形的信息由计算机掌握，根据需要，必须将字形在画面上表示出来。这样的字形数据称为字体。如果没有对应的字体信息，就会出现乱码。</p>
-<h2 id="第八章_正则表达式">第八章 正则表达式</h2><p>正则表达式主要用来处理字符串，是一种描述字符串模式的微语言。</p>
-<h2 id="第九章_整数和浮点小数">第九章 整数和浮点小数</h2><p>作为高级程序员，应该有更高的目标。如果计算机中能够自然计算的整数有上限，就要想办法引入多倍长以超越界限；为了能除尽，就引入有理数等。如何权衡计算效率以达到最大限度的平衡技巧。</p>
-<h2 id="第十章_高速执行和并行处理">第十章 高速执行和并行处理</h2><p>两个法则：</p>
-<ul>
-<li>帕累托法则：80：20法则</li>
-<li>摩尔法则：即大规模集成电路中的晶体管数每18个月翻一番。</li>
-</ul>
-<h2 id="第十一章_程序安全性">第十一章 程序安全性</h2><p>4种软件漏洞：</p>
-<ul>
-<li>DOS攻击</li>
-<li>信息泄露</li>
-<li>权限夺取</li>
-<li>权限升格</li>
-</ul>
-<p>DOS攻击：也称拒绝服务攻击，是指妨碍软件正常运行的网络攻击手段。能够引起软件异常终止的程序错误，可以说全部都是引发DOS攻击的安全性程序错误。<br>信息泄漏：指不愿公开的信息被公开了，比如用户名被公开或密码暴露。</p>
-<p>有代表性的攻击手段：</p>
-<ul>
-<li>缓冲区溢出</li>
-<li>整数溢出</li>
-<li>跨站脚本攻击(XSS)</li>
-<li>SQL注入</li>
-<li>跨站点伪造请求(CSRF)</li>
-</ul>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-						<hr>
-						</div>
+				
 				 	
 				
 				 	
 				 	<div class="post-item">	
 						<header>
 							<h1>
-								<a href="/2015/11/28/js-prototype/" target="_blank">prototype、__proto__、constructor、this——不懂别说会JS</a>
+								<a href="/2015/12/08/js/Javascript-class-module/" target="_blank">Javascript-类-模块化</a>
 							</h1>
 							<div class="post-info">
 								<span class="post-time">
-									<a class="permalink" href="" >2015-11-27</a>
+									<a class="permalink" href="" >2015-12-08</a>
 								</span>
 								<span class="post-tag">
 									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/jquery/" target="_blank">jquery</a>
 									
 										<a class="tag" href="http://www.yangxiaofu.com/tags/js/" target="_blank">js</a>
 									
@@ -270,81 +98,156 @@
 						<div class="post-body">
 							
 								<div class="post-excerpt">
-									<p><img data-src="/img/prototype/so_many_questions.png" alt="so_many_questions"><br>刚开始接触js的时候，我的疑问就像上面密密麻麻的问题。。。</p>
-<h2 id="JS对象">JS对象</h2><ul>
-<li>每一个Javascript对象(null除外)都和另一个对象相关联，即原型，每一个对象都从原型继承属性。</li>
-<li>所有通过对象直接量创建的对象都具有同一个原型对象，通过Object.prototype可以获得对原型对象的引用。</li>
-<li>通过new关键字和构造函数创建的对象的原型就是构造函数的prototype属性的值</li>
-<li>普通的原型对象属于普通对象，普通对象都具有原型(Object.prototype比较特殊，不继承任何属性)</li>
-<li>所有的内置构造函数以及大部分自定义构造函数都具有一个继承自Object.prototype的原型</li>
-<li>构造函数的原型中存在预先定义好的constructor属性，对象继承的constructor均指代他们的构造函数。构造函数是类的标识，因此这个constructor属性为对象提供了类</li>
+									<div class="text-center" style="background:#414141;font-size: 48px;padding:40px 0;color:#ffffff;">Learn OOP -prototype<p style="font-size: 16px;">这里并不强大面向对象有多牛，但作为现在主流的一种编程范式，我们有必要去了解。</p></div>
+
+<h2 id="目录">目录</h2><ul>
+<li><a href="#Javascript面向对象实现">Javascript面向对象实现</a><ul>
+<li><a href="#封装">封装</a></li>
+<li><a href="#继承">继承</a></li>
+<li><a href="#原始类型与复合类型说明">原始类型与复合类型说明</a></li>
+<li><a href="#继承实现">继承实现</a></li>
+<li><a href="#Mix-in">Mix-in</a></li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> F();</span><br><span class="line">o.constructor === F	<span class="comment">/*true,指代类本身*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><a href="#模块化">模块化</a></li>
+</ul>
+<p>Javascript是基于原型的编程语言，并不是面向对象的语言。</p>
+<p class="text-important">ES6已实现class关键字，这让js看起来更像一门面向对象的语言</p>
 								</div>
 								<div class="post-more">
-									<h2 id="Javascript中class的写法">Javascript中class的写法</h2><p>注：为和普通函数区别开，类的命名首字母一般是大写</p>
-<p>下面定义了Cat、cat类<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*写法一：*/</span></span><br><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"cat:小写的猫"</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*写法二：*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:小写的猫"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里输出的结果是相同的，即类的命名首字母大写并不是强制的</p>
-<h3 id="对象生成">对象生成</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> objCat = <span class="keyword">new</span> Cat; <span class="comment">/*大写的猫对象*/</span></span><br><span class="line"><span class="keyword">var</span> objcat = <span class="keyword">new</span> cat; <span class="comment">/*小写的猫对象*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*输出*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat, objcat);</span><br></pre></td></tr></table></figure>
-<p><img src="/img/prototype/cat-01.png" alt="类的命名首字母大写并不是强制的"></p>
-<p>从上面我们可以看到:对象objCat——&gt;<strong>proto</strong>[Cat类]——&gt;<strong>proto</strong>[Object对象],这就是所谓的继承链.</p>
-<h2 id="prototype_VS_proto_对象">prototype VS <strong>proto</strong> 对象</h2><h3 id="添加prototype对象">添加prototype对象</h3><p>这里给Cat添加prototype对象,cat不做改动</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*写法一：*/</span></span><br><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"cat:小写的猫"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Cat.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"I like fish!"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>说明：同一个类生成的所有对象会共用类的prototype对象上挂载的方法和属性</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">redCat = <span class="keyword">new</span> Cat;</span><br><span class="line">greenCat = <span class="keyword">new</span> Cat;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(redCat.eat(), greenCat.eat());</span><br></pre></td></tr></table></figure>
-<p>redCat和greenCat调用的是同一个方法即Cat.prototype.eat,所以都会输出”I like fish!”.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Cat.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"I like fish!"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>/<em>同样输出两个生成的对象</em>/</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(objCat, objcat);</span><br></pre></td></tr></table></figure>
-<p><img src="/img/prototype/cat-02.png" alt="这里给Cat添加prototype对象,cat不做改动"></p>
-<p>从上图可以发现大写的猫对象多输出了两行,这里出现了一个”<strong>proto</strong>“属性,那么它代表什么呢？因为这是我们的Cat类设置了prototype后Cat对象才出现的属性，所以我们可以猜测这两者之间有某种密切的关系，为了验证我们的想法，我们可以输出测试一下。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(objCat.__proto__, Cat.prototype);</span><br></pre></td></tr></table></figure>
-<p><img src="/img/prototype/cat-03.png" alt="console.log(objCat.__proto__, Cat.prototype)"></p>
-<p>我们可以惊奇的发现输出结果一模一样，为了再次证明它们是同一个东西，我们再次进行验证</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*注意这里是3个等号哦*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat.__proto__ === Cat.prototype);  			<span class="comment">/*result:true*/</span></span><br><span class="line"><span class="built_in">console</span>.log(objCat.__proto__.eat(), Cat.prototype.eat());	<span class="comment">/*I like fish! I like fish!,调用了同一个 eat 方法*/</span></span><br></pre></td></tr></table></figure>
-<p>从这里我们可以得一个结论：对象会继承类的prototype对象并存在一个名为”<strong>proto</strong>“的属性中,即对象的”<strong>proto</strong>“属性指向生成它的类的”prototype”对象</p>
-<p class="text-important">protoype和<strong>proto</strong>统称为原型对象，但前者是在类中，后者是在对象中的表示，实例对象中没有prototype属性的。[js中的类是通过function来模拟的，每一个function都有一个prototype属性</p>
+									<p>主流语言类型：</p>
+<ul>
+<li>基于原型的语言</li>
+<li>面向过程的语言</li>
+<li>面向对象的语言</li>
+<li>函数式的语言</li>
+</ul>
+<p>每一种语言的编程方式以及语法都会有所不同。</p>
+<p>虽然Javascript并没有内置的类的实现，但可以模拟。Javascript有构造函数和new运算符，我们可以通过构造函数来实例化一个对象。</p>
+<p>当使用new关键字来调用构造函数时，执行上下文变成一个空的上下文，这个上下文代表了新生成的实例，所以this指向当前创建的实例。</p>
+<p>面向对象应该是现在使用最广的一种编程思想<a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1">不了解的点此，需自备梯子</a></p>
+<p>说到面向对象，首先让我想起的是C++，在我的印象里，C++是一门严格遵循面向对象思想的一门语言，封装、继承、多态。不仅如此，还支持多继承，这是其它很多语言没有做到的。</p>
+<h2 id="Javascript面向对象实现">Javascript面向对象实现</h2><p>说到面向对象，最直观的就是通过 class 关键字来声明，因为js还没实现该关键字(ES6已实现)，在这里我们直接用构造函数来模拟即可。(以C++为例，在生成一个对象的时候也是去调用构造函数来创建对象的)</p>
+<p>面向对象的三个特点：</p>
+<ul>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+</ul>
+<h3 id="创建一个Animal类">创建一个Animal类</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Animal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*属性*/</span></span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">"animal"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*方法[函数、方法，在这里为什么不称为函数而称之为方法？]*/</span></span><br><span class="line">	<span class="keyword">this</span>.talk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"what's your name?"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实例化对象">实例化对象</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Cat = <span class="keyword">new</span> Animal;</span><br><span class="line"><span class="keyword">var</span> Dog = <span class="keyword">new</span> Animal;</span><br></pre></td></tr></table></figure>
+<p>实例化一个对象时一般会需要进行初始化设置，这里可以通过构造函数传参实现</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Animal = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*属性*/</span></span><br><span class="line">	<span class="keyword">this</span>.name = name || <span class="string">"Animal"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*方法*/</span></span><br><span class="line">	<span class="keyword">this</span>.talk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"My name is: "</span>, name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Animal(<span class="string">"Cat"</span>);	<span class="comment">/*名字是Cat*/</span></span><br><span class="line"><span class="keyword">var</span> dog = <span class="keyword">new</span> Animal(<span class="string">"Dog"</span>);	<span class="comment">/*名字是Dog*/</span></span><br></pre></td></tr></table></figure>
+<p class="text-important">说明:</p>
 
-<h2 id="constructor属性">constructor属性</h2><p>构造函数的原型中存在预先定义好的constructor属性，对象继承的constructor均指代他们的构造函数。构造函数是类的标识，因此这个constructor属性为对象提供了类.</p>
-<p>这句话怎么来理解呢？</p>
-<p>1 .构造函数的原型中存在预定义好的constructor属性<br>2 .constructor指代他们的构造函数<br>3 .constructor属性为对象提供了类</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> CatConstructor = Cat.prototype.constructor;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Cat:"</span>, Cat, Cat.prototype);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"CatConstructor:"</span>, CatConstructor, CatConstructor.prototype);</span><br></pre></td></tr></table></figure>
-<p>这里为了更清晰的理解上面这几个点，我们将Cat类的原型的constructor属性赋值给CatConstructor,然后分别打印他们本身以及他们的原型对象。</p>
-<p><img src="/img/prototype/cat-04.png" alt="Cat.prototype.constructor"></p>
-<p>从上图我们可以发现两者是完全一样的，即Cat.prototype.constructor等于Cat本身。</p>
-<p>那么第三点怎么理解呢？既然constructor代表Cat构造函数本身，那么我们是不是可以用它来生成对象——类才具有的功能</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> CatConstructor = Cat.prototype.constructor;</span><br><span class="line"><span class="keyword">var</span> newObjCat = <span class="keyword">new</span> CatConstructor;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"objCat:"</span>, objCat, <span class="string">"newObjCat"</span>, newObjCat);</span><br></pre></td></tr></table></figure>
-<p><img src="/img/prototype/cat-05.png" alt=""objCat:", objCat, "newObjCat", newObjCat"></p>
-<p>如我们所料，上面输出的objCat和newObjCat结果是一样的，所以验证了第三点，类的原型的constructor属性即类本身</p>
-<h2 id="this——到底指向了谁">this——到底指向了谁</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Cat.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Cat:"</span>, <span class="keyword">this</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Cat-prototype:"</span>, <span class="keyword">this</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.init();				<span class="comment">/*this代表Cat类本身*/</span></span><br><span class="line">Cat.prototype.init();	<span class="comment">/*this代表Cat.prototype对象*/</span></span><br><span class="line"></span><br><span class="line">objCat.init();			<span class="comment">/*this代表objCat对象本身*/</span></span><br></pre></td></tr></table></figure>
-<p><img src="/img/prototype/cat-06.png" alt="this——到底指向了谁"></p>
-<p>从上图可以发现，输出为：</p>
-<p>Cat.init():输出构成函数本身<br>Cat.prototype.init():输出类的原型对象<br>objCat.init(): 输出结果都是objCat对象本身且调用的是Cat.prototype.init方法</p>
-<p>从上面我们可以知道this始终指向调用方法的对象本身</p>
-<h3 id="构造函数中调用原型对象上绑定的方法——指向谁呢">构造函数中调用原型对象上绑定的方法——指向谁呢</h3><p>注：当我们在说构造函数的时候，其实是将构造函数和类等同起来</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*jquery构造函数模拟*/</span></span><br><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">	<span class="comment">/*调用原型上绑定的init方法*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> Cat.prototype.init();</span><br><span class="line">&#125;;</span><br><span class="line">Cat.prototype = &#123;</span><br><span class="line">	init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;	<span class="comment">/*当做为构造函数时，返回值好像并没有啥用处*/</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype.init.prototype = Cat.prototype;</span><br><span class="line"></span><br><span class="line">Cat();</span><br></pre></td></tr></table></figure>
-<h3 id="稍稍复杂一点的情况">稍稍复杂一点的情况</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Cat = <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.animal = <span class="string">"Cat:大写的猫"</span>;</span><br><span class="line">	<span class="comment">/*调用原型上绑定的init方法*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> Cat.prototype.init(params);</span><br><span class="line">&#125;;</span><br><span class="line">Cat.prototype = &#123;</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.animal = params;</span><br><span class="line">        <span class="keyword">this</span>.type = params;</span><br><span class="line">        <span class="keyword">this</span>.color = params;</span><br><span class="line">    &#125;,</span><br><span class="line">    eat: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"I like fish!"</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    name: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.animal;</span><br><span class="line">    &#125;,</span><br><span class="line">    color: <span class="string">'yellow'</span></span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype.init.prototype = Cat.prototype;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> redCat = Cat(<span class="string">"redCat"</span>);</span><br><span class="line"><span class="keyword">var</span> greenCat = Cat(<span class="string">"greenCat"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(redCat, greenCat);</span><br></pre></td></tr></table></figure>
-<p>输出结果如下：</p>
-<p><img src="/img/prototype/cat-07.png" alt="jquery对象生成方式模拟"></p>
-<p class="text-important">这里的init方法里的this指向的是Cat.prototype,init方法里的animal和Cat类的animal也没有关系,init这时相当于我们的构造函数，而它自身又是自身的prototype里的一个方法[是不是已已绕晕。。。]</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name;</span><br><span class="line">name = pname || <span class="string">"Animal"</span>;</span><br><span class="line"><span class="comment">/*与下面的功能等同*/</span></span><br><span class="line"><span class="keyword">var</span> name;</span><br><span class="line"><span class="keyword">if</span>(pname)&#123;</span><br><span class="line">	name = pname;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	name = <span class="string">"Animal"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是js的一种默认值设置技巧，当pname == undefined时，name赋值为 “Animal”,否则name等于pname</p>
+<h3 id="封装">封装</h3><p>封装也叫数据抽象，将数据和处理数据的方法结合起来，对数据的处理和操作只能通过事先定义好的方法来进行。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Animal = <span class="function"><span class="keyword">function</span>(<span class="params">name, age, weight, height</span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*属性:名字、年龄、体重、身高*/</span></span><br><span class="line">	<span class="keyword">this</span>.name = name || <span class="string">"Animal"</span>;</span><br><span class="line">	<span class="keyword">this</span>.age = age || <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">this</span>.weight = weight || <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">this</span>.height = height || <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*方法*/</span></span><br><span class="line">	<span class="comment">/*输出对象信息*/</span></span><br><span class="line">	<span class="keyword">this</span>.introduce = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"name: "</span>, <span class="keyword">this</span>.name, <span class="string">"age: "</span>, <span class="keyword">this</span>.age, <span class="string">"weight: "</span>, <span class="keyword">this</span>.weight, <span class="string">"height: "</span>, <span class="keyword">this</span>.height);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*设置对象属性*/</span></span><br><span class="line">	<span class="keyword">this</span>.setMyself = <span class="function"><span class="keyword">function</span>(<span class="params">name, age, weight, height</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name || <span class="keyword">this</span>.name;</span><br><span class="line">		<span class="keyword">this</span>.age = age || <span class="keyword">this</span>.age;</span><br><span class="line">		<span class="keyword">this</span>.weight = weight || <span class="keyword">this</span>.weight;</span><br><span class="line">		<span class="keyword">this</span>.height = height || <span class="keyword">this</span>.height;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*实例化的对象自带的方法*/</span></span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Animal(<span class="string">"Cat"</span>);	<span class="comment">/*名字是Cat*/</span></span><br><span class="line"></span><br><span class="line">cat.introduce();		<span class="comment">/*输出：name:  Cat age:  0 weight:  0 height:  0*/</span></span><br><span class="line">cat.setMyself(<span class="string">"cat"</span>, <span class="string">"18"</span>, <span class="string">"50kg"</span>, <span class="string">"170cm"</span>);<span class="comment">/*这时输出: name:  cat age:  18 weight:  50kg height:  170cm*/</span></span><br></pre></td></tr></table></figure>
+<p>上面我们给Animal设置了四个属性：名字、年龄、体重、身高;两个个方法：introduce(), setMyself();<br>在这里我们对Animal做了封装即数据的抽象,类的数据部分由四个属性构成，方法则是处理部分.这里我们通过introduce()和setMyself()方法来输出、设置属性的值。</p>
+<p class="text-important">注(javasript语言自身的一些特点)：</p>
 
 <ul>
-<li>this.animal = params;</li>
-<li>this.type = params;</li>
-<li>this.color = params;</li>
+<li><p>1.从上面的代码我们可以看到，this无处不在，也正是通过this才实现了类到对象的传递。Does it must？</p>
+</li>
+<li><p>2.主流的边长语言中都会有private/protect/public这三个参数来控制继承关系中变量的作用域，但是js中没有，对此我们需要进行一定的处理</p>
+</li>
+<li><p>3.js函数的参数是灵活可变[声明的参数与传入的参数不强制要求相同]<br>  因为js函数参数的这种特点，一般我们传入一个对象作为参数，如：{name: “cat”, age: “18”, wight: “50kg”, height: “170cm”}</p>
+</li>
 </ul>
-<p>它们是构造函数即类的属性，而init函数外面的color: ‘yellow’是挂在原型上的，所以生成的对象在访问color属性的时候是获取构造函数里的值[原型链继承的优先级]</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(redCat.__proto__.color);		<span class="comment">/*输出结果是:yelow,说明我的确是挂在类的原型上的*/</span></span><br></pre></td></tr></table></figure>
-<p class="text-important">上述的jquery构造函数语法模拟的一个不足就是无法得到Cat类上的属性,如Cat里的animal.[如果你有好的方法获取请告知我]</p>
+<h4 id="无处不在的this">无处不在的this</h4><p>这里为了更清晰，我们将代码稍稍简化一下(从程序的健壮性来说，对参数的合法性进行验证是很有必要的)：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Animal = <span class="function"><span class="keyword">function</span>(<span class="params">name, age, weight, height</span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*属性:名字、年龄、体重、身高*/</span></span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*这里我们使用局部变量来声明体重和身高属性*/</span></span><br><span class="line">	<span class="keyword">var</span> weight = weight;</span><br><span class="line">	<span class="keyword">var</span> height = height;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*方法*/</span></span><br><span class="line">	<span class="comment">/*输出对象信息*/</span></span><br><span class="line">	<span class="keyword">this</span>.introduce = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">/*这里的weight和height不需要用this.weight/this/height的形式来调用*/</span></span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);	<span class="comment">/*谁调用，this就指向谁,这里是实例化的对象调用，则指向该对象*/</span></span><br><span class="line">		<span class="comment">/*这里的weight和height不需要用this.weight/this/height的形式来调用*/</span></span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"name: "</span>, <span class="keyword">this</span>.name, <span class="string">"age: "</span>, <span class="keyword">this</span>.age, <span class="string">"weight: "</span>, weight, <span class="string">"height: "</span>, height);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*设置对象属性*/</span></span><br><span class="line">	<span class="keyword">this</span>.setMyself = <span class="function"><span class="keyword">function</span>(<span class="params">name, age, pweight, pheight</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="comment">/*为什么改成pweight, pheight,当形参和函数所在上下文的变量冲突时，函数内部是取不到变量的</span><br><span class="line">		这种情况下，这两个都是形参，而不是我们上面声明的局部变量，所以在此将变量名称更改为不同的值。</span><br><span class="line">		weight = weight;</span><br><span class="line">		height = height;</span><br><span class="line">		*/</span></span><br><span class="line">		weight = pweight;</span><br><span class="line">		height = pheight;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*实例化的对象自带的方法*/</span></span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Animal(<span class="string">"cat"</span>, <span class="string">"18"</span>, <span class="string">"50kg"</span>, <span class="string">"170cm"</span>);	<span class="comment">/*名字是Cat*/</span></span><br><span class="line"></span><br><span class="line">cat.introduce();</span><br><span class="line">cat.setMyself(<span class="string">"cat"</span>, <span class="string">"28"</span>, <span class="string">"70kg"</span>, <span class="string">"180cm"</span>);</span><br><span class="line">cat.introduce();</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">name:  cat age:  <span class="number">18</span> weight:  <span class="number">50</span>kg height:  <span class="number">170</span>cm</span><br><span class="line">name:  cat age:  <span class="number">28</span> weight:  <span class="number">70</span>kg height:  <span class="number">180</span>cm</span><br><span class="line"></span><br><span class="line"><span class="comment">/*cat对象的值,并没有包括weight和height*/</span></span><br><span class="line">&#123;</span><br><span class="line">	name: <span class="string">"cat"</span>, </span><br><span class="line">	age: <span class="string">"28"</span>,</span><br><span class="line">	<span class="keyword">this</span>.introduce: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;,</span><br><span class="line">	<span class="keyword">this</span>.setMyself: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从这里我们可以得出结论：</p>
+<ul>
+<li>实例化的对象得到的是挂载在构造函数this下的属性和方法(new 关键字的作用是返回一个新的对象并将this指向该对象)。所以为了将属性和方法传递给实例化的对象，我们就需要将属性和方法挂在this下。</li>
+<li>闭包,这里虽然weight和height并没有挂在构造函数的this下，但实例化的对象cat却能够通过introduce()方法访问到,这就是闭包的作用，要理解闭包，需要清除两点。<ul>
+<li>函数调用时上下文是声明时所在的上下文(introduce()声明的作用域是Animal构造函数，可以访问局部变量weight/height)</li>
+<li>函数内部的this指向的是调用者(调用cat.introduce():所以introduce内部的this指向cat对象)<br>这样虽然实力话的对象(cat)不能访问weight和height变量，却可以通过introcuce方法来访问。</li>
+</ul>
+</li>
+</ul>
+<h3 id="继承作用域限制(private/protect/public)">继承作用域限制(private/protect/public)</h3><ul>
+<li>private声明：类本身可以访问</li>
+<li>protect声明：子类可以访问</li>
+<li>public声明：对象可以访问</li>
+</ul>
+<p>从上面this的分析我们可以知道，因为构造函数的this即指向实例化的对象，所以对象是可以直接访问属性的，即可以这样写:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">cat.name;</span><br><span class="line">cat.age;</span><br></pre></td></tr></table></figure>
+<p>那么挂载在this下的即相当于public声明，通过闭包形式实现的则类似于privite,对象只能通过继承而来的方法来访问变量。这样我们就可以简单的模拟公共变量和私有变量。</p>
+<p>注：闭包会造成作用域不能及时的释放，所以不易大量的使用。</p>
+<p>一种比较简单的做法是通过”_”的形式来声明私有变量，这需要人为的约定遵从。如：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">this._name;&#10;this._age;</span><br></pre></td></tr></table></figure>
+<p>并不是真正意义上的私有变量，只是让它看起来像私有变量。我们依然可以通过cat._name的形式来访问。</p>
+<p>protect形式的用得并不太多，这里就不考虑了。</p>
+<h4 id="参数说明">参数说明</h4><p>javascript是一门动态、弱类型的语言。我们不需要预先声明变量的类型，这非常的灵活但有时也会造成类型的混乱。同时javascript函数的参数非常的灵活，<br>形参和实参并不需要一一对应的关系。所以为确保程序能够正确的运行，我们往往需要对参数进行验证。</p>
+<p>在此基础上，我们可以通过传递Object对象作为参数的方式来编写，</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Animal = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*属性:名字、年龄、体重、身高*/</span></span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">"Animal"</span>;</span><br><span class="line">	<span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">this</span>.weight = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">this</span>.height = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*初始化方法*/</span></span><br><span class="line">	<span class="keyword">this</span>.initial = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = obj[<span class="string">'name'</span>] || <span class="keyword">this</span>.name;</span><br><span class="line">		<span class="keyword">this</span>.age = obj[<span class="string">'age'</span>] || <span class="keyword">this</span>.age;</span><br><span class="line">		<span class="keyword">this</span>.weight = obj[<span class="string">'weight'</span>] || <span class="keyword">this</span>.weight;</span><br><span class="line">		<span class="keyword">this</span>.height = obj[<span class="string">'height'</span>] || <span class="keyword">this</span>.height;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*方法*/</span></span><br><span class="line">	<span class="comment">/*输出对象信息*/</span></span><br><span class="line">	<span class="keyword">this</span>.introduce = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"name: "</span>, <span class="keyword">this</span>.name, <span class="string">"age: "</span>, <span class="keyword">this</span>.age, <span class="string">"weight: "</span>, <span class="keyword">this</span>.weight, <span class="string">"height: "</span>, <span class="keyword">this</span>.height);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*实例化的对象自带的方法*/</span></span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Animal(&#123;name: <span class="string">'Cat'</span>&#125;);	<span class="comment">/*名字是Cat*/</span></span><br><span class="line"></span><br><span class="line">cat.introduce();</span><br><span class="line">cat.initial(&#123;name:<span class="string">"cat"</span>,age: <span class="string">"18"</span>,weight: <span class="string">"50kg"</span>,height: <span class="string">"170cm"</span>&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="继承">继承</h3><p>类和对象的关系已经实现了继承，即对象会继承类的特性。更进一步，因为都是对象，所以可以直接赋值</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*新建一个cat对象*/</span></span><br><span class="line">cat = <span class="keyword">new</span> Animal;</span><br><span class="line"><span class="comment">/*将cat对象拷贝给redCat,这样redCat也具有了cat的属性和方法*/</span></span><br><span class="line">redCat = cat;</span><br></pre></td></tr></table></figure>
+<p>这种方式只是更改了名字而已，它们其实还是同一个对象，redCat的操作等同于cat进行的操作</p>
+<h3 id="原始类型与复合类型说明">原始类型与复合类型说明</h3><ul>
+<li>原始值：按值传递 string/number/boolean/null/undefined 注:null和undefine是不同的.</li>
+<li>复合类型：按引用传递 object/array/function</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*原始类型*/</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"yangxiaofu"</span>;</span><br><span class="line"><span class="keyword">var</span> age = <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*复合类型*/</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	name: <span class="string">"yangxiaofu"</span>,</span><br><span class="line">	age: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> score = [<span class="number">100</span>, <span class="number">90</span>, <span class="number">80</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newName = name;</span><br><span class="line"><span class="keyword">var</span> newAge = age;</span><br><span class="line"><span class="keyword">var</span> newPerson = person;</span><br><span class="line"><span class="keyword">var</span> newScore = score;</span><br><span class="line"></span><br><span class="line">newName = <span class="string">"xiaoyang"</span>;</span><br><span class="line">newAge = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">newPerson.name = <span class="string">"newPerson"</span>;</span><br><span class="line">newPerson.age = <span class="string">'30'</span>;</span><br><span class="line"></span><br><span class="line">newScore[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(name, age);		<span class="comment">/*yangxiaofu 18,说明改变newName和newAge并不影响到name,age的值*/</span></span><br><span class="line"><span class="built_in">console</span>.log(person, score);	<span class="comment">/*&#123;name: "newPerson", age: "30"&#125; [100, 0, 80]，对newPerson和newScore的修改影响到了person和score*/</span></span><br></pre></td></tr></table></figure>
+<p>复合类型的这种引用传递方式有时很有用，但我们在实现继承的时候却不希望继承者的改变会影响到被继承者。这里可以通过拷贝的方式来实现。</p>
+<ul>
+<li>浅拷贝</li>
+<li>深拷贝</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	name: <span class="string">"yangxiaofu"</span>,</span><br><span class="line">	brother: &#123;</span><br><span class="line">		name: <span class="string">"xiaoyang"</span>,</span><br><span class="line">		age: <span class="number">12</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*浅拷贝，即只拷贝第一层*/</span></span><br><span class="line"><span class="keyword">var</span> copy = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> newObj = &#123;&#125;;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> p <span class="keyword">in</span> obj)&#123;</span><br><span class="line">		newObj[p] = obj[p];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> newObj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newPerson = copy(person);</span><br><span class="line">newPerson.name = <span class="string">"newPerson"</span>;</span><br><span class="line">newPerson.brother.name = <span class="string">"newBrother"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person, newPerson);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*深拷贝，检测对象属性是否是复合类型，若是则递归拷贝*/</span></span><br><span class="line"><span class="keyword">var</span> deepCopy = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">typeof</span> obj != <span class="string">'object'</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> obj;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="comment">/*var newObj = &#123;&#125;;*/</span></span><br><span class="line">		<span class="keyword">var</span> newObj = obj.constructor === <span class="built_in">Array</span>?[]:&#123;&#125;; <span class="comment">/*增加对数组的支持*/</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> p <span class="keyword">in</span> obj)&#123;</span><br><span class="line">			newObj[p] = deepCopy(obj[p])<span class="comment">/*递归拷贝*/</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> newObj;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> deepPerson = deepCopy(person);</span><br><span class="line">deepPerson.name = <span class="string">"deepPerson"</span>;</span><br><span class="line">deepPerson.brother.name = <span class="string">"deepBrother"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person, newPerson, deepPerson);</span><br></pre></td></tr></table></figure>
+<p><img src="/img/prototype/deepCopy.png" alt="浅拷贝、深拷贝"><br>从上图可以知道使用浅拷贝时，拷贝所得新对象的属性brother(也是一个对象)的修改操作会影响到原对象的brother属性，而使用深拷贝已不会影响。</p>
+<p>继承也可通过上面的拷贝函数来实现。</p>
+<h3 id="继承实现">继承实现</h3><ul>
+<li>构造函数实现</li>
+</ul>
+<p>上面我们已经用构造函数实现了类，并实现了继承。实例对象会继承类的属性和方法</p>
+<ul>
+<li>拷贝实现</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">subObj, obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">typeof</span> obj != <span class="string">'object'</span>)&#123;</span><br><span class="line">		subObj = obj;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="comment">/*var newObj = &#123;&#125;;*/</span></span><br><span class="line">		<span class="keyword">var</span> newObj = obj.constructor === <span class="built_in">Array</span>?[]:&#123;&#125;; <span class="comment">/*增加对数组的支持*/</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> p <span class="keyword">in</span> obj)&#123;</span><br><span class="line">			newObj[p] = extend(obj[p])<span class="comment">/*递归拷贝*/</span></span><br><span class="line">		&#125;</span><br><span class="line">		subObj = newObj;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>subObj会继承obj对象的属性方法，如果有同样的属性方法会被obj的替代。</p>
+<p>在ruby中有一种实现类似多继承的功能，是mix-in,使用模块继承方式，其实类似于我们这里的拷贝继承，将一个对象[注意这里不是类]的方法属性继承到一个新的对象中。</p>
+<ul>
+<li>prototype实现</li>
+</ul>
+<p>prototype即原型，通过原型链，可以实现层次关系，这是拷贝的方式所不能达到的。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Animal = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*属性:名字、年龄、体重、身高*/</span></span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">"Animal"</span>;</span><br><span class="line">	<span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">this</span>.weight = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">this</span>.height = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*初始化方法*/</span></span><br><span class="line">	<span class="keyword">this</span>.initial = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = obj[<span class="string">'name'</span>] || <span class="keyword">this</span>.name;</span><br><span class="line">		<span class="keyword">this</span>.age = obj[<span class="string">'age'</span>] || <span class="keyword">this</span>.age;</span><br><span class="line">		<span class="keyword">this</span>.weight = obj[<span class="string">'weight'</span>] || <span class="keyword">this</span>.weight;</span><br><span class="line">		<span class="keyword">this</span>.height = obj[<span class="string">'height'</span>] || <span class="keyword">this</span>.height;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*方法*/</span></span><br><span class="line">	<span class="comment">/*输出对象信息*/</span></span><br><span class="line">	<span class="keyword">this</span>.introduce = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"name: "</span>, <span class="keyword">this</span>.name, <span class="string">"age: "</span>, <span class="keyword">this</span>.age, <span class="string">"weight: "</span>, <span class="keyword">this</span>.weight, <span class="string">"height: "</span>, <span class="keyword">this</span>.height);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Animal.prototype.fly = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"I can fly!"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*实例化的对象自带的方法*/</span></span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Animal(&#123;name: <span class="string">'Cat'</span>&#125;);	<span class="comment">/*名字是Cat*/</span></span><br><span class="line">cat.fly();	<span class="comment">/*I can fly!*/</span></span><br><span class="line">cat.fly = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"I can't fly!"</span>);</span><br><span class="line">&#125;</span><br><span class="line">cat.fly();	<span class="comment">/*I can't fly!*/</span></span><br></pre></td></tr></table></figure>
+<p>对象在调用它的方法的时候会先去查找自己是否有这个方法，若没有则通过<strong>proto</strong>找到原型对象，从原型对象上查找该方法，如果还没找到则会继续往上找即js原型链。挂在prototype对象下的好处是所有的实例对象公用，不会每一个对象保存一份拷贝，这样会节省不少内存.</p>
+<h3 id="Mix-in">Mix-in</h3><p>拷贝继承会将一个对象的方法属性加到我们的对象中，这样出现冲突则会覆盖，并且没有层级关系，我们可以通过prototype来解决。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">extended</span>(<span class="params">sub, parent</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">typeof</span> sub.__proto__ === <span class="string">'object'</span>)&#123;</span><br><span class="line">		<span class="comment">/*如果sub对象的__proto__对象是object，则直接赋值，否则在sub上多加一层__proto__*/</span></span><br><span class="line">		sub.__proto__ = parent;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> temp = sub.__proto__;</span><br><span class="line">		sub.__proto__ = parent;</span><br><span class="line">		parent.__proto__ = temp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如我们现在的继承关系是这样的：</p>
+<ul>
+<li>1.动物[类|Animal]——&gt;猫[实例对象|cat]</li>
+<li>2.给猫增加咖菲猫的功能[coffeCat]</li>
+<li>3.extended(cat, coffeCat)</li>
+</ul>
+<p>这时我们得到的继承关系是这样的：</p>
+<ul>
+<li>cat.<strong>proto</strong>: 指向coffeCat</li>
+<li>coffeCat.<strong>proto</strong>: 指向Animal</li>
+</ul>
+<p>即cat-&gt;Animal变成了cat-&gt;coffeCat-&gt;Animal</p>
+<p>上面这种继承方式会优先调用通过extended继承来的属性。</p>
+<p>如果想要优先继承自己的类的可以这样做：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">extended</span>(<span class="params">sub, parent</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">typeof</span> sub.__proto__ === <span class="string">'object'</span>)&#123;</span><br><span class="line">		<span class="comment">/*如果sub对象的__proto__对象是object，则直接赋值，否则在sub上多加一层__proto__*/</span></span><br><span class="line">		sub.__proto__ = parent;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		sub.__proto__.__proto__ = parent;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即cat-&gt;Animal变成了cat-&gt;Animal-&gt;coffeCat这样的继承关系</p>
+<h3 id="多态">多态</h3><p>在动态类型的语言里面一般较少的提到多态，所以这里不提及。</p>
+<h2 id="模块化">模块化</h2><p>模块化即抽象，我们前面的封装操作即模块化的过程，一个函数可以作为一个模块，一个类可以作为一个模块，一个对象可以作为一个模块，一个文件也可以作为一个模块。</p>
+<p>当我们谈到js的模块化的时候更多的是从文件层次，即一个文件代表一个模块。seaJS就是出于这样的目的来的，因为js自身没有这样的功能(ES6已具备这样的功能)。</p>
+<ul>
+<li>cmd</li>
+<li>amd</li>
+<li>Es6</li>
+</ul>
 								</div>
 								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
 							
 						</div>
 						<hr>
 						</div>
-				 	
-				
 				 	
 				
 				 	

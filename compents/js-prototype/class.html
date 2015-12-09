@@ -209,38 +209,107 @@
 
 
 
-var Animal = function(obj){
-	/*属性:名字、年龄、体重、身高*/
-	this.name = "Animal";
-	this.age = 0;
-	this.weight = 0;
-	this.height = 0;
+// var Animal = function(obj){
+// 	/*属性:名字、年龄、体重、身高*/
+// 	this.name = "Animal";
+// 	this.age = 0;
+// 	this.weight = 0;
+// 	this.height = 0;
 	
-	/*初始化方法*/
-	this.initial = function(obj){
-		this.name = obj['name'] || this.name;
-		this.age = obj['age'] || this.age;
-		this.weight = obj['weight'] || this.weight;
-		this.height = obj['height'] || this.height;
-	}
+// 	/*初始化方法*/
+// 	this.initial = function(obj){
+// 		this.name = obj['name'] || this.name;
+// 		this.age = obj['age'] || this.age;
+// 		this.weight = obj['weight'] || this.weight;
+// 		this.height = obj['height'] || this.height;
+// 	}
 
-	/*方法*/
-	/*输出对象信息*/
-	this.introduce = function(){
-		console.log("name: ", this.name, "age: ", this.age, "weight: ", this.weight, "height: ", this.height);
+// 	/*方法*/
+// 	/*输出对象信息*/
+// 	this.introduce = function(){
+// 		console.log("name: ", this.name, "age: ", this.age, "weight: ", this.weight, "height: ", this.height);
+// 	}
+// }
+
+// Animal.prototype.fly = function(){
+// 	console.log("I can fly!");
+// }
+// /*实例化的对象自带的方法*/
+// var cat = new Animal({name: 'Cat'});	/*名字是Cat*/
+// var dog = new Animal();
+// cat.fly();
+// cat.fly = function(){
+// 	console.log("I can't fly!");
+// }
+// dog.fly();
+// cat.fly();
+
+
+function extend(subObj, obj){
+	console.log(obj)
+	if(typeof obj != 'object'){
+		console.log(obj)
+		subObj.prototype.obj = obj;
+	}else{
+		/*var newObj = {};*/
+		var newObj = obj.constructor === Array?[]:{}; /*增加对数组的支持*/
+		for(var p in obj){
+			newObj[p] = extend(obj[p])/*递归拷贝*/
+		}
+		subObj.prototype.newObj = newObj;
 	}
 }
 
-Animal.prototype.fly = function(){
-	console.log("I can fly!");
+var Life = function(){
+	this.hand = "five";
+	this.tog = function(){
+		console.log("tog");
+	}
 }
-/*实例化的对象自带的方法*/
-var cat = new Animal({name: 'Cat'});	/*名字是Cat*/
-cat.fly();
-cat.fly = function(){
-	console.log("I can't fly!");
+
+var myHand = new Life;
+myHand.tog = function(){
+	console.log("myHand-tog");
 }
-cat.fly();
+
+console.log(myHand);
+
+var Animal = {
+	eat: function(){
+		console.log("I like food!")
+	},
+	listen: function(){
+		console.log("listen")
+	}
+}
+console.log(Animal);
+var cat = {
+	name: "little cat",
+	jump: function(){
+		console.log("I can jump!");
+	}
+}
+cat.__proto__ = Animal;
+
+var redCat = {
+	jump: function(){
+		console.log("I can fly!");
+	}
+}
+
+function extended(sub, parent){
+	if(typeof sub.__proto__ === 'object'){
+		sub.__proto__ = parent;
+	}else{
+		var temp = sub.__proto__;
+		sub.__proto__ = parent;
+		parent.__proto__ = temp;
+	}
+}
+extended(redCat, myHand);
+
+//extend(redCat, cat)
+console.log("redCat",redCat,redCat.tog());
 </script>
 
 </html>

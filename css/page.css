@@ -374,13 +374,19 @@
 
 
 /*websites-page css*/
+.websites-body h2{
+    color: #B24926;
+    border-bottom: 1px solid #eee;
+}
+
+
 .websites-body a{
     display: inline-block;
     padding: 5px 10px;
     margin: 5px;
     border: 1px solid #eee;
     border-radius: 5px;
-    box-shadow: 1px 1px 1px #999;
+    /*box-shadow: 1px 1px 1px #999;*/
     color: #000;
 }
 

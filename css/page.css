@@ -113,6 +113,7 @@
 
 #mainContent p {
     margin: 10px 0;
+    font-size: 16px;
 }
 
 #mainContent p a {
@@ -374,6 +375,14 @@
 
 
 /*websites-page css*/
+.text-warning{
+    color: #B24926 !important;
+}
+
+.text-warning a{
+    color: #B24926 !important;
+}
+
 .websites-body h2{
     color: #B24926;
     border-bottom: 1px solid #eee;

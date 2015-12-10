@@ -157,3 +157,22 @@ img {
     img[data-src] {
         opacity: 0;
     }
+
+.warning-btn{
+    display: inline-block;
+    padding: 5px 10px;
+    background: #B24926;
+    border: 1px solid #B24926;
+    color: #ffffff;
+}
+
+.warning-btn:hover{
+    border: 1px solid #eee;
+    background: #414141;
+}
+
+#look_more{
+    width: 200px;
+    text-decoration: none;
+    color: #ffffff !important;
+}

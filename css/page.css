@@ -400,7 +400,7 @@
 
 .websites-body a:hover{
     color: #ffffff;
-    background: #000;
+    background: rgb(75, 75, 75);
     border: 1px solid #111;
 }
 

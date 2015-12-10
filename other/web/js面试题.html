@@ -79,6 +79,10 @@
 <h2 id="问题5：call()和apply()">问题5：call()和apply()</h2><p>修复前一个问题，让最后一个console.log() 打印输出Aurelio De Rosa.</p>
 <h3 id="答案-4">答案</h3><p>这个问题可以通过运用call（）或者apply()方法强制转换上下文环境。如果你不了解这两个方法及它们的区别，我建议你看看这篇文章What’s the difference between function.call and function.apply?. 下面的代码中我用了call(),但apply（）也能产生同样的结果：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(test.call(obj.prop));</span><br></pre></td></tr></table></figure>
+<h2 id="问题六：闭包">问题六：闭包</h2><p>请问下面的this和aa的输出值是？</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"this"</span>,<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> foo;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> aa = test();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"aa:"</span>,aa());</span><br></pre></td></tr></table></figure>
+<h3 id="答案-5">答案</h3><p>aa:1和this:window,aa的结果是1的原因是函数调用时的作用域环境是声明时的环境，而this则是指向调用者，这里没有明确指明调用者，则是window。</p>
+
 		</div>
 	</div>
 

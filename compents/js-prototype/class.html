@@ -7,8 +7,13 @@
 </head>
 
 <body>
+	<div class="panel red"></div>
 </body>
 <script>
+var panel = document.getElementsByClassName("panel")[0];
+console.log(typeof panel);
+
+
 /*定义一个初始化函数,实例化的对象是不会继承该方法的*/
 	// var initial = function(obj){
 	// 	if(typeof obj === Object){
@@ -245,71 +250,71 @@
 // cat.fly();
 
 
-function extend(subObj, obj){
-	console.log(obj)
-	if(typeof obj != 'object'){
-		console.log(obj)
-		subObj.prototype.obj = obj;
-	}else{
-		/*var newObj = {};*/
-		var newObj = obj.constructor === Array?[]:{}; /*增加对数组的支持*/
-		for(var p in obj){
-			newObj[p] = extend(obj[p])/*递归拷贝*/
-		}
-		subObj.prototype.newObj = newObj;
-	}
-}
+// function extend(subObj, obj){
+// 	console.log(obj)
+// 	if(typeof obj != 'object'){
+// 		console.log(obj)
+// 		subObj.prototype.obj = obj;
+// 	}else{
+// 		/*var newObj = {};*/
+// 		var newObj = obj.constructor === Array?[]:{}; /*增加对数组的支持*/
+// 		for(var p in obj){
+// 			newObj[p] = extend(obj[p])/*递归拷贝*/
+// 		}
+// 		subObj.prototype.newObj = newObj;
+// 	}
+// }
 
-var Life = function(){
-	this.hand = "five";
-	this.tog = function(){
-		console.log("tog");
-	}
-}
+// var Life = function(){
+// 	this.hand = "five";
+// 	this.tog = function(){
+// 		console.log("tog");
+// 	}
+// }
 
-var myHand = new Life;
-myHand.tog = function(){
-	console.log("myHand-tog");
-}
+// var myHand = new Life;
+// myHand.tog = function(){
+// 	console.log("myHand-tog");
+// }
 
-console.log(myHand);
+// console.log(myHand);
 
-var Animal = {
-	eat: function(){
-		console.log("I like food!")
-	},
-	listen: function(){
-		console.log("listen")
-	}
-}
-console.log(Animal);
-var cat = {
-	name: "little cat",
-	jump: function(){
-		console.log("I can jump!");
-	}
-}
-cat.__proto__ = Animal;
+// var Animal = {
+// 	eat: function(){
+// 		console.log("I like food!")
+// 	},
+// 	listen: function(){
+// 		console.log("listen")
+// 	}
+// }
+// console.log(Animal);
+// var cat = {
+// 	name: "little cat",
+// 	jump: function(){
+// 		console.log("I can jump!");
+// 	}
+// }
+// cat.__proto__ = Animal;
 
-var redCat = {
-	jump: function(){
-		console.log("I can fly!");
-	}
-}
+// var redCat = {
+// 	jump: function(){
+// 		console.log("I can fly!");
+// 	}
+// }
 
-function extended(sub, parent){
-	if(typeof sub.__proto__ === 'object'){
-		sub.__proto__ = parent;
-	}else{
-		var temp = sub.__proto__;
-		sub.__proto__ = parent;
-		parent.__proto__ = temp;
-	}
-}
-extended(redCat, myHand);
+// function extended(sub, parent){
+// 	if(typeof sub.__proto__ === 'object'){
+// 		sub.__proto__ = parent;
+// 	}else{
+// 		var temp = sub.__proto__;
+// 		sub.__proto__ = parent;
+// 		parent.__proto__ = temp;
+// 	}
+// }
+// extended(redCat, myHand);
 
-//extend(redCat, cat)
-console.log("redCat",redCat,redCat.tog());
+// //extend(redCat, cat)
+// console.log("redCat",redCat,redCat.tog());
 </script>
 
 </html>

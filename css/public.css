@@ -176,3 +176,14 @@ img {
     text-decoration: none;
     color: #ffffff !important;
 }
+
+.header-preview{
+    background: #111;
+    padding: 40px 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+.header-preview h2{
+    font-size: 36px !important;
+}

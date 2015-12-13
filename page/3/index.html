@@ -70,6 +70,53 @@
 				 	
 				
 				 	
+				 	<div class="post-item">	
+						<header>
+							<h1>
+								<a href="/2015/12/14/web组件/json_script-processor/" target="_blank">基于NodeJS实现的一个css预处理器</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-12-14</a>
+								</span>
+								<span class="post-tag">
+									
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/nodeJS/" target="_blank">nodeJS</a>
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/开源项目/" target="_blank">开源项目</a>
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<div class="header-preview" style=""><h2>json_script,基于nodeJS实现的css预处理器</h2><p>just for fun?</p></div>
+
+<p>一时兴起，想用json格式来编写css，然后就出现了json_script.json是一种十分简洁的数据格式，学过javascript的人都会用，现在已作为web中传递数据的一种主要的数据格式，所以也有很多时候需要将json格式的数据转换成css、html。既然如此，为什么不能直接将json转为web页面呢？web页面基本上是由css/html/javascript组成的，所以可以用json或是javascript来直接生成一张web页面那不是很方便？</p>
+<h2 id="just_for_fun?">just for fun?</h2><p>虽然只是因为有趣，但我还是发现有人已经做出了这样的东西，而且还很不错。但依然不影响我去做这样一个东西的兴趣，这也是在web组件化上探索的一步。</p>
+								</div>
+								<div class="post-more">
+									<h2 id="原理？">原理？</h2><p>这里得益于json这种数据格式非常简洁，已经不再需要正则这种进行数据提取。因为它已经自带了很好的结构化的信息。</p>
+<ul>
+<li>传入json格式数据</li>
+<li>转换为中间数据格式(css是不支持嵌套的，转换成不嵌套的格式)</li>
+<li>生成css格式数据</li>
+</ul>
+<h3 id="json">json</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">'.wrap'</span>: &#123;</span><br><span class="line">        <span class="string">'margin-top'</span>: <span class="string">'20px'</span>,</span><br><span class="line">        <span class="string">'padding'</span>: <span class="string">'20px'</span>,</span><br><span class="line">        <span class="string">'color'</span>: <span class="string">'#444'</span>,</span><br><span class="line">        p: &#123;</span><br><span class="line">            <span class="string">'padding-top'</span>: <span class="string">'20px'</span>,</span><br><span class="line">            <span class="string">'font-size'</span>: <span class="string">'28px'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="中间格式-json_css">中间格式-json_css</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">'.wrap'</span>: &#123;</span><br><span class="line">        <span class="string">'margin-top'</span>: <span class="string">'20px'</span>,</span><br><span class="line">        <span class="string">'padding'</span>: <span class="string">'20px'</span>,</span><br><span class="line">        <span class="string">'color'</span>: <span class="string">'#444'</span>,</span><br><span class="line">        p: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">'.wrap p'</span>: &#123;</span><br><span class="line">            <span class="string">'padding-top'</span>: <span class="string">'20px'</span>,</span><br><span class="line">            <span class="string">'font-size'</span>: <span class="string">'28px'</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="css格式">css格式</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">.wrap &#123;</span><br><span class="line">  margin-top: 20px;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  color: #444;</span><br><span class="line">&#125;</span><br><span class="line">.wrap p &#123;</span><br><span class="line">  padding-top: 20px;</span><br><span class="line">  font-size: 28px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>项目介绍: <a href="http://yangxiaofu.com/json_script/readme.html">http://yangxiaofu.com/json_script/readme.html</a><br>github: <a href="https://github.com/xiaofuzi/json_script">https://github.com/xiaofuzi/json_script</a></p>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
+						<hr>
+						</div>
+				 	
+				
+				 	
 				
 				 	
 				

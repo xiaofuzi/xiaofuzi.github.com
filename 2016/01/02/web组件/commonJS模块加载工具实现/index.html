@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="杨小福,yangxiaofu,前端,编程,html,css,javascript,nodeJS">
+    <meta name="description" content="杨小福的博客，记点笔记">
+    <title>
+        
+	CommonJS模块加载工具实现
+
+    </title>
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/monokai.min.css">
+    <link rel="stylesheet" href="/css/post_add.css">
+    <link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0904845f91ea208faa55eaa72f93fab1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    <div id="headerWrapper" class="cf">
+        <header id="header" class="cf">
+            <div id="logo">
+                <h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+                <div class="logo-subtitle">
+                    programmer
+                </div>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/archives">Posts</a></li>
+                    <li><a href="/websites/index.html">Nav</a></li>
+                    <li><a href="/Lab">Lab</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
+	<style>
+		body{
+			background: #f9f9f9;
+		}
+		#headerWrapper{
+			background: #ffffff;
+		}
+	</style>
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2016/01/02/web组件/commonJS模块加载工具实现/">CommonJS模块加载工具实现</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2016-01-02</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/nodeJS/" target="_blank">nodeJS</a>
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/开源项目/" target="_blank">开源项目</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<p>module.exports 和 exports 有时会让人迷惑，深入了解才发现是如此的简单。模块加载现在已经渐渐成为js开发中的一个必不可少的功能，所以在这里简单的实现一个遵循commonJS规范的模块加载工具，下面是核心代码。<br>注：浏览器端因为同步加载方式可能会阻塞，所以一般使用的是AMD规范，如requireJS.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</span><br><span class="line">    vm = <span class="built_in">require</span>(<span class="string">'./sandbox'</span>),</span><br><span class="line">    pathFormat = <span class="built_in">require</span>(<span class="string">'./helper/formatPath'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * global variable myrequire</span><br><span class="line"> */</span></span><br><span class="line"><span class="built_in">module</span>.exports = global.myrequire = myrequire;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * params &#123;modName&#125; required mod name</span><br><span class="line"> * return &#123;exports&#125; exports mod </span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myrequire</span>(<span class="params">modname</span>) </span>&#123;</span><br><span class="line">    modname = pathFormat(modname);</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     * cache</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">if</span> (modname <span class="keyword">in</span> myrequire.cache) &#123;</span><br><span class="line">        <span class="keyword">return</span> myrequire.cache[modname];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> modScript = fs.readFileSync(modname, <span class="string">'utf8'</span>);</span><br><span class="line">    <span class="keyword">var</span> myexports = vm.run(modScript);</span><br><span class="line">    myrequire.cache[modname] = myexports;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> myexports;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * cache required modules</span><br><span class="line"> */</span></span><br><span class="line">myrequire.cache = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="sandbox_implements">sandbox implements</h2><ul>
+<li>initila commit 使用的是 new Function 来实现</li>
+<li>现使用nodeJS的vm模块</li>
+</ul>
+<h2 id="node原生模块兼容">node原生模块兼容</h2><ul>
+<li>支持require和module.exports/exports</li>
+<li>如需要更多全局变量支持可直接挂载在global下</li>
+</ul>
+<h2 id="guide">guide</h2><ul>
+<li>myrequire()-导入</li>
+<li>mymodule()-导出</li>
+<li>使用绝对路径</li>
+</ul>
+<p>github: <a href="https://github.com/xiaofuzi/commonJS" target="_blank" rel="external">https://github.com/xiaofuzi/commonJS</a></p>
+
+				</div>
+				<div class="post-nav">
+					
+					
+						<span class="next"><a href="/2015/12/20/web组件/bookerjs/">Next</a></span>
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="CommonJS模块加载工具实现" data-title="CommonJS模块加载工具实现" data-url="/2016/01/02/web组件/commonJS模块加载工具实现/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+    <footer id="footer">
+        <i id="upToTop"></i>
+        <p>
+            联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/post.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.highlight').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+</body>
+
+</html>

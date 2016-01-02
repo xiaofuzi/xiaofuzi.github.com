@@ -38,10 +38,11 @@
             </div>
             <nav id="main-nav">
                 <ul>
-                    <li><a href="/">首页</a></li>
-                    <li><a href="/archives">博文</a></li>
-                    <li><a href="/websites/index.html">网址导航</a></li>
-                    <li><a href="/about">关于</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/archives">Posts</a></li>
+                    <li><a href="/websites/index.html">Nav</a></li>
+                    <li><a href="/Lab">Lab</a></li>
+                    <li><a href="/about">About</a></li>
                 </ul>
             </nav>
         </header>
@@ -72,6 +73,53 @@
 				 	
 				
 				 	
+				
+				 	
+				 	<div class="post-item">	
+						<header>
+							<h1>
+								<a href="/2016/01/02/web组件/commonJS模块加载工具实现/" target="_blank">CommonJS模块加载工具实现</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2016-01-02</a>
+								</span>
+								<span class="post-tag">
+									
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/nodeJS/" target="_blank">nodeJS</a>
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/开源项目/" target="_blank">开源项目</a>
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<p>module.exports 和 exports 有时会让人迷惑，深入了解才发现是如此的简单。模块加载现在已经渐渐成为js开发中的一个必不可少的功能，所以在这里简单的实现一个遵循commonJS规范的模块加载工具，下面是核心代码。<br>注：浏览器端因为同步加载方式可能会阻塞，所以一般使用的是AMD规范，如requireJS.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</span><br><span class="line">    vm = <span class="built_in">require</span>(<span class="string">'./sandbox'</span>),</span><br><span class="line">    pathFormat = <span class="built_in">require</span>(<span class="string">'./helper/formatPath'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * global variable myrequire</span><br><span class="line"> */</span></span><br><span class="line"><span class="built_in">module</span>.exports = global.myrequire = myrequire;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * params &#123;modName&#125; required mod name</span><br><span class="line"> * return &#123;exports&#125; exports mod </span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myrequire</span>(<span class="params">modname</span>) </span>&#123;</span><br><span class="line">    modname = pathFormat(modname);</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     * cache</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">if</span> (modname <span class="keyword">in</span> myrequire.cache) &#123;</span><br><span class="line">        <span class="keyword">return</span> myrequire.cache[modname];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> modScript = fs.readFileSync(modname, <span class="string">'utf8'</span>);</span><br><span class="line">    <span class="keyword">var</span> myexports = vm.run(modScript);</span><br><span class="line">    myrequire.cache[modname] = myexports;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> myexports;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * cache required modules</span><br><span class="line"> */</span></span><br><span class="line">myrequire.cache = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="sandbox_implements">sandbox implements</h2><ul>
+<li>initila commit 使用的是 new Function 来实现</li>
+<li>现使用nodeJS的vm模块</li>
+</ul>
+<h2 id="node原生模块兼容">node原生模块兼容</h2><ul>
+<li>支持require和module.exports/exports</li>
+<li>如需要更多全局变量支持可直接挂载在global下</li>
+</ul>
+<h2 id="guide">guide</h2><ul>
+<li>myrequire()-导入</li>
+<li>mymodule()-导出</li>
+<li>使用绝对路径</li>
+</ul>
+<p>github: <a href="https://github.com/xiaofuzi/commonJS" target="_blank" rel="external">https://github.com/xiaofuzi/commonJS</a></p>
+
+							
+						</div>
+						<hr>
+						</div>
+				 	
+				
+				 	
 				 	<div class="post-item">	
 						<header>
 							<h1>
@@ -93,7 +141,7 @@
 						</header>
 						<div class="post-body">
 							
-								<div style="line-height:300px;font-size:48px;color:#A21518;border-bottom: 2px dot #222;background:#fff;text-align:center;">booker.js——a simple book framework</div>
+								<div style="padding:100px 0;font-size:48px;color:#A21518;border-bottom: 2px dot #222;background:#fff;text-align:center;">booker.js——a simple book framework</div>
 
 <p>最近一直在用markdown来写文章，有时候会写小文集，那么博客这样的平台不太适合，于是将博客生成工具的部分功能提取出来，做了一个小的书籍生成工具，写博客和写书是的差别还是很大的，所以之后也会单独更新该项目。</p>
 <h2 id="功能：">功能：</h2><ul>

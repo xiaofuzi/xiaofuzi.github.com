@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="杨小福,yangxiaofu,前端,编程,html,css,javascript,nodeJS">
+    <meta name="description" content="杨小福的博客，记点笔记">
+    <title>
+         杨小福|Nerver stop thinking 
+    </title>
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/monokai.min.css">
+    <link rel="stylesheet" href="/css/post_add.css">
+    <link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0904845f91ea208faa55eaa72f93fab1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    <div id="headerWrapper" class="cf">
+        <header id="header" class="cf">
+            <div id="logo">
+                <h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+                <div class="logo-subtitle">
+                    programmer
+                </div>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/archives">Posts</a></li>
+                    <li><a href="/websites/index.html">Nav</a></li>
+                    <li><a href="/Lab">Lab</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<h1 id="常用node模块">常用node模块</h1><ul>
+<li>mime</li>
+<li>co </li>
+<li>debug</li>
+<li>qs</li>
+<li>fresh</li>
+<li>negotiator</li>
+</ul>
+<h2 id="mime">mime</h2><p>A comprehensive library for mime-type mapping</p>
+<h2 id="co">co</h2><p>npm: <a href="https://www.npmjs.com/package/co" target="_blank" rel="external">https://www.npmjs.com/package/co</a><br>description:generator async control flow goodness</p>
+<h2 id="debug">debug</h2><p>npm: <a href="https://www.npmjs.com/package/debug" target="_blank" rel="external">https://www.npmjs.com/package/debug</a><br>description: tiny node.js debugging utility modelled after node core’s debugging technique.</p>
+<h2 id="qs">qs</h2><p><a href="https://www.npmjs.com/package/qs" target="_blank" rel="external">https://www.npmjs.com/package/qs</a><br>A querystring parser that supports nesting and arrays, with a depth limit</p>
+<h2 id="fresh">fresh</h2><p><a href="https://www.npmjs.com/package/fresh" target="_blank" rel="external">https://www.npmjs.com/package/fresh</a></p>
+<p>fresh(req, res)<br>Check freshness of req and res headers.检测res相对于req是否发生了变化。</p>
+<h2 id="negotiator">negotiator</h2><p>An HTTP content negotiator for Node.js</p>
+
+		</div>
+	</div>
+
+    <footer id="footer">
+        <i id="upToTop"></i>
+        <p>
+            联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/post.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.highlight').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+</body>
+
+</html>

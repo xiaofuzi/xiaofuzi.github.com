@@ -1,0 +1,24 @@
+html,body{
+	height: 100%;
+	background: #090909;
+}
+
+#header{
+	height: 250px;
+	text-align: center;
+}
+
+.header-wrap h1{
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1;
+	color: #ffffff;
+	padding-top: 100px;
+}
+
+.header-wrap h2 a{
+	font-size: 16px;
+	color: #ffffff;
+	font-weight: 400;
+	opacity: .3;
+}

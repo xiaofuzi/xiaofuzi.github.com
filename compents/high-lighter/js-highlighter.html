@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>js highlighter</title>
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	.container{
+		padding: 5px;
+		background: #23241f;
+	}
+	.js-keyword{
+    	color: #f92672;		
+	}
+	.js-comment{
+		color: #75715e;
+	}
+	.js-number{
+ 	    color: #f92672		
+	}
+	.js-punctuation {
+        color: #ffffff;
+    }
+    .js-identifier {
+	    color: #e6db74;
+    }
+    
+    .js-string {
+	    color: #ffffff;
+    }
+    .js-regexp{
+    	color: #66d9ef;
+    }
+    .js-function{
+    	color: #a6e22e;
+    }
+    .js-params{
+    	color: #a71d5d;
+    }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<span class="js-comment">/**<br />*&nbsp;some&nbsp;helper&nbsp;functions<br />*/</span><br /><span class="js-keyword">var</span>&nbsp;<span class="js-identifier">utils</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-identifier">module</span><span class="js-punctuation">.</span><span class="js-identifier">exports</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-punctuation">{</span><span class="js-punctuation">}</span><span class="js-punctuation">;</span><br /><br /><br /><br /><span class="js-comment">/*<br />*&nbsp;tabSpace<br />*/</span><br /><br /><span class="js-identifier">utils</span><span class="js-punctuation">.</span><span class="js-function">tabSpace</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-keyword">function</span><span class="js-punctuation">(</span><span class="js-params">num</span><span class="js-punctuation">)</span><span class="js-punctuation">{</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-keyword">var</span>&nbsp;<span class="js-identifier">tabSpace</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-string">"</span><span class="js-string">"</span><span class="js-punctuation">,</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-identifier">tabSpaceNum</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-identifier">num</span>&nbsp;<span class="js-punctuation">|</span><span class="js-punctuation">|</span>&nbsp;<span class="js-number">4</span><span class="js-punctuation">;</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-keyword">for</span>&nbsp;<span class="js-punctuation">(</span><span class="js-keyword">var</span>&nbsp;<span class="js-identifier">i</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-number">0</span><span class="js-punctuation">;</span>&nbsp;<span class="js-identifier">i</span>&nbsp;<span class="js-punctuation">&lt</span>&nbsp;<span class="js-identifier">tabSpaceNum</span><span class="js-punctuation">;</span>&nbsp;<span class="js-punctuation">+</span><span class="js-punctuation">+</span><span class="js-params">i</span><span class="js-punctuation">)</span><span class="js-punctuation">{</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-identifier">tabSpace</span>&nbsp;<span class="js-punctuation">+</span><span class="js-punctuation">=</span>&nbsp;<span class="js-string">"</span><span class="js-string">&nbsp;</span><span class="js-string">"</span>&nbsp;<span class="js-punctuation">;</span>&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-punctuation">}</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-keyword">return</span>&nbsp;<span class="js-identifier">tabSpace</span>&nbsp;<span class="js-punctuation">;</span><br /><span class="js-punctuation">}</span><br /><br /><span class="js-comment">/*<br />*&nbsp;whiteSpace&nbsp;processing<br />*/</span><br /><span class="js-identifier">utils</span><span class="js-punctuation">.</span><span class="js-function">whiteSpaceHarden</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-keyword">function</span><span class="js-punctuation">(</span><span class="js-params">code</span><span class="js-punctuation">)</span><span class="js-punctuation">{</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-keyword">var</span>&nbsp;<span class="js-identifier">str</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-string">'</span><span class="js-string">'</span><span class="js-punctuation">;</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-identifier">str</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-identifier">code</span><span class="js-punctuation">.</span><span class="js-function">replace</span><span class="js-punctuation">(</span><span class="js-regexp">/ /g</span><span class="js-punctuation">,</span>&nbsp;<span class="js-string">"</span><span class="js-string">&nbsp;</span><span class="js-string">"</span><span class="js-punctuation">)</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-punctuation">.</span><span class="js-function">replace</span><span class="js-punctuation">(</span><span class="js-regexp">/\n/g</span><span class="js-punctuation">,</span>&nbsp;<span class="js-string">"</span><span class="js-string"><br /></span><span class="js-string">"</span><span class="js-punctuation">)</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-punctuation">.</span><span class="js-function">replace</span><span class="js-punctuation">(</span><span class="js-regexp">/\t/g</span><span class="js-punctuation">,</span>&nbsp;<span class="js-identifier">utils</span><span class="js-punctuation">.</span><span class="js-function">tabSpace</span><span class="js-punctuation">(</span><span class="js-punctuation">)</span><span class="js-punctuation">)</span><span class="js-punctuation">;</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-keyword">return</span>&nbsp;<span class="js-identifier">str</span><span class="js-punctuation">;</span><br /><span class="js-punctuation">}</span><br /><br /><br /><span class="js-comment">/*<br />*&nbsp;escape&nbsp;html<br />*/</span><br /><span class="js-identifier">utils</span><span class="js-punctuation">.</span><span class="js-function">escapeHtml</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-keyword">function</span><span class="js-punctuation">(</span><span class="js-params">code</span><span class="js-punctuation">)</span><span class="js-punctuation">{</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-keyword">var</span>&nbsp;<span class="js-identifier">s</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-identifier">code</span><span class="js-punctuation">;</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-identifier">s</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-identifier">s</span><span class="js-punctuation">.</span><span class="js-function">replace</span><span class="js-punctuation">(</span><span class="js-regexp">/&/g</span><span class="js-punctuation">,</span>&nbsp;<span class="js-string">"</span><span class="js-string">&amp</span><span class="js-string">"</span><span class="js-punctuation">)</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-punctuation">.</span><span class="js-function">replace</span><span class="js-punctuation">(</span><span class="js-regexp">/</g</span><span class="js-punctuation">,</span>&nbsp;<span class="js-string">"</span><span class="js-string">&lt</span><span class="js-string">"</span><span class="js-punctuation">)</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-punctuation">.</span><span class="js-function">replace</span><span class="js-punctuation">(</span><span class="js-regexp">/>/g</span><span class="js-punctuation">,</span>&nbsp;<span class="js-string">"</span><span class="js-string">&gt</span><span class="js-string">"</span><span class="js-punctuation">)</span><span class="js-punctuation">;</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-keyword">return</span>&nbsp;<span class="js-identifier">s</span><span class="js-punctuation">;</span><br /><span class="js-punctuation">}</span><br /><br /><span class="js-comment">/*<br />*&nbsp;escape&nbsp;and&nbsp;harden&nbsp;code<br />*/</span><br /><span class="js-identifier">utils</span><span class="js-punctuation">.</span><span class="js-function">escapeAndHarden</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-keyword">function</span><span class="js-punctuation">(</span><span class="js-params">code</span><span class="js-punctuation">)</span><span class="js-punctuation">{</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-identifier">code</span>&nbsp;<span class="js-punctuation">=</span>&nbsp;<span class="js-identifier">utils</span><span class="js-punctuation">.</span><span class="js-function">escapeHtml</span><span class="js-punctuation">(</span><span class="js-params">code</span><span class="js-punctuation">)</span><span class="js-punctuation">;</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-keyword">return</span>&nbsp;<span class="js-identifier">utils</span><span class="js-punctuation">.</span><span class="js-function">whiteSpaceHarden</span><span class="js-punctuation">(</span><span class="js-params">code</span><span class="js-punctuation">)</span><span class="js-punctuation">;</span><br /><span class="js-punctuation">}</span><br /><br />
+	</div>
+</body>
+</html>

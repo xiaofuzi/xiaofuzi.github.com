@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="杨小福,yangxiaofu,前端,编程,html,css,javascript,nodeJS">
+    <meta name="description" content="杨小福的博客，记点笔记">
+    <title>
+        
+	js lexer and highlighting
+
+    </title>
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/monokai.min.css">
+    <link rel="stylesheet" href="/css/post_add.css">
+    <link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0904845f91ea208faa55eaa72f93fab1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    <div id="headerWrapper" class="cf">
+        <header id="header" class="cf">
+            <div id="logo">
+                <h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+                <div class="logo-subtitle">
+                    programmer
+                </div>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/archives">Posts</a></li>
+                    <li><a href="/websites/index.html">Nav</a></li>
+                    <li><a href="/Lab">Lab</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
+	<style>
+		body{
+			background: #f9f9f9;
+		}
+		#headerWrapper{
+			background: #ffffff;
+		}
+	</style>
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2016/01/09/js-lexer-and-highlighting/">js lexer and highlighting</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2016-01-09</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/js/" target="_blank">js</a>
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/parser/" target="_blank">parser</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<h2 id="js代码分词以及高亮简单实现">js代码分词以及高亮简单实现</h2><h3 id="lexer">lexer</h3><ul>
+<li>递归</li>
+<li>正则</li>
+</ul>
+<h3 id="highlighter">highlighter</h3><p>highlighter作为lexer的一个中间件对lexer处理所得的token做进一步的处理，得到如下的形式代码：</p>
+<p>源码：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* some helper functions</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">var</span> utils = <span class="built_in">module</span>.exports = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>高亮处理后：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-comment"</span>&gt;</span>/**<span class="tag">&lt;<span class="title">br</span> /&gt;</span>*&amp;nbsp;some&amp;nbsp;helper&amp;nbsp;</span><br><span class="line">functions<span class="tag">&lt;<span class="title">br</span> /&gt;</span>*/<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">br</span> /&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-keyword"</span>&gt;</span>var<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">&amp;nbsp;<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-identifier"</span>&gt;</span>utils<span class="tag">&lt;/<span class="title">span</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"</span><br><span class="line">js-punctuation"</span>&gt;</span>=<span class="tag">&lt;/<span class="title">span</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-identifier"</span>&gt;</span>module</span><br><span class="line"><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-punctuation"</span>&gt;</span>.<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-</span><br><span class="line">identifier"</span>&gt;</span>exports<span class="tag">&lt;/<span class="title">span</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-punctuation"</span>&gt;</span>=<span class="tag">&lt;/</span><br><span class="line"><span class="attribute">span</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-punctuation"</span>&gt;</span>&#123;<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-</span><br><span class="line">punctuation"</span>&gt;</span>&#125;<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"js-punctuation"</span>&gt;</span>;<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里将js按如下进行划分：</p>
+<ul>
+<li>keyword</li>
+<li>identifier</li>
+<li>number</li>
+<li>punctuation</li>
+<li>string</li>
+<li>regexp</li>
+<li>function</li>
+<li>params</li>
+<li>comment</li>
+</ul>
+<p>给每一个类分别添加样式即得到高亮的效果。</p>
+<p><a href="/compents/high-lighter/js-highlighter.html">highlighter demo</a><br>github: <a href="https://github.com/xiaofuzi/parserJS" target="_blank" rel="external">https://github.com/xiaofuzi/parserJS</a></p>
+
+				</div>
+				<div class="post-nav">
+					
+					
+						<span class="next"><a href="/2016/01/03/js/continuation-passing-style/">Next</a></span>
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="js lexer and highlighting" data-title="js lexer and highlighting" data-url="/2016/01/09/js-lexer-and-highlighting/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+    <footer id="footer">
+        <i id="upToTop"></i>
+        <p>
+            联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/post.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.highlight').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+</body>
+
+</html>

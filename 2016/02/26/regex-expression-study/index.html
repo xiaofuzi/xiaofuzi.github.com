@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="杨小福,yangxiaofu,前端,编程,html,css,javascript,nodeJS">
+    <meta name="description" content="杨小福的博客，记点笔记">
+    <title>
+        
+	不要再说正则表达式学不会，其实很简单
+
+    </title>
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/monokai.min.css">
+    <link rel="stylesheet" href="/css/post_add.css">
+    <link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0904845f91ea208faa55eaa72f93fab1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    <div id="headerWrapper" class="cf">
+        <header id="header" class="cf">
+            <div id="logo">
+                <h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+                <div class="logo-subtitle">
+                    programmer
+                </div>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/archives">Posts</a></li>
+                    <li><a href="/websites/index.html">Nav</a></li>
+                    <li><a href="/Lab">Lab</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
+	<style>
+		body{
+			background: #f9f9f9;
+		}
+		#headerWrapper{
+			background: #ffffff;
+		}
+	</style>
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2016/02/26/regex-expression-study/">不要再说正则表达式学不会，其实很简单</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2016-02-26</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/js/" target="_blank">js</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<h2 id="不要再说正则表达式学不会，其实很简单">不要再说正则表达式学不会，其实很简单</h2><p>正则表达式在编程的过程中使用率非常的高，但很多人在学习的过程中往往侧重于语法的记忆而不去了解其实质，这让许多人对正则表达式感到畏惧，之前的我也是这样，但经过对正则表达式进一步的了解，其实它非常的简单，只不过为了描述字符串这样的无数据结构信息的数据它的语法不得不变得过于复杂，但如果理解了其原理，你反而会觉得其语法设计良好。</p>
+<ul>
+<li>并,记作 X|Y,表示的语言是正则表达式X与Y的并集，{a, b}。</li>
+<li>与:记作XY，表示的语言是将X的语言中的每个字符串后面连接上Y语言中的每一种字符串，再把所有这种连接的结果组成一种新的语言。</li>
+<li>克林闭包，记作X<em>,表示分别将零个，一个两个…无穷个X与自己连接，然后再求并，即 X</em> = ε|X|XX|XXX|….。</li>
+</ul>
+<p>优先级：<br>克林闭包 &gt; 连接运算 &gt; 并运算;</p>
+<h2 id="正则表达式的扩展运算：">正则表达式的扩展运算：</h2><ul>
+<li>方括号表示括号内的字符并运算。[abc]就等于a|b|c</li>
+<li>方括号中以^字符开头，表示字符集中，排除方括号中的所有字符之后，所剩字符的并运算。[^ab]就表示除了ab以外所有字符求并。</li>
+<li>圆.点表示字符集内所有字符的并。因此 .* 这个表达式就能表示这种字符集所能组成的一切字符串。</li>
+<li>X?表示 X|ε 。表示X与空字符串之间可选。</li>
+<li>X+表示XX*。这等于限制了X至少要重复1次。</li>
+</ul>
+
+				</div>
+				<div class="post-nav">
+					
+					
+						<span class="next"><a href="/2016/02/21/tiny-dom-libary-and-mvvm-framework/">Next</a></span>
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="不要再说正则表达式学不会，其实很简单" data-title="不要再说正则表达式学不会，其实很简单" data-url="/2016/02/26/regex-expression-study/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+    <footer id="footer">
+        <i id="upToTop"></i>
+        <p>
+            联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/post.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.highlight').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -7,7 +7,9 @@
     <meta name="keywords" content="杨小福,yangxiaofu,前端,编程,html,css,javascript,nodeJS">
     <meta name="description" content="杨小福的博客，记点笔记">
     <title>
-         杨小福|Nerver stop thinking 
+        
+	再谈对闭包的理解
+
     </title>
     <link rel="stylesheet" href="/css/public.css">
     <link rel="stylesheet" href="/css/page.css">
@@ -48,76 +50,37 @@
         </header>
     </div>
     
+	<style>
+		body{
+			background: #f9f9f9;
+		}
+		#headerWrapper{
+			background: #ffffff;
+		}
+	</style>
 	<div id="pageWrapper">
 		<div id="mainContent">
 			<article class="post">
-			<div class="items-wrap">
-				
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				 	<div class="post-item">	
-						<header>
-							<h1>
-								<a href="/2016/03/05/js/再谈闭包/" target="_blank">再谈对闭包的理解</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2016-03-05</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/js/" target="_blank">js</a>
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/pl/" target="_blank">pl</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
+				<header>
+					<h1>
+						<a href="/2016/03/05/js/再谈闭包/">再谈对闭包的理解</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2016-03-05</a>
+						</span>
+						<span class="post-tag">
 							
-								<div class="post-excerpt">
-									<h3 id="闭包只是为了实现词法作用域而用到的一种数据结构而已">闭包只是为了实现词法作用域而用到的一种数据结构而已</h3><p>先从阮一峰09年写的一篇关于闭包的文章开始<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">(原文地址)</a>文中说”可以把闭包理解为就是能够读取其他函数内部变量的函数,因为js中,只有函数内部的子函数才能读取局部变量，因此也可以把闭包定义在一个函数内部的函数。所以闭包本质就是将函数内部和函数外部连接起来的一座桥梁”。</p>
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/js/" target="_blank">js</a>
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/pl/" target="_blank">pl</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<h3 id="闭包只是为了实现词法作用域而用到的一种数据结构而已">闭包只是为了实现词法作用域而用到的一种数据结构而已</h3><p>先从阮一峰09年写的一篇关于闭包的文章开始<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="external">(原文地址)</a>文中说”可以把闭包理解为就是能够读取其他函数内部变量的函数,因为js中,只有函数内部的子函数才能读取局部变量，因此也可以把闭包定义在一个函数内部的函数。所以闭包本质就是将函数内部和函数外部连接起来的一座桥梁”。</p>
 <p>毕竟不是专业学习js的，也不是程序语言方面的专家，在这里就不去计较了，下文会给出更完整的闭包说明。(PS:个人还是比较欣赏阮一峰写的文章的，能将一些概念讲得通俗易懂)</p>
 <p>最后还留下了一个思考题</p>
 <ul>
@@ -129,14 +92,13 @@
 </li>
 </ul>
 <p>看完这道题，就希望大家将this和闭包分开，不要给自己找麻烦？</p>
-								</div>
-								<div class="post-more">
-									<p>在开始说闭包之前，需要理解好以下的概念：</p>
+<a id="more"></a>
+<p>在开始说闭包之前，需要理解好以下的概念：</p>
 <ul>
 <li>词法作用域(静态作用域)</li>
 <li>函数上下文</li>
 </ul>
-<p><a href="http://yangxiaofu.com/2016/01/25/js/closure-this/">之前简单的提过</a>,词法作用域简单的理解就是函数的上下文是在声明是确定的，而不是在调用时确定的。这里不想对这两个名词作过多的解释，我们知道js/ruby/python等主流的语言都是词法作用域就好，因为与之相对的动态作用域有许多的问题，所以现在的语言基本都是词法作用域的。</p>
+<p><a href="http://yangxiaofu.com/2016/01/25/js/closure-this/" target="_blank" rel="external">之前简单的提过</a>,词法作用域简单的理解就是函数的上下文是在声明是确定的，而不是在调用时确定的。这里不想对这两个名词作过多的解释，我们知道js/ruby/python等主流的语言都是词法作用域就好，因为与之相对的动态作用域有许多的问题，所以现在的语言基本都是词法作用域的。</p>
 <p>函数上下文就简单的理解为函数执行的环境好了，在这个环境中保存了函数执行所需的变量。</p>
 <h3 id="JavaScript权威指南第六版关于闭包的说明">JavaScript权威指南第六版关于闭包的说明</h3><blockquote>
 <p>JavaScript采用词法作用域，也就是说函数的执行依赖于变量的作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。为了实现词法作用域，JavaScript函数对象的内部状态不仅包含函数的代码逻辑，还必须引用当前的作用域链。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这种特性在计算机科学文献中称为”闭包”。</p>
@@ -173,109 +135,30 @@
 <li>闭包：函数执行时变量的获取从声明的作用域处去获取(注意链式关系，当前没有就往父级找，知道全局作用域)</li>
 <li>this：显示指定调用者则this就指向谁，如未指定则为全局对象</li>
 </ul>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-						<hr>
-						</div>
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				 	<div class="post-item">	
-						<header>
-							<h1>
-								<a href="/2015/11/17/html语法标准/" target="_blank">html不能这么写，你知道吗？</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-17</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/html/" target="_blank">html</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<ul>
-<li>a标签不可以嵌套交互式元素</li>
-<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
-<li>p标签不能包含块级元素</li>
-<li>这些标签不可包含块级元素</li>
-<li>li标签可以包含div以及ul，ul的子元素应该只有li</li>
-<li>元素并排（块级和块级并列，内联和内联并列)</li>
-</ul>
-								</div>
-								<div class="post-more">
-									<h2 id="标签错误嵌套">标签错误嵌套</h2><h3 id="语法错误">语法错误</h3><ul>
-<li>a标签不可以嵌套交互式元素[a， audio（如果设置了controls属性）， button， details， embed， iframe， img（如果设置了usemap属性）， input（如果type属性不为hidden状态）， keygen， label， menu（如果type属性为toolbar状态），object（如果设置了usemap属性）， select， textarea， video（如果设置了controls属性）]</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*下面这些写法浏览器是不能够正常解析的*/</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;a href=""&gt;click&lt;/a&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;button&gt;click&lt;/button&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;input type="text"&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line">&lt;a href=""&gt;</span><br><span class="line">	&lt;textarea name="" id="" cols="10" rows="5"&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<p><a href=""><a href="">click</a></a><a href=""><button>click</button></a><a href=""><input type="text"></a><a href=""><textarea name="" id="" cols="30" rows="10"></textarea></a></p>
-<p>有的虽然解析正常，但却达不到预想的目的</p>
-<h3 id="语义错误">语义错误</h3><p>页面可能正常解析，但不符合语义。这是因为浏览器自带容错机制，对于不规范的写法也能够正确的解析，各浏览器的容错机制不同，所以尽量按规范来写。</p>
-<ul>
-<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*规范的写法*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;jikexueyuan&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;IT education&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">/*不规范的写法*/</span><br><span class="line">&lt;span&gt;</span><br><span class="line">	&lt;div&gt;wrong&lt;/div&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>p标签不能包含块级元素</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*不规范的写法*/</span><br><span class="line">&lt;p&gt;</span><br><span class="line">	&lt;h1&gt;&lt;/h1&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如下的标签不可包含块级元素</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">h1、h2、h3、h4、h5、h6、p</span><br><span class="line"></span><br><span class="line">/*不规范的写法*/</span><br><span class="line">&lt;h1&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">&lt;/h1&gt;</span><br><span class="line">&lt;h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>li标签可以包含div以及ul(这个是不是很牛，可以包含父级元素)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*规范的写法*/</span><br><span class="line">&lt;li&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/li&gt;</span><br><span class="line">/*不规范的写法*/</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">	&lt;a href=""&gt;迷路的a标签&lt;/a&gt;</span><br><span class="line">	&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>元素并排（块级和块级并列，内联和内联并列)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/*规范的写法*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2&gt;&lt;/h2&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;img src="" alt=""&gt;</span><br><span class="line">	&lt;a href=""&gt;&lt;/a&gt;</span><br><span class="line">	&lt;span&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">/*不规范的写法*/</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;span&gt;我是内联元素&lt;/span&gt;</span><br><span class="line">	&lt;p&gt;我是块级元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>如有错误，请指出，欢迎补充其它一些错误情况。</p>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-						<hr>
-						</div>
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
+
 				</div>
-				<p class="text-center">
-					<a id="look_more" class="warning-btn" href="/archives">查看更多</a>
-				</p>
+				<div class="post-nav">
+					
+					
+						<span class="next"><a href="/2016/02/26/regex-expression-study/">Next</a></span>
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="再谈对闭包的理解" data-title="再谈对闭包的理解" data-url="/2016/03/05/js/再谈闭包/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
 			</article>
 		</div>
 	</div>

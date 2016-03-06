@@ -85,48 +85,6 @@
 				 	
 				
 				 	
-				 	<div class="post-item">	
-						<header>
-							<h1>
-								<a href="/2016/02/26/regex-expression-study/" target="_blank">不要再说正则表达式学不会，其实很简单</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2016-02-26</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/js/" target="_blank">js</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<p><img src="/img/regex.png" alt="regex expression"></p>
-<p>正则表达式在编程的过程中使用率非常的高，但很多人在学习的过程中往往侧重于语法的记忆而不去了解其实质，这让许多人对正则表达式感到畏惧，之前的我也是这样，但经过对正则表达式进一步的了解，其实它非常的简单，只不过为了描述字符串这样的无数据结构信息的数据它的语法不得不变得过于复杂，但如果理解了其原理，你反而会觉得其语法设计良好。</p>
-<ul>
-<li>并,记作 X|Y,表示的语言是正则表达式X与Y的并集，{a, b}。</li>
-<li>与:记作XY，表示的语言是将X的语言中的每个字符串后面连接上Y语言中的每一种字符串，再把所有这种连接的结果组成一种新的语言。</li>
-<li>克林闭包，记作X<em>,表示分别将零个，一个两个…无穷个X与自己连接，然后再求并，即 X</em> = ε|X|XX|XXX|….。</li>
-</ul>
-<p>优先级：<br>克林闭包 &gt; 连接运算 &gt; 并运算;</p>
-<h2 id="正则表达式的扩展运算：">正则表达式的扩展运算：</h2><ul>
-<li>方括号表示括号内的字符并运算。[abc]就等于a|b|c</li>
-<li>方括号中以^字符开头，表示字符集中，排除方括号中的所有字符之后，所剩字符的并运算。[^ab]就表示除了ab以外所有字符求并。</li>
-<li>圆.点表示字符集内所有字符的并。因此 .* 这个表达式就能表示这种字符集所能组成的一切字符串。</li>
-<li>X?表示 X|ε 。表示X与空字符串之间可选。</li>
-<li>X+表示XX*。这等于限制了X至少要重复1次。</li>
-</ul>
-
-							
-						</div>
-						<hr>
-						</div>
-				 	
-				
-				 	
 				
 				 	
 				
@@ -140,11 +98,11 @@
 				 	<div class="post-item">	
 						<header>
 							<h1>
-								<a href="/2016/01/25/js/closure-this/" target="_blank">javascript 闭包、this</a>
+								<a href="/2016/03/05/js/再谈闭包/" target="_blank">再谈对闭包的理解</a>
 							</h1>
 							<div class="post-info">
 								<span class="post-time">
-									<a class="permalink" href="" >2016-01-25</a>
+									<a class="permalink" href="" >2016-03-05</a>
 								</span>
 								<span class="post-tag">
 									
@@ -158,27 +116,73 @@
 						</header>
 						<div class="post-body">
 							
-								<blockquote>
-<p>闭包其实很好理解，但是由于经常把this和闭包绑在一起，从而加大了理解的难度，如果将他们分开考虑，那就清晰多了。</p>
-</blockquote>
-<h2 id="闭包">闭包</h2><p>闭包并不是js首创，在许多语言中都支持闭包，如schemer、ruby等。如果没有闭包，像js这样的支持高阶函数特性的语言将是一个噩梦。</p>
+								<div class="post-excerpt">
+									<h3 id="闭包只是为了实现词法作用域而用到的一种数据结构而已">闭包只是为了实现词法作用域而用到的一种数据结构而已</h3><p>先从阮一峰09年写的一篇关于闭包的文章开始<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">(原文地址)</a>文中说”可以把闭包理解为就是能够读取其他函数内部变量的函数,因为js中,只有函数内部的子函数才能读取局部变量，因此也可以把闭包定义在一个函数内部的函数。所以闭包本质就是将函数内部和函数外部连接起来的一座桥梁”。</p>
+<p>毕竟不是专业学习js的，也不是程序语言方面的专家，在这里就不去计较了，下文会给出更完整的闭包说明。(PS:个人还是比较欣赏阮一峰写的文章的，能将一些概念讲得通俗易懂)</p>
+<p>最后还留下了一个思考题</p>
 <ul>
-<li>静态作用域</li>
-<li>动态作用域</li>
+<li><p>示例01：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">　　<span class="keyword">var</span> name = <span class="string">"The Window"</span>;</span><br><span class="line">　　<span class="keyword">var</span> object = &#123;</span><br><span class="line">　　　　name : <span class="string">"My Object"</span>,</span><br><span class="line">　　　　getNameFunc : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　　　<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">　　　　　　&#125;;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;;</span><br><span class="line">　　alert(object.getNameFunc()());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例02：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">　　<span class="keyword">var</span> name = <span class="string">"The Window"</span>;</span><br><span class="line">　　<span class="keyword">var</span> object = &#123;</span><br><span class="line">　　　　name : <span class="string">"My Object"</span>,</span><br><span class="line">　　　　getNameFunc : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　<span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">　　　　　　<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　　　<span class="keyword">return</span> that.name;</span><br><span class="line">　　　　　　&#125;;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;;</span><br><span class="line">　　alert(object.getNameFunc()());</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"xiaofu"</span>;</span><br><span class="line"><span class="keyword">var</span> person = <span class="function"><span class="keyword">function</span>(<span class="params">lastname</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> name = <span class="string">'yang'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">personName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name + lastname;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> personName;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> pName = person();</span><br><span class="line">pName(<span class="string">"xiaoming"</span>);</span><br></pre></td></tr></table></figure>
-<p>js是函数作用域的，即一个function就是一个作用域，所以personName在person这个函数的作用域里面。但是调用的是在这个作用域的外面，那么当personName执行的时候，它里面的name取的是person这个作用域还是最外层的作用域呢？</p>
-<p>如果是静态作用域则调用的是person里面的 name, 如果是动态作用域则调用的是外层的name(“xiaofu”);而不是”yang”。</p>
-<p>而闭包就是用来实现静态作用域的一种方式，即通过闭包将函数和它声明时的作用域保存下来，这样在调用的时候取到的就是声明时所在的作用域而不是调用时的作用域。</p>
-<h2 id="this">this</h2><p>this则与变量有点不同，即this采用的是类似于动态作用域的情况。js里面一切都是对象，所以函数也都是某个对象的方法，如果没有显示指定则是全局对象。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	fullname: <span class="function"><span class="keyword">function</span></span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">	&#125;,</span><br><span class="line">	printAge: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">person.fullname();		<span class="comment">//this指向person</span></span><br><span class="line"><span class="keyword">var</span> age = person.printAge;</span><br><span class="line">age();					<span class="comment">//this指向window(浏览器中)</span></span><br></pre></td></tr></table></figure>
-<p>将person.printAge赋值给age之后，再执行age(),此时age没有显示指定调用对象则默认是window(浏览器环境)。所以this并不是声明所在的环境。</p>
-<h2 id="箭头函数（es6)">箭头函数（es6)</h2><p>es6中新增了箭头函数，箭头函数与通过function声明的函数不同，它的this是使用的声明时上下文中的this.并且不可通过apply, call等改变。</p>
-
+<p>看完这道题，就希望大家将this和闭包分开，不要给自己找麻烦？</p>
+								</div>
+								<div class="post-more">
+									<p>在开始说闭包之前，需要理解好以下的概念：</p>
+<ul>
+<li>词法作用域(静态作用域)</li>
+<li>函数上下文</li>
+</ul>
+<p><a href="http://yangxiaofu.com/2016/01/25/js/closure-this/">之前简单的提过</a>,词法作用域简单的理解就是函数的上下文是在声明是确定的，而不是在调用时确定的。这里不想对这两个名词作过多的解释，我们知道js/ruby/python等主流的语言都是词法作用域就好，因为与之相对的动态作用域有许多的问题，所以现在的语言基本都是词法作用域的。</p>
+<p>函数上下文就简单的理解为函数执行的环境好了，在这个环境中保存了函数执行所需的变量。</p>
+<h3 id="JavaScript权威指南第六版关于闭包的说明">JavaScript权威指南第六版关于闭包的说明</h3><blockquote>
+<p>JavaScript采用词法作用域，也就是说函数的执行依赖于变量的作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。为了实现词法作用域，JavaScript函数对象的内部状态不仅包含函数的代码逻辑，还必须引用当前的作用域链。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这种特性在计算机科学文献中称为”闭包”。</p>
+<p>当定义一个函数时，它实际上保存了一个作用域链。当调用这个函数时，它创建<br>一个新的对象来存储它的局部变量，并将这个对象添加到保存的作用域链上。</p>
+</blockquote>
+<p>(闭包可以简单的理解为函数用来存储它的局部变量的对象，这个对象我们来说是不可见的，是js解释器实现的过程中才会用到的。每一个函数都会有这样的一个对象，作用域链则是这些对象之间的关系。)</p>
+<p>“闭包”这个术语的来源：指函数变量可以被隐藏于作用域链之内，因此看起来是函数将变量”包裹”了起来。</p>
+<p>看文字可能会比较绕，下面是书中的一个例子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">"global scope"</span>;			<span class="comment">/*全局变量*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkscope</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> scope = <span class="string">"local scope"</span>;		<span class="comment">/*局部变量*/</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> scope;&#125;</span><br><span class="line">	<span class="keyword">return</span> f();</span><br><span class="line">&#125;</span><br><span class="line">checkscope();						<span class="comment">/*=&gt;"local scope"*/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">"global scope"</span>;			<span class="comment">/*全局变量*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkscope</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> scope = <span class="string">"local scope"</span>;		<span class="comment">/*局部变量*/</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> scope;&#125;</span><br><span class="line">	<span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line">checkscope()();						<span class="comment">/*=&gt;"local scope"*/</span></span><br></pre></td></tr></table></figure>
+<p>checkscope最后的返回值都是一样的，即”local scope”。</p>
+<p>上面两个例子的不同之处就是函数f执行的地方不同，一个在checkscope这个作用域里调用的(每一个函数都是一个作用域)，一个在全局作用域里调用的。回忆之前说的，函数调用时的上下文或者说作用域是在声明时确定的，所以与调用的位置无关，即f函数的调用位置虽然不同，调用的环境虽然不同，但最终的结果都是一样的。</p>
+<p>说到这里，闭包就说得差不多了，回过头来看一下常规的对于闭包的理解：</p>
+<blockquote>
+<p>通过返回函数的形式取得函数的局部变量。</p>
+</blockquote>
+<p>这种说法本身没有错，但它只是闭包的一种表现形式，</p>
+<p>比如将上例进行下更改：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">"global scope"</span>;			<span class="comment">/*全局变量*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkscope</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> scope = <span class="string">"local scope"</span>;		<span class="comment">/*局部变量*/</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> scope;&#125;</span><br><span class="line">	fn(f);</span><br><span class="line">&#125;</span><br><span class="line">checkscope(<span class="function"><span class="keyword">function</span>(<span class="params">func</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> scope = <span class="string">"func scope"</span>;</span><br><span class="line">	<span class="keyword">return</span> func();</span><br><span class="line">&#125;);									<span class="comment">/*=&gt;"local scope"*/</span></span><br></pre></td></tr></table></figure></p>
+<p>改成类似回调的执行方式，结果还是一样的，注意结果并不是func scope，但是并没有返回f函数这一说，难道这就不是闭包了吗？(当然这里有点扣字眼)</p>
+<h3 id="说说this">说说this</h3><p>想起最开始时的那个思考题了吗？与闭包就没什么关系(注：任何一个函数其实都用到了闭包，但我们暂且考虑两层以及两层以上的嵌套情况，未嵌套情况下因为使用的都是全局作用域，结果应该是很直观的)。this一般用来代表函数的调用对象，它和上下文对象并不是同一个，上下文对象对我们来说是不可见的，除了全局作用域。</p>
+<ul>
+<li><p>示例01：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">　　<span class="keyword">var</span> name = <span class="string">"The Window"</span>;</span><br><span class="line">　　<span class="keyword">var</span> object = &#123;</span><br><span class="line">　　　　name : <span class="string">"My Object"</span>,</span><br><span class="line">　　　　getNameFunc : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　　　<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">　　　　　　&#125;;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;;</span><br><span class="line">　　alert(object.getNameFunc()());		<span class="comment">/*The Window*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例02：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">　　<span class="keyword">var</span> name = <span class="string">"The Window"</span>;</span><br><span class="line">　　<span class="keyword">var</span> object = &#123;</span><br><span class="line">　　　　name : <span class="string">"My Object"</span>,</span><br><span class="line">　　　　getNameFunc : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　<span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">　　　　　　<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　　　　　<span class="keyword">return</span> that.name;</span><br><span class="line">　　　　　　&#125;;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;;</span><br><span class="line"><span class="keyword">var</span> that = &#123;name: <span class="string">'xiaofu'</span>&#125;;			<span class="comment">/*干扰项*/</span> </span><br><span class="line">　　alert(object.getNameFunc()());		<span class="comment">/*My Object*/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>我们再来看一下题目，示例01输出的是”The Window”,示例02输出的是”My Object”。</p>
+<p>说明：<br>示例01最终执行的是 function(){return this.name}，因为没有显示指明调用对象，所以其this执行全局对象。<br>示例02先调用object.getNameFunc(),因为显示的指定了调用对象，所以内部的this是object(注：这里说的是this指向的问题，还没有说闭包)，接着执行function (){return that.name}，这个函数在getNameFunc这个函数作用域中声明的，所以它调用的时候使用的是这个作用域，即得到var that = this;的这个that;而不是外面的that。</p>
+<h3 id="作用域链不等同于原型链">作用域链不等同于原型链</h3><p>真不知道这两个不相关的东西怎么会被等同起来看待，以后谁告诉我它们是同一个东西，我就想问了，ruby、python这种没有原型概念的语言难道就没有作用域链了吗？</p>
+<p>更有甚者将变量声明提升和闭包混在一起，也是醉了。</p>
+<h3 id="如果无法理解，但记住下面的一点使用技巧，那么遇到闭包和this时也能够轻松的应对">如果无法理解，但记住下面的一点使用技巧，那么遇到闭包和this时也能够轻松的应对</h3><ul>
+<li>闭包：函数执行时变量的获取从声明的作用域处去获取(注意链式关系，当前没有就往父级找，知道全局作用域)</li>
+<li>this：显示指定调用者则this就指向谁，如未指定则为全局对象</li>
+</ul>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
 							
 						</div>
 						<hr>
 						</div>
+				 	
+				
+				 	
+				
 				 	
 				
 				 	

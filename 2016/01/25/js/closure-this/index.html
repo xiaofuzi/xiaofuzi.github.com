@@ -92,6 +92,7 @@
 <p>js是函数作用域的，即一个function就是一个作用域，所以personName在person这个函数的作用域里面。但是调用的是在这个作用域的外面，那么当personName执行的时候，它里面的name取的是person这个作用域还是最外层的作用域呢？</p>
 <p>如果是静态作用域则调用的是person里面的 name, 如果是动态作用域则调用的是外层的name(“xiaofu”);而不是”yang”。</p>
 <p>而闭包就是用来实现静态作用域的一种方式，即通过闭包将函数和它声明时的作用域保存下来，这样在调用的时候取到的就是声明时所在的作用域而不是调用时的作用域。</p>
+<a id="more"></a>
 <h2 id="this">this</h2><p>this则与变量有点不同，即this采用的是类似于动态作用域的情况。js里面一切都是对象，所以函数也都是某个对象的方法，如果没有显示指定则是全局对象。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	fullname: <span class="function"><span class="keyword">function</span></span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">	&#125;,</span><br><span class="line">	printAge: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">person.fullname();		<span class="comment">//this指向person</span></span><br><span class="line"><span class="keyword">var</span> age = person.printAge;</span><br><span class="line">age();					<span class="comment">//this指向window(浏览器中)</span></span><br></pre></td></tr></table></figure>
 <p>将person.printAge赋值给age之后，再执行age(),此时age没有显示指定调用对象则默认是window(浏览器环境)。所以this并不是声明所在的环境。</p>

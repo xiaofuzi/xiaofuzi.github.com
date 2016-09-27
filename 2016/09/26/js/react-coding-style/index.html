@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="杨小福,yangxiaofu,前端,编程,html,css,javascript,nodeJS">
+    <meta name="description" content="杨小福的博客，记点笔记">
+    <title>
+        
+	react/react-native代码规范实践
+
+    </title>
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/monokai.min.css">
+    <link rel="stylesheet" href="/css/post_add.css">
+    <link id="theme-highlight" rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.9.1/styles/atelier-dune.light.min.css">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0904845f91ea208faa55eaa72f93fab1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    <div id="headerWrapper" class="cf">
+        <header id="header" class="cf">
+            <div id="logo">
+                <h1 class="logo">
+					<a href="/">Yangxiaofu</a>
+				</h1>
+                <div class="logo-subtitle">
+                    programmer
+                </div>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/archives">Posts</a></li>
+                    <li><a href="/websites/index.html">Nav</a></li>
+                    <li><a href="/Lab">Lab</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
+	<style>
+		body{
+			background: #f9f9f9;
+		}
+		#headerWrapper{
+			background: #ffffff;
+		}
+	</style>
+	<div id="pageWrapper">
+		<div id="mainContent">
+			<article class="post">
+				<header>
+					<h1>
+						<a href="/2016/09/26/js/react-coding-style/">react/react-native代码规范实践</a>
+					</h1>
+					<div class="post-info">
+						<span class="post-time">
+							<a class="permalink" href="javascrpt:void(0);">2016-09-26</a>
+						</span>
+						<span class="post-tag">
+							
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/js/" target="_blank">js</a>
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/react/" target="_blank">react</a>
+							
+								<a class="tag" href="http://www.yangxiaofu.com/tags/react-native/" target="_blank">react-native</a>
+							
+						</span>
+					</div>
+				</header>
+				<div class="post-body">
+					<h3 id="驼峰式命名_+_首字母大写">驼峰式命名 + 首字母大写</h3><ul>
+<li>基于react本身的特性，组件命名首字母必须大写</li>
+<li>Javascript本身类命名推荐首字母</li>
+<li>组件对应文件首字母大写并与组件名相对应</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*TopicComponent*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TopicComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>对应的文件名推荐使用 <code>TopicComponent</code></p>
+<h3 id="let/const_替代var">let/const 替代var</h3><p>使用let/const而不是var,给所以变量加上块级作用域</p>
+<h3 id="四个空格缩进(若使用tab缩进可将tab设为4个空格)">四个空格缩进(若使用tab缩进可将tab设为4个空格)</h3><h3 id="语句必须分号结尾">语句必须分号结尾</h3><h3 id="声明语句运算符、括号前后加一个空格">声明语句运算符、括号前后加一个空格</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*变量声明*/</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">let</span> myname = <span class="string">'xiaofu'</span>;</span><br><span class="line"><span class="keyword">let</span> num = <span class="number">1</span> + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*函数声明*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetch</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * body</span><br><span class="line">     */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*对象声明*/</span></span><br><span class="line"><span class="keyword">let</span> topicData = &#123;</span><br><span class="line">    msg: <span class="string">'message'</span>,</span><br><span class="line">    data: [],</span><br><span class="line">    getData () &#123;</span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * body</span><br><span class="line">         */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="私有属性及方法加下划线前缀">私有属性及方法加下划线前缀</h3><h3 id="建议一个class一个文件，单文件不要超过200行">建议一个class一个文件，单文件不要超过200行</h3><p>单文件过大会带来阅读障碍，如果功能过于复杂，建议拆分为子类</p>
+<h3 id="文件名与class名保持一致">文件名与class名保持一致</h3><h3 id="严格划分好实例属性、props、state，避免重复渲染">严格划分好实例属性、props、state，避免重复渲染</h3><p>不要滥用 state,应该只将影响视图的值存放在 state 中，这样可以避免频繁的 state 操作以及渲染。</p>
+<h3 id="propTypes类型声明必须，并以es7_static关键字的格式声明">propTypes类型声明必须，并以es7 static关键字的格式声明</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">TopicComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    static propTypes = &#123;</span><br><span class="line">        data: PropTypes.object.isRequired,</span><br><span class="line">        fetchData: PropTypes.func.isRequired</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="state在构造函数中声明">state在构造函数中声明</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">TopicComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    static propTypes = &#123;</span><br><span class="line">        data: PropTypes.object.isRequired,</span><br><span class="line">        fetchData: PropTypes.func.isRequired</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="单行注释写在当前代码行的末尾，尽量保持当前文件所有单行注释对齐">单行注释写在当前代码行的末尾，尽量保持当前文件所有单行注释对齐</h3><h3 id="多行注释按如下格式，紧贴所需注释代码上方，无需空行(注意空格)">多行注释按如下格式，紧贴所需注释代码上方，无需空行(注意空格)</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 注释</span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
+<h3 id="常量声明在class之前">常量声明在class之前</h3><h3 id="import模块按类型划分在当前文件最前面部分，解构类型的导入一个空行分隔，与其它代码用两个空行分隔">import模块按类型划分在当前文件最前面部分，解构类型的导入一个空行分隔，与其它代码用两个空行分隔</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;</span><br><span class="line">    Component,</span><br><span class="line">    PropTypes</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    View,</span><br><span class="line">    Text,</span><br><span class="line">    StyleSheet,</span><br><span class="line">    NavigatorIOS,</span><br><span class="line">    ListView,</span><br><span class="line">    TouchableHighlight,</span><br><span class="line">    Image,</span><br><span class="line">    ActivityIndicator,</span><br><span class="line">    RefreshControl</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ScrollableTabView <span class="keyword">from</span> <span class="string">'react-native-scrollable-tab-view'</span>;</span><br><span class="line"><span class="keyword">import</span> moment <span class="keyword">from</span> <span class="string">'moment'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">    container: &#123;</span><br><span class="line">        flex: <span class="number">1</span>,</span><br><span class="line">        marginTop: <span class="number">64</span>,</span><br><span class="line">        paddingBottom: <span class="number">48</span>,</span><br><span class="line">        backgroundColor: <span class="string">'#ffffff'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组件代码编写顺序">组件代码编写顺序</h3><ul>
+<li>PropType声明</li>
+<li>静态属性</li>
+<li>实例属性</li>
+<li>构造函数(包含state)</li>
+<li>静态方法</li>
+<li>实例方法 </li>
+<li>私有函数</li>
+<li>生命周期函数 </li>
+<li>render子函数以及render函数</li>
+</ul>
+
+				</div>
+				<div class="post-nav">
+					
+					
+						<span class="next"><a href="/2016/03/05/js/再谈闭包/">Next</a></span>
+					
+				</div>
+				<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="react/react-native代码规范实践" data-title="react/react-native代码规范实践" data-url="/2016/09/26/js/react-coding-style/"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"yangxiaofu"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</article>
+		</div>
+	</div>
+
+    <footer id="footer">
+        <i id="upToTop"></i>
+        <p>
+            联系方式 <span>|</span> <a href="javascript:void(0);">yangxiaofuPL@163.com</a>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/post.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.highlight').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+</body>
+
+</html>

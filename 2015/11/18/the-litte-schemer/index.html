@@ -84,49 +84,49 @@
 
 <p><a class="text-center" href="http://www.ccs.neu.edu/home/matthias/BTLS/" target="_blank" rel="external"><img data-src="/img/the-lillte-scheme.jpg" alt="the-little-scheme"></a><br>the little scheme 是一本小人书，却很精妙。阅读它可以让你对编程语言有更好的认识，也能增加你对算法的理解(你真的会用递归了吗？)。<br>说明：该书籍使用scheme来作为讲解的语言，scheme是lisp的一门方言，语法上比较特别的是S表达式。看到S表达式是不是感觉和语法树一般，一开始估计不是很习惯S表达式，但静下心来就会发现其实是一种很好理解也很简洁的语法。Good Luck!</p>
 <p><img class="text-center" data-src="/img/learn-programm.png" alt="oh,man.I just want to learn programm video game!"><br>oh,man.I just want to learn programm video game!</p>
-<h2 id="The_Law_of_Car">The Law of Car</h2><blockquote>
+<h2 id="The-Law-of-Car"><a href="#The-Law-of-Car" class="headerlink" title="The Law of Car"></a>The Law of Car</h2><blockquote>
 <p>The primitive car is defined only for non-empty lists.</p>
 </blockquote>
 <a id="more"></a>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the car of l</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs))(and)(pickle) relish)</span><br><span class="line"></span><br><span class="line">A:</span><br><span class="line">((hotdogs)),</span><br><span class="line">	read as:</span><br><span class="line">	"The list of the list of hotdogs."</span><br><span class="line">	((hotdogs)) is the first S-expression of l.</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is the car of l</div><div class="line">where</div><div class="line">	l is (((hotdogs))(and)(pickle) relish)</div><div class="line"></div><div class="line">A:</div><div class="line">((hotdogs)),</div><div class="line">	read as:</div><div class="line">	"The list of the list of hotdogs."</div><div class="line">	((hotdogs)) is the first S-expression of l.</div></pre></td></tr></table></figure>
 <p>[“S表达式”, “列表”]</p>
-<p><hr><br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (car l)</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs)) (and) (pickle) relish)</span><br><span class="line"></span><br><span class="line">A:</span><br><span class="line">((hotdogs)),</span><br><span class="line">because (car l) is another way to ask for "the car of the </span><br><span class="line">list l."</span><br></pre></td></tr></table></figure></p>
+<p><hr><br><figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is (car l)</div><div class="line">where</div><div class="line">	l is (((hotdogs)) (and) (pickle) relish)</div><div class="line"></div><div class="line">A:</div><div class="line">((hotdogs)),</div><div class="line">because (car l) is another way to ask for "the car of the </div><div class="line">list l."</div></pre></td></tr></table></figure></p>
 <hr>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (car (car l))</span><br><span class="line">where</span><br><span class="line">	l is (((hotdogs)) (and))</span><br><span class="line">A:</span><br><span class="line">(hotdogs).</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is (car (car l))</div><div class="line">where</div><div class="line">	l is (((hotdogs)) (and))</div><div class="line">A:</div><div class="line">(hotdogs).</div></pre></td></tr></table></figure>
 <hr>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is (a b c)</span><br><span class="line">A:</span><br><span class="line">(b c)</span><br><span class="line">	because (b c) is the list l without (car l).</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is the cdr of l</div><div class="line">where</div><div class="line">	l is (a b c)</div><div class="line">A:</div><div class="line">(b c)</div><div class="line">	because (b c) is the list l without (car l).</div></pre></td></tr></table></figure>
 <hr>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is ((a b c) x y z)</span><br><span class="line">A:</span><br><span class="line">(x y z)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is the cdr of l</div><div class="line">where</div><div class="line">	l is ((a b c) x y z)</div><div class="line">A:</div><div class="line">(x y z)</div></pre></td></tr></table></figure>
 <hr>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cdr of l</span><br><span class="line">where</span><br><span class="line">	l is (hamburger)</span><br><span class="line">A:</span><br><span class="line">()</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is the cdr of l</div><div class="line">where</div><div class="line">	l is (hamburger)</div><div class="line">A:</div><div class="line">()</div></pre></td></tr></table></figure>
 <hr>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cdr a)</span><br><span class="line">where </span><br><span class="line">a is hotdogs</span><br><span class="line">A:</span><br><span class="line">No answer</span><br><span class="line">	You cannot ask for the cdr of an atom.</span><br></pre></td></tr></table></figure>
-<h2 id="The_Law_of_Cdr">The Law of Cdr</h2><blockquote>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is (cdr a)</div><div class="line">where </div><div class="line">a is hotdogs</div><div class="line">A:</div><div class="line">No answer</div><div class="line">	You cannot ask for the cdr of an atom.</div></pre></td></tr></table></figure>
+<h2 id="The-Law-of-Cdr"><a href="#The-Law-of-Cdr" class="headerlink" title="The Law of Cdr"></a>The Law of Cdr</h2><blockquote>
 <p>The primitive cdr is defined only for non-empty lists.<br>The cdr of any non-empty list is always another list.</p>
 <hr>
 
 </blockquote>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">what is (car (cdr l))</span><br><span class="line">where</span><br><span class="line">l is ((b)(x y)((c)))</span><br><span class="line">A:</span><br><span class="line">(x y),</span><br><span class="line">because((x y)((c))) is (cdr l), and (x y) is the car of</span><br><span class="line">(cdr l).</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">what is (car (cdr l))</div><div class="line">where</div><div class="line">l is ((b)(x y)((c)))</div><div class="line">A:</div><div class="line">(x y),</div><div class="line">because((x y)((c))) is (cdr l), and (x y) is the car of</div><div class="line">(cdr l).</div></pre></td></tr></table></figure>
 <hr>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cdr (cdr l))</span><br><span class="line">where</span><br><span class="line">	l is ((b)(x y)((c)))</span><br><span class="line">A:</span><br><span class="line">(((c))),</span><br><span class="line">because(x y)((c)) is (cdr l), and (((c))) is the cdr of (cdr l).</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is (cdr (cdr l))</div><div class="line">where</div><div class="line">	l is ((b)(x y)((c)))</div><div class="line">A:</div><div class="line">(((c))),</div><div class="line">because(x y)((c)) is (cdr l), and (((c))) is the cdr of (cdr l).</div></pre></td></tr></table></figure>
 <hr>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">what does car take as an argument?</span><br><span class="line">A:</span><br><span class="line">it takes any non-empty list.</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">what does car take as an argument?</div><div class="line">A:</div><div class="line">it takes any non-empty list.</div></pre></td></tr></table></figure>
 <hr>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What does cdr take as an argument?</span><br><span class="line">A:</span><br><span class="line">It takes any non-empty list.</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What does cdr take as an argument?</div><div class="line">A:</div><div class="line">It takes any non-empty list.</div></pre></td></tr></table></figure>
 <hr>
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is the cons of the atom a and the list l</span><br><span class="line">Where a is peanut</span><br><span class="line">and</span><br><span class="line">	l is (butter and jelly)</span><br><span class="line">This can also be written "(cons a l)".</span><br><span class="line">	Read: "cons the atom a onto the list l."</span><br><span class="line">A:</span><br><span class="line">(peanut butter and jelly),</span><br><span class="line">	because cons adds an atom to the front of a list.</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What is (cons s l)</span><br><span class="line">where</span><br><span class="line">	s is ((help) this)</span><br><span class="line">and</span><br><span class="line">	l is (is very ((hard) to learn))</span><br><span class="line">A:</span><br><span class="line">(((help) this) is very ((hard) to learn)).</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">Q:</span><br><span class="line">What does cons take as its arguments?</span><br><span class="line">A:</span><br><span class="line">cons takes two arguments:</span><br><span class="line">	the first one is any S-expression;</span><br><span class="line">	the second one is any list.</span><br></pre></td></tr></table></figure>
-<h2 id="The_Law_of_Cons">The Law of Cons</h2><blockquote>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is the cons of the atom a and the list l</div><div class="line">Where a is peanut</div><div class="line">and</div><div class="line">	l is (butter and jelly)</div><div class="line">This can also be written "(cons a l)".</div><div class="line">	Read: "cons the atom a onto the list l."</div><div class="line">A:</div><div class="line">(peanut butter and jelly),</div><div class="line">	because cons adds an atom to the front of a list.</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What is (cons s l)</div><div class="line">where</div><div class="line">	s is ((help) this)</div><div class="line">and</div><div class="line">	l is (is very ((hard) to learn))</div><div class="line">A:</div><div class="line">(((help) this) is very ((hard) to learn)).</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">Q:</div><div class="line">What does cons take as its arguments?</div><div class="line">A:</div><div class="line">cons takes two arguments:</div><div class="line">	the first one is any S-expression;</div><div class="line">	the second one is any list.</div></pre></td></tr></table></figure>
+<h2 id="The-Law-of-Cons"><a href="#The-Law-of-Cons" class="headerlink" title="The Law of Cons"></a>The Law of Cons</h2><blockquote>
 <p>The primitive cons takes two arguments.<br>The second argument to cons must be a list.<br>The result is a list.</p>
 </blockquote>
 

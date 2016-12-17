@@ -61,6 +61,81 @@
 				 	
 				
 				 	
+				 	<div class="post-item">	
+						<header>
+							<h1>
+								<a href="/2015/11/17/html语法标准/" target="_blank">html不能这么写，你知道吗？</a>
+							</h1>
+							<div class="post-info">
+								<span class="post-time">
+									<a class="permalink" href="" >2015-11-17</a>
+								</span>
+								<span class="post-tag">
+									
+									
+										<a class="tag" href="http://www.yangxiaofu.com/tags/html/" target="_blank">html</a>
+									
+								</span>
+							</div>
+						</header>
+						<div class="post-body">
+							
+								<div class="post-excerpt">
+									<ul>
+<li>a标签不可以嵌套交互式元素</li>
+<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
+<li>p标签不能包含块级元素</li>
+<li>这些标签不可包含块级元素</li>
+<li>li标签可以包含div以及ul，ul的子元素应该只有li</li>
+<li>元素并排（块级和块级并列，内联和内联并列)</li>
+</ul>
+								</div>
+								<div class="post-more">
+									<h2 id="标签错误嵌套"><a href="#标签错误嵌套" class="headerlink" title="标签错误嵌套"></a>标签错误嵌套</h2><h3 id="语法错误"><a href="#语法错误" class="headerlink" title="语法错误"></a>语法错误</h3><ul>
+<li>a标签不可以嵌套交互式元素[a， audio（如果设置了controls属性）， button， details， embed， iframe， img（如果设置了usemap属性）， input（如果type属性不为hidden状态）， keygen， label， menu（如果type属性为toolbar状态），object（如果设置了usemap属性）， select， textarea， video（如果设置了controls属性）]</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*下面这些写法浏览器是不能够正常解析的*/</div><div class="line">&lt;a href=""&gt;</div><div class="line">	&lt;a href=""&gt;click&lt;/a&gt;</div><div class="line">&lt;/a&gt;</div><div class="line">&lt;a href=""&gt;</div><div class="line">	&lt;button&gt;click&lt;/button&gt;</div><div class="line">&lt;/a&gt;</div><div class="line">&lt;a href=""&gt;</div><div class="line">	&lt;input type="text"&gt;</div><div class="line">&lt;/a&gt;</div><div class="line">&lt;a href=""&gt;</div><div class="line">	&lt;textarea name="" id="" cols="10" rows="5"&gt;&lt;/textarea&gt;</div><div class="line">&lt;/a&gt;</div></pre></td></tr></table></figure>
+<p><a href=""><a href="">click</a></a><a href=""><button>click</button></a><a href=""><input type="text"></a><a href=""><textarea name="" id="" cols="30" rows="10"></textarea></a></p>
+<p>有的虽然解析正常，但却达不到预想的目的</p>
+<h3 id="语义错误"><a href="#语义错误" class="headerlink" title="语义错误"></a>语义错误</h3><p>页面可能正常解析，但不符合语义。这是因为浏览器自带容错机制，对于不规范的写法也能够正确的解析，各浏览器的容错机制不同，所以尽量按规范来写。</p>
+<ul>
+<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*规范的写法*/</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;h2&gt;jikexueyuan&lt;/h2&gt;</div><div class="line">	&lt;p&gt;IT education&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">/*不规范的写法*/</div><div class="line">&lt;span&gt;</div><div class="line">	&lt;div&gt;wrong&lt;/div&gt;</div><div class="line">&lt;/span&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>p标签不能包含块级元素</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*不规范的写法*/</div><div class="line">&lt;p&gt;</div><div class="line">	&lt;h1&gt;&lt;/h1&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;p&gt;</div><div class="line">	&lt;div&gt;&lt;/div&gt;</div><div class="line">&lt;/p&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>如下的标签不可包含块级元素</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">h1、h2、h3、h4、h5、h6、p</div><div class="line"></div><div class="line">/*不规范的写法*/</div><div class="line">&lt;h1&gt;</div><div class="line">	&lt;h2&gt;&lt;/h2&gt;</div><div class="line">&lt;/h1&gt;</div><div class="line">&lt;h2&gt;</div><div class="line">	&lt;p&gt;&lt;/p&gt;</div><div class="line">&lt;/h2&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>li标签可以包含div以及ul(这个是不是很牛，可以包含父级元素)</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*规范的写法*/</div><div class="line">&lt;li&gt;</div><div class="line">	&lt;ul&gt;</div><div class="line">		&lt;li&gt;&lt;/li&gt;</div><div class="line">		&lt;li&gt;&lt;/li&gt;</div><div class="line">		&lt;li&gt;&lt;/li&gt;</div><div class="line">	&lt;/ul&gt;</div><div class="line">	&lt;div&gt;&lt;/div&gt;</div><div class="line">&lt;/li&gt;</div><div class="line">/*不规范的写法*/</div><div class="line">&lt;ul&gt;</div><div class="line">	&lt;a href=""&gt;迷路的a标签&lt;/a&gt;</div><div class="line">	&lt;li&gt;&lt;/li&gt;</div><div class="line">	&lt;li&gt;&lt;/li&gt;</div><div class="line">	&lt;li&gt;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>元素并排（块级和块级并列，内联和内联并列)</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*规范的写法*/</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;h2&gt;&lt;/h2&gt;</div><div class="line">	&lt;p&gt;&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;img src="" alt=""&gt;</div><div class="line">	&lt;a href=""&gt;&lt;/a&gt;</div><div class="line">	&lt;span&gt;&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">/*不规范的写法*/</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;span&gt;我是内联元素&lt;/span&gt;</div><div class="line">	&lt;p&gt;我是块级元素&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>如有错误，请指出，欢迎补充其它一些错误情况。</p>
+								</div>
+								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
+							
+						</div>
+						<hr>
+						</div>
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
+				
+				 	
 				
 				 	
 				
@@ -159,81 +234,6 @@
 				
 				 	
 				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				
-				 	
-				 	<div class="post-item">	
-						<header>
-							<h1>
-								<a href="/2015/11/17/html语法标准/" target="_blank">html不能这么写，你知道吗？</a>
-							</h1>
-							<div class="post-info">
-								<span class="post-time">
-									<a class="permalink" href="" >2015-11-17</a>
-								</span>
-								<span class="post-tag">
-									
-									
-										<a class="tag" href="http://www.yangxiaofu.com/tags/html/" target="_blank">html</a>
-									
-								</span>
-							</div>
-						</header>
-						<div class="post-body">
-							
-								<div class="post-excerpt">
-									<ul>
-<li>a标签不可以嵌套交互式元素</li>
-<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
-<li>p标签不能包含块级元素</li>
-<li>这些标签不可包含块级元素</li>
-<li>li标签可以包含div以及ul，ul的子元素应该只有li</li>
-<li>元素并排（块级和块级并列，内联和内联并列)</li>
-</ul>
-								</div>
-								<div class="post-more">
-									<h2 id="标签错误嵌套"><a href="#标签错误嵌套" class="headerlink" title="标签错误嵌套"></a>标签错误嵌套</h2><h3 id="语法错误"><a href="#语法错误" class="headerlink" title="语法错误"></a>语法错误</h3><ul>
-<li>a标签不可以嵌套交互式元素[a， audio（如果设置了controls属性）， button， details， embed， iframe， img（如果设置了usemap属性）， input（如果type属性不为hidden状态）， keygen， label， menu（如果type属性为toolbar状态），object（如果设置了usemap属性）， select， textarea， video（如果设置了controls属性）]</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*下面这些写法浏览器是不能够正常解析的*/</div><div class="line">&lt;a href=""&gt;</div><div class="line">	&lt;a href=""&gt;click&lt;/a&gt;</div><div class="line">&lt;/a&gt;</div><div class="line">&lt;a href=""&gt;</div><div class="line">	&lt;button&gt;click&lt;/button&gt;</div><div class="line">&lt;/a&gt;</div><div class="line">&lt;a href=""&gt;</div><div class="line">	&lt;input type="text"&gt;</div><div class="line">&lt;/a&gt;</div><div class="line">&lt;a href=""&gt;</div><div class="line">	&lt;textarea name="" id="" cols="10" rows="5"&gt;&lt;/textarea&gt;</div><div class="line">&lt;/a&gt;</div></pre></td></tr></table></figure>
-<p><a href=""><a href="">click</a></a><a href=""><button>click</button></a><a href=""><input type="text"></a><a href=""><textarea name="" id="" cols="30" rows="10"></textarea></a></p>
-<p>有的虽然解析正常，但却达不到预想的目的</p>
-<h3 id="语义错误"><a href="#语义错误" class="headerlink" title="语义错误"></a>语义错误</h3><p>页面可能正常解析，但不符合语义。这是因为浏览器自带容错机制，对于不规范的写法也能够正确的解析，各浏览器的容错机制不同，所以尽量按规范来写。</p>
-<ul>
-<li>块级元素可以包含内联元素和某些块级元素，内联元素不能包含块级元素，只能包含内联元素</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*规范的写法*/</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;h2&gt;jikexueyuan&lt;/h2&gt;</div><div class="line">	&lt;p&gt;IT education&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">/*不规范的写法*/</div><div class="line">&lt;span&gt;</div><div class="line">	&lt;div&gt;wrong&lt;/div&gt;</div><div class="line">&lt;/span&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>p标签不能包含块级元素</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*不规范的写法*/</div><div class="line">&lt;p&gt;</div><div class="line">	&lt;h1&gt;&lt;/h1&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;p&gt;</div><div class="line">	&lt;div&gt;&lt;/div&gt;</div><div class="line">&lt;/p&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>如下的标签不可包含块级元素</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">h1、h2、h3、h4、h5、h6、p</div><div class="line"></div><div class="line">/*不规范的写法*/</div><div class="line">&lt;h1&gt;</div><div class="line">	&lt;h2&gt;&lt;/h2&gt;</div><div class="line">&lt;/h1&gt;</div><div class="line">&lt;h2&gt;</div><div class="line">	&lt;p&gt;&lt;/p&gt;</div><div class="line">&lt;/h2&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>li标签可以包含div以及ul(这个是不是很牛，可以包含父级元素)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*规范的写法*/</div><div class="line">&lt;li&gt;</div><div class="line">	&lt;ul&gt;</div><div class="line">		&lt;li&gt;&lt;/li&gt;</div><div class="line">		&lt;li&gt;&lt;/li&gt;</div><div class="line">		&lt;li&gt;&lt;/li&gt;</div><div class="line">	&lt;/ul&gt;</div><div class="line">	&lt;div&gt;&lt;/div&gt;</div><div class="line">&lt;/li&gt;</div><div class="line">/*不规范的写法*/</div><div class="line">&lt;ul&gt;</div><div class="line">	&lt;a href=""&gt;迷路的a标签&lt;/a&gt;</div><div class="line">	&lt;li&gt;&lt;/li&gt;</div><div class="line">	&lt;li&gt;&lt;/li&gt;</div><div class="line">	&lt;li&gt;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>元素并排（块级和块级并列，内联和内联并列)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">/*规范的写法*/</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;h2&gt;&lt;/h2&gt;</div><div class="line">	&lt;p&gt;&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;img src="" alt=""&gt;</div><div class="line">	&lt;a href=""&gt;&lt;/a&gt;</div><div class="line">	&lt;span&gt;&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">/*不规范的写法*/</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;span&gt;我是内联元素&lt;/span&gt;</div><div class="line">	&lt;p&gt;我是块级元素&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<p>如有错误，请指出，欢迎补充其它一些错误情况。</p>
-								</div>
-								<a class="postMore" href="javascript:void(0);" data-show="false">......查看全文</a>
-							
-						</div>
-						<hr>
-						</div>
 				 	
 				
 				 	
